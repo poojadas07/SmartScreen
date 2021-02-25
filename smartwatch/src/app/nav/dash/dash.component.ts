@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-dash',
@@ -31,4 +32,15 @@ cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
  );
 
   constructor(private breakpointObserver: BreakpointObserver) {}
+
+  isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
+    .pipe(
+      map(result => result.matches),
+      shareReplay()
+    );
+    
+  menuItems = ['countries', 'regions' , 'locations' , 'client' , 'departments' , 'screens'];
+
+  panelOpenState = false;
+
 }

@@ -18,6 +18,8 @@ export class NavComponent {
 
   constructor(private breakpointObserver: BreakpointObserver) {}
 
-  menuItems = ['dashboard', 'sales', 'orders', 'customers', 'products'];
+  menuItems = ['countries', 'regions' , 'locations' , 'client' , 'departments' , 'screens'];
+
+  panelOpenState = false;
 
 }

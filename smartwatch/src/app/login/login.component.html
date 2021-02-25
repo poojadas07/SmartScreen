@@ -1,0 +1,20 @@
+<mat-card class="example-card" style="width: 50%; margin: auto; top: 10%; text-align: center; height: 50%;">
+    <mat-card-content>
+        <br><br><br><br>
+        <form class="example-form">
+            <mat-form-field appearance="legacy" style="width:400px !important">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Username" [(ngModel)]="username" name="username" required>
+            </mat-form-field>
+            <br><br>
+            <mat-form-field appearance="legacy" style="width:400px !important">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Password" [(ngModel)]="password"type="password" name="password" required>
+            </mat-form-field>
+        </form>
+       <!-- <mat-spinner [style.display]="showSpinner ? 'block' : 'none'"></mat-spinner> --> 
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button (click)="login()" color="primary">Login</button>
+    </mat-card-actions>
+  </mat-card> 
