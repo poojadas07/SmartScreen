@@ -39,7 +39,6 @@ exports.findAll = (req , res) => {
     });
 };
 
-
 // Retrieve and return country by name from the database.
 exports.findByName = (req , res) => {
     Country.find({
