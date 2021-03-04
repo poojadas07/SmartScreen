@@ -10,6 +10,9 @@ module.exports = (app) => {
     // Reterive the single country
     app.get('/country/:countryId' , country.findOne);
 
+    // Reterive the single country
+    app.post('/country/search' , country.findByName);
+
     // Update the single country
     app.put('/country/:countryId' , country.update);
 

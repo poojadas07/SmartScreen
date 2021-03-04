@@ -1,11 +1,14 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+var cors = require('cors');
 
 // create express app
 const app = express();
 
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true}));
+
+app.use(cors());
 
 // parse requests of content-type - application/json
 app.use(bodyParser.json());
@@ -34,6 +37,9 @@ app.get('/' , (req, res)=> {
 
 // Require the country routes
 require('./app/routes/country.route.js')(app);
+
+// Require the region routes
+require('./app/routes/region.route.js')(app);
 
 // listen for requests 
 app.listen(3001 , () => {

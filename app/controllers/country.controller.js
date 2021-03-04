@@ -39,6 +39,22 @@ exports.findAll = (req , res) => {
     });
 };
 
+// Retrieve and return country by name from the database.
+exports.findByName = (req , res) => {
+    Country.find({
+        "$text" : {
+            "$search" : req.body.name
+        }
+    })
+    .then(country => {
+        res.send(country);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Countries."
+        });
+    })
+}
 // Find a single country with a countryId
 exports.findOne = (req , res) => {
     Country.findById(req.params.countryId)

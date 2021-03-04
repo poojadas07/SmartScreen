@@ -3,36 +3,63 @@
         <mat-form-field appearance="outline">
             <input matInput placeholder="Search" [(ngModel)]="searchvalue" name="searchvalue">
         </mat-form-field>
-        <button mat-raised-button (click)="login(searchvalue)" color="primary" style="padding: 4px; margin-left: 1%;">Search</button>
+        <button mat-raised-button (click)="search(searchvalue)" color="primary" style="padding: 4px; margin-left: 1%;">Search</button>
         <button mat-raised-button color="primary" style="float: right; margin: 2%;"> + ADD</button>
     </form>
 </mat-card-content>
 
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8" style="margin: 1% 2%; width: 94%;">
+<table style="margin: 1% 2%; width: 94%;" id="customers">
+    <thead>
+        <tr>
+          <th>Sort</th>
+          <th>Name</th>
+          <th>Created On</th>
+          <th>Updated On</th>
+          <th>Enable</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let country of countries; let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{country.name}}</td>
+        <td>{{country.createdAt}}</td>
+        <td>{{country.updatedAt}}</td>
+        <td><input type="checkbox"></td>
+        <td>
+            <a (click)="editRow(country)">
+                <span class="material-icons" style="color: green;">create</span>
+            </a> 
+            <a (click)="deleteRow(country)">
+                <span class="material-icons" style="color: red;">delete_outline</span>
+            </a>
+        </td>
+        </tr>
+    </tbody>
     <!-- Position Column -->
-    <ng-container matColumnDef="position">
+    <!-- <ng-container matColumnDef="position">
         <th mat-header-cell *matHeaderCellDef> No. </th>
         <td mat-cell *matCellDef="let element"> {{element.position}} </td>
     </ng-container>
-    
+     -->
     <!-- Name Column -->
-    <ng-container matColumnDef="name">
+    <!-- <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-    </ng-container>
+    </ng-container> -->
     
     <!-- Weight Column -->
-    <ng-container matColumnDef="weight">
+    <!-- <ng-container matColumnDef="weight">
         <th mat-header-cell *matHeaderCellDef> Weight </th>
         <td mat-cell *matCellDef="let element"> {{element.weight}} </td>
-    </ng-container>
+    </ng-container> -->
     
     <!-- Symbol Column -->
-    <ng-container matColumnDef="symbol">
+    <!-- <ng-container matColumnDef="symbol">
         <th mat-header-cell *matHeaderCellDef> Symbol </th>
         <td mat-cell *matCellDef="let element"> {{element.symbol}} </td>
-    </ng-container>
+    </ng-container> -->
     
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <!-- <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr> -->
 </table>

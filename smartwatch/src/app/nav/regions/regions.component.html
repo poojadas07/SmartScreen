@@ -1,1 +1,41 @@
-<p>regions works!</p>
+<mat-card-content>
+    <form class="example-form" style="margin: 0 2%;">
+        <mat-form-field appearance="outline">
+            <input matInput placeholder="Search" [(ngModel)]="searchvalue" name="searchvalue">
+        </mat-form-field>
+        <button mat-raised-button (click)="search(searchvalue)" color="primary" style="padding: 4px; margin-left: 1%;">Search</button>
+        <button mat-raised-button color="primary" style="float: right; margin: 2%;"> + ADD</button>
+    </form>
+</mat-card-content>
+
+<table style="margin: 1% 2%; width: 94%;" id="customers">
+    <thead>
+        <tr>
+          <th>Sort</th>
+          <th>Name</th>
+          <th>Country</th>
+          <th>Created On</th>
+          <th>Updated On</th>
+          <th>Enable</th>
+          <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let region of regions; let i = index">
+        <td>{{ i+1 }}</td>
+        <td>{{region.name}}</td>
+        <td>{{region.countryName}}</td>
+        <td>{{region.createdAt}}</td>
+        <td>{{region.updatedAt}}</td>
+        <td><input type="checkbox"></td>
+        <td>
+            <a (click)="editRow(region)">
+                <span class="material-icons" style="color: green;">create</span>
+            </a> 
+            <a (click)="deleteRow(region)">
+                <span class="material-icons" style="color: red;">delete_outline</span>
+            </a>
+        </td>
+        </tr>
+    </tbody>
+</table>
