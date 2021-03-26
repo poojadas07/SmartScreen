@@ -25,7 +25,6 @@ exports.create = (req, res) => {
     });
 };
 
-
 // Retrieve and return all countries from the database.
 exports.findAll = (req , res) => {
     Country.find()
