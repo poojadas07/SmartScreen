@@ -2,6 +2,7 @@ const Country = require('../model/country.model.js');
 
 // create and save a new country
 exports.create = (req, res) => {
+    
     // Validate request
     if(!req.body){
         return res.status(400).send({
