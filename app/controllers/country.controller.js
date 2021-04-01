@@ -55,6 +55,7 @@ exports.findByName = (req , res) => {
         });
     })
 }
+
 // Find a single country with a countryId
 exports.findOne = (req , res) => {
     Country.findById(req.params.countryId)
