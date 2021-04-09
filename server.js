@@ -41,6 +41,9 @@ require('./app/routes/country.route.js')(app);
 // Require the region routes
 require('./app/routes/region.route.js')(app);
 
+// Require the location routes
+require('./app/routes/location.route.js')(app);
+
 // listen for requests 
 app.listen(3001 , () => {
     console.log("Server is listening to port 3001 .");
