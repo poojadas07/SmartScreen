@@ -1,18 +1,18 @@
 module.exports = (app) => {
-    const region = require('../controllers/region.controller.js');
+    const location = require('../controllers/location.controller.js');
 
-    // Create a new region
-    app.post('/region' , region.create);
+    // Create a new location
+    app.post('/location' , location.create);
 
-    // Reterive all regions
-    app.get('/region' , region.findAll);
+    // Reterive all locations
+    app.get('/location' , location.findAll);
 
-    // Reterive the single region
-    app.get('/region/:regionId' , region.findOne);
+    // Reterive the single location
+    app.get('/location/:locationId' , location.findOne);
 
-    // Update the single region
-    app.put('/region/:regionId' , region.update);
+    // Update the single location
+    app.put('/location/:locationId' , location.update);
 
-    // Delete the single region
-    app.delete('/region/:regionId' , region.delete);
+    // Delete the single location
+    app.delete('/location/:locationId' , location.delete);
 }
