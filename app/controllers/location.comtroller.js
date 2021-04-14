@@ -63,35 +63,35 @@ exports.findOne = (req , res) => {
     });
 };
 
-// Update a region identified by the regionId in the request
+// Update a location identified by the locationId in the request
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
         return res.status(400).send({
-            message: "Region cannot be empty"
+            message: "Location cannot be empty"
         });
     }
 
-    // Find region and update it with the request body
-    Region.findByIdAndUpdate(req.params.regionId , {
-        name: req.body.name || "Untitles Region",
-        countryName: req.body.countryName || "Untitled Country"
+    // Find location and update it with the request body
+    Region.findByIdAndUpdate(req.params.locationId , {
+        name: req.body.name || "Untitles Location",
+        locationName: req.body.locationName || "Untitled Location"
     }, {new : true})
-    .then(region => {
-        if(!region){
+    .then(location => {
+        if(!location){
             return res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
-        res.send(region);
+        res.send(location);
     }).catch(err => {
         if(err.kind === "ObjectId"){
             return res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
         return res.status(500).send({
-            message: "Error updating region with id " + req.params.regionId
+            message: "Error updating location with id " + req.params.locationId
         });
     });
 };
