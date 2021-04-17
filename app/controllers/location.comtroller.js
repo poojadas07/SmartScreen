@@ -1,41 +1,41 @@
-const Region = require('../model/region.model');
+const Location = require('../model/location.model');
 
-// create and save a new region
+// create and save a new location
 exports.create = (req, res) => {
     // Validate request
     if(!req.body){
         return res.status(400).send({
-            message: "Region can not be empty"
+            message: "Location can not be empty"
         });
     }
 
-    // create region
-    const region = new Region({
-        name: req.body.name || "Untitled Region",
-        countryName: req.body.countryName || "Untitled Country"
+    // create location
+    const location = new Location({
+        name: req.body.name || "Untitled Location",
+        locationName: req.body.locationName || "Untitled Location"
     });
 
-    region.save()
+    location.save()
     .then(data => {
         res.send(data);
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while creating the region."
+            message: err.message || "Some error occurred while creating the location."
         });
     });
 };
 
 
-// Retrieve and return all regions from the database.
+// Retrieve and return all locations from the database.
 exports.findAll = (req , res) => {
-    Region.find()
-    .then( regions => {
-        res.send(regions);
+    Location.find()
+    .then( locations => {
+        res.send(locations);
     })
     .catch(err => {
         res.status(500).send({
-            message: err.message || "Some error occurred while retrieving regions."
+            message: err.message || "Some error occurred while retrieving locations."
         });
     });
 };
