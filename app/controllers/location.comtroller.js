@@ -40,25 +40,25 @@ exports.findAll = (req , res) => {
     });
 };
 
-// Find a single region with a regionId
+// Find a single location with a locationId
 exports.findOne = (req , res) => {
-    Region.findById(req.params.regionId)
-    .then( region => {
-        if(!region){
+    Location.findById(req.params.locationId)
+    .then( location => {
+        if(!location){
             res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
-        res.send(region);
+        res.send(location);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
             return res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
         return res.status(500).send({
-            message: "Error retrieving region with id " + req.params.regionId
+            message: "Error retrieving location with id " + req.params.locationId
         });
     });
 };
