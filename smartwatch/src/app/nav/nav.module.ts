@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -22,6 +23,9 @@ import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ChartsModule } from 'ng2-charts';
 import { NavRoutingModule } from './nav-routing.module';
+import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
+import { ShareComponent } from './share/share.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -30,13 +34,16 @@ import { NavRoutingModule } from './nav-routing.module';
     CardComponent,
     CountriesComponent,
     RegionsComponent,
-    LocationsComponent],
+    LocationsComponent,
+    ShareComponent,
+  ],
   imports: [
     CommonModule,
     NavRoutingModule,
     ChartsModule,
     LayoutModule,
     MatToolbarModule,
+    MatDialogModule,
     MatButtonModule,
     FormsModule,
     MatInputModule,
@@ -48,7 +55,9 @@ import { NavRoutingModule } from './nav-routing.module';
     MatGridListModule,
     MatCardModule,
     MatMenuModule,
-    MatExpansionModule
+    MatExpansionModule,
+    ShareButtonsModule,
+    FontAwesomeModule,
   ]
 })
 export class NavModule {

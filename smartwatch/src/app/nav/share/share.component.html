@@ -1,0 +1,40 @@
+<h3 style="text-align: center;">Share With</h3>
+<hr>
+<div style="text-align: center;">
+    <button mat-fab shareButton="facebook"
+                #fbBtn="shareButton"
+                [style.backgroundColor]="fbBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faFacebookF" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="email"
+                    #mailBtn="shareButton"
+                    [style.backgroundColor]="mailBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faEnvelope" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="twitter"
+                    #twtBtn="shareButton"
+                    [style.backgroundColor]="twtBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faTwitter" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="whatsapp"
+                    #wpBtn="shareButton"
+                    [style.backgroundColor]="wpBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faWhatsapp" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="linkedin"
+                    #linkedBtn="shareButton"
+                    [style.backgroundColor]="linkedBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faLinkedinIn" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="telegram"
+                    #teleBtn="shareButton"
+                    [style.backgroundColor]="teleBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faTelegramPlane" size="lg" style="color: white;"></fa-icon>
+    </button>
+    <button mat-fab shareButton="copy"
+                    #linkBtn="shareButton"
+                    [style.backgroundColor]="linkBtn?.color" style="margin: 5%;">
+        <fa-icon [icon]="faLink" size="lg" style="color: white;"></fa-icon>
+    </button>
+</div>
+
