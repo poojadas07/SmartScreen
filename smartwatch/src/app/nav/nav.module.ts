@@ -26,6 +26,7 @@ import { NavRoutingModule } from './nav-routing.module';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareComponent } from './share/share.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RegionsComponent,
     LocationsComponent,
     ShareComponent,
+    ProfileComponent,
   ],
   imports: [
     CommonModule,
