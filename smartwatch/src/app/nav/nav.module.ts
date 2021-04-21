@@ -27,6 +27,7 @@ import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
 import { ShareComponent } from './share/share.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './profile/profile.component';
+import { CountryAddComponent } from './countries/country-add/country-add.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ProfileComponent } from './profile/profile.component';
     LocationsComponent,
     ShareComponent,
     ProfileComponent,
+    CountryAddComponent,
   ],
   imports: [
     CommonModule,

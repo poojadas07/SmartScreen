@@ -2,12 +2,30 @@
   <mat-sidenav #drawer class="sidenav" fixedInViewport
       [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
       [mode]="(isHandset$ | async) ? 'over' : 'side'"
-      [opened]="(isHandset$ | async) === false"  style="background-image: url(../assets/img/sidebar-1.jpg); opacity: 1;">
-    <mat-toolbar style="color: white;">SmartWatch</mat-toolbar>
+      [opened]="(isHandset$ | async) === false"  style="background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(../assets/img/sidebar-4.jpg);">
+    <mat-toolbar style="color: white;"><i class="material-icons" style="padding: 0 10%;">watch</i>SmartWatch</mat-toolbar>
+    <br><hr style="background-color: white; margin: 0 6%;">
+    <br>
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false" style="background: none; color: white;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: white;">
+            <img mat-card-avatar src="https://www.w3schools.com/w3images/avatar_hat.jpg" alt="User Avatar">
+            <p style="padding: 4% 5% 0;">Lorem Epsom</p>
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-nav-list>
+          <a mat-list-item [routerLink]="'/nav/profile'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">person</i> My Profile </a>
+        </mat-nav-list>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br>
+    <hr style="background-color: white; margin: 0 6%;">
     <mat-nav-list>
       
     </mat-nav-list>
-
+    <br><br>
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false" style="background: none; color: white;">
