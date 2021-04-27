@@ -12,7 +12,8 @@ exports.create = (req, res) => {
 
     // create country
     const country = new Country({
-        name: req.body.name || "Untitled Country"
+        name: req.body.name || "Untitled Country",
+        region: []
     });
 
     country.save()

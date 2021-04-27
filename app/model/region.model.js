@@ -1,8 +1,13 @@
 const mongoose = require('mongoose');
 
 const RegionSchema = mongoose.Schema({
-    name: String,
-    countryName: String
+    name: {
+        type: String,
+    },
+    author: { 
+        type: mongoose.Schema.Types.ObjectId, 
+        ref: 'Country' 
+    }
 }, {
     timestamps: true
 });
