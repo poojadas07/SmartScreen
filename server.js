@@ -14,21 +14,21 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Configuring the database
-const dbConfig = require('./config/database.config');
-const mongoose = require('mongoose');
+// const dbConfig = require('./config/database.config');
+// const mongoose = require('mongoose');
 
-mongoose.Promise = global.Promise;
+// mongoose.Promise = global.Promise;
 
-// Connecting to database
-mongoose.connect(dbConfig.url , {
-    useNewUrlParser: true,
-    useUnifiedTopology: true 
-}).then(() => {
-    console.log("Successfully connected to database");
-}).catch(err => {
-    console.log("Could not connect to the database. Exiting now...", err);
-    process.exit();
-})
+// // Connecting to database
+// mongoose.connect(dbConfig.url , {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true 
+// }).then(() => {
+//     console.log("Successfully connected to database");
+// }).catch(err => {
+//     console.log("Could not connect to the database. Exiting now...", err);
+//     process.exit();
+// })
 
 // define a simple route
 app.get('/' , (req, res)=> {
