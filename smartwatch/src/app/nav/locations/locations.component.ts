@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-locations',
@@ -7,9 +8,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LocationsComponent implements OnInit {
 
-  constructor() { }
+  searchvalue: string;
+  regions: any;
 
-  ngOnInit(): void {
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() {
+
+    this.apiService.fetchAllRegions().subscribe((res) => {
+        this.regions = res;
+    });
+  }
+
+  search(searchvalue) : void {
+    alert(searchvalue)
+  }
+
+  editRow(){
+    console.log('hhh')
+  }
+
+  deleteRow(){
+    console.log('hhh')
   }
 
 }
