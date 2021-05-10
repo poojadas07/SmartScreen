@@ -9,14 +9,14 @@ import { ApiService } from 'src/app/service/api.service';
 export class LocationsComponent implements OnInit {
 
   searchvalue: string;
-  regions: any;
+  locations: any;
 
   constructor(private apiService: ApiService) { }
 
   ngOnInit() {
 
     this.apiService.fetchAllRegions().subscribe((res) => {
-        this.regions = res;
+        this.locations = res;
     });
   }
 
