@@ -51,19 +51,19 @@
                         <th>Action</th>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let region of locations; let i = index">
+                        <tr *ngFor="let location of locations; let i = index">
                             <td>{{ i+1 }}</td>
-                            <td>{{region.name}}</td>
-                            <td>{{region.regionName}}</td>
-                            <td>{{region.countryName}}</td>
-                            <td>{{region.createdAt}}</td>
-                            <td>{{region.updatedAt}}</td>
+                            <td>{{location.name}}</td>
+                            <td>{{location.regionName}}</td>
+                            <td>{{location.countryName}}</td>
+                            <td>{{location.createdAt}}</td>
+                            <td>{{location.updatedAt}}</td>
                             <td><input type="checkbox"></td>
                             <td>
-                                <a (click)="editRow(region)">
+                                <a (click)="editRow(location)">
                                     <span class="material-icons" style="color: green;">create</span>
                                 </a> 
-                                <a (click)="deleteRow(region)">
+                                <a (click)="deleteRow(location)">
                                     <span class="material-icons" style="color: red;">delete_outline</span>
                                 </a>
                             </td>
