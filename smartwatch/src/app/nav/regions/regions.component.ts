@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
+import { RegionAddComponent } from './region-add/region-add.component';
 
 @Component({
   selector: 'app-regions',
@@ -11,7 +13,8 @@ export class RegionsComponent implements OnInit {
   searchvalue: string;
   regions: any;
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -30,6 +33,10 @@ export class RegionsComponent implements OnInit {
 
   deleteRow(){
     console.log('hhh')
+  }
+
+  openDialog() {
+    this.dialog.open(RegionAddComponent);
   }
 
 }
