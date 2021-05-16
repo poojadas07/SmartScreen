@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-region-add',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegionAddComponent implements OnInit {
 
-  constructor() { }
+  region_name: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  login() : void {
+    if(this.region_name == 'admin'){
+     this.router.navigate(["nav"]);
+    }else {
+      alert("Invalid credentials");
+    }
   }
 
 }
