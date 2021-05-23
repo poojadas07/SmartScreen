@@ -35,6 +35,7 @@ import { DepartmentComponent } from './department/department.component';
 import { ScreensComponent } from './screens/screens.component';
 import { ClientAddComponent } from './client/client-add/client-add.component';
 import { DepartmentAddComponent } from './department/department-add/department-add.component';
+import { ScreensAddComponent } from './screens/screens-add/screens-add.component';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,7 @@ import { DepartmentAddComponent } from './department/department-add/department-a
     ScreensComponent,
     ClientAddComponent,
     DepartmentAddComponent,
+    ScreensAddComponent,
   ],
   imports: [
     CommonModule,
