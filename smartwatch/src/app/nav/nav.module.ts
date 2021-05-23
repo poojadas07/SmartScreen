@@ -30,6 +30,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { CountryAddComponent } from './countries/country-add/country-add.component';
 import { RegionAddComponent } from './regions/region-add/region-add.component';
 import { LocationAddComponent } from './locations/location-add/location-add.component';
+import { ClientComponent } from './client/client.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { LocationAddComponent } from './locations/location-add/location-add.comp
     CountryAddComponent,
     RegionAddComponent,
     LocationAddComponent,
+    ClientComponent,
   ],
   imports: [
     CommonModule,
