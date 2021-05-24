@@ -25,7 +25,7 @@ export class NavComponent {
     this.dialog.open(ShareComponent);
   }
 
-  menuItems = ['countries', 'regions' , 'locations' , 'client' , 'departments' , 'screens'];
+  menuItems = ['countries', 'regions' , 'locations' , 'clients' , 'departments' , 'screens'];
 
   panelOpenState = false;
 
