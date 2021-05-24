@@ -2,6 +2,14 @@
     <h4><b>Add Department</b></h4>
     <form class="example-form" style="margin: 5%; width: 100% !important;">
         <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Choose Client...</mat-label>
+            <mat-select>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width:90% !important">
             <mat-label>Department Name</mat-label>
             <input matInput placeholder="Department Name" [(ngModel)]="department_name" name="department_name" required>
             <mat-icon matSuffix>place</mat-icon>

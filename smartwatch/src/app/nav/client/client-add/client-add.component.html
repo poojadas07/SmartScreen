@@ -2,6 +2,14 @@
     <h4><b>Add Client</b></h4>
     <form class="example-form" style="margin: 5%; width: 100% !important;">
         <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Choose Location...</mat-label>
+            <mat-select>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width:90% !important">
             <mat-label>Client Name</mat-label>
             <input matInput placeholder="Client Name" [(ngModel)]="client_name" name="client_name" required>
             <mat-icon matSuffix>place</mat-icon>

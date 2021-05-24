@@ -21,6 +21,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSelectModule } from '@angular/material/select';
 import { ChartsModule } from 'ng2-charts';
 import { NavRoutingModule } from './nav-routing.module';
 import { ShareButtonsModule } from 'ngx-sharebuttons/buttons';
@@ -68,6 +69,7 @@ import { ScreensAddComponent } from './screens/screens-add/screens-add.component
     FormsModule,
     MatInputModule,
     MatTableModule,
+    MatSelectModule,
     MatSidenavModule,
     MatFormFieldModule,
     MatIconModule,
