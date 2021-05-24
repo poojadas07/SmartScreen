@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-add',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClientAddComponent implements OnInit {
 
-  constructor() { }
+  client_name: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
+
+  login() : void {
+    if(this.client_name == 'admin'){
+     this.router.navigate(["nav"]);
+    }else {
+      alert("Invalid credentials");
+    }
+  }
+
 
 }

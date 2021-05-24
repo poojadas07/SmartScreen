@@ -1,1 +1,12 @@
-<p>department-add works!</p>
+<div class="container">
+    <h4><b>Add Department</b></h4>
+    <form class="example-form" style="margin: 5%; width: 100% !important;">
+        <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Department Name</mat-label>
+            <input matInput placeholder="Department Name" [(ngModel)]="department_name" name="department_name" required>
+            <mat-icon matSuffix>place</mat-icon>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button (click)="login()" color="primary" style="width:90% !important"> + ADD</button>
+    </form>    
+</div>

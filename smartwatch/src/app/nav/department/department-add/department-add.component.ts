@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-department-add',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentAddComponent implements OnInit {
 
-  constructor() { }
+  department_name: string;
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  login() : void {
+    if(this.department_name == 'admin'){
+     this.router.navigate(["nav"]);
+    }else {
+      alert("Invalid credentials");
+    }
   }
 
 }

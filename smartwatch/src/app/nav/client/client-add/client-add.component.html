@@ -1,1 +1,12 @@
-<p>client-add works!</p>
+<div class="container">
+    <h4><b>Add Client</b></h4>
+    <form class="example-form" style="margin: 5%; width: 100% !important;">
+        <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Client Name</mat-label>
+            <input matInput placeholder="Client Name" [(ngModel)]="client_name" name="client_name" required>
+            <mat-icon matSuffix>place</mat-icon>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button (click)="login()" color="primary" style="width:90% !important"> + ADD</button>
+    </form>    
+</div>
