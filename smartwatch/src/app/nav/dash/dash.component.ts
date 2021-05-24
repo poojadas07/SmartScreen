@@ -43,4 +43,15 @@ cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
 
   panelOpenState = false;
 
+  getColor(panel) {
+    if (panel.currentValue == null) {
+      return '#d3d3d3';
+    }
+    else if (panel.currentValue == '0') {
+      return '#e13026'; // Red Accent color
+    } else {
+      return '#67bf40' // Green Accent Color
+    }
+  }
+
 }

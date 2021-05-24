@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { NumberValueAccessor } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-screens-add',
@@ -7,9 +9,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ScreensAddComponent implements OnInit {
 
-  constructor() { }
+  screen_name: string;
+  rows: number;
+  columns: number;
+  
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
+  }
+
+  login() : void {
+    if(this.screen_name == 'admin'){
+     this.router.navigate(["nav"]);
+    }else {
+      alert("Invalid credentials");
+    }
   }
 
 }

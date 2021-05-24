@@ -1,1 +1,30 @@
-<p>screens-add works!</p>
+<div class="container">
+    <h4><b>Add Screen</b></h4>
+    <form class="example-form" style="margin: 5%; width: 100% !important;">
+        <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Choose Department...</mat-label>
+            <mat-select>
+              <mat-option value="option1">Option 1</mat-option>
+              <mat-option value="option2">Option 2</mat-option>
+              <mat-option value="option3">Option 3</mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width:90% !important">
+            <mat-label>Screen Name</mat-label>
+            <input matInput placeholder="Screen Name" [(ngModel)]="screen_name" name="screen_name" required>
+            <mat-icon matSuffix>place</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width:45% !important; padding-right: 2%;">
+            <mat-label>Rows</mat-label>
+            <input matInput placeholder="Rows" [(ngModel)]="rows" name="rows" required>
+            <mat-icon matSuffix>insert_chart</mat-icon>
+        </mat-form-field>
+        <mat-form-field appearance="legacy" style="width:45% !important">
+            <mat-label>Columns</mat-label>
+            <input matInput placeholder="Columns" [(ngModel)]="columns" name="columns" required>
+            <mat-icon matSuffix>insert_chart</mat-icon>
+        </mat-form-field>
+        <br><br>
+        <button mat-raised-button (click)="login()" color="primary" style="width:90% !important"> + ADD</button>
+    </form>    
+</div>
