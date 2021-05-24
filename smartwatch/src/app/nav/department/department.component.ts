@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ApiService } from 'src/app/service/api.service';
+import { DepartmentAddComponent } from './department-add/department-add.component';
 
 @Component({
   selector: 'app-department',
@@ -7,9 +10,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DepartmentComponent implements OnInit {
 
-  constructor() { }
+  departments: any;
+  searchvalue: string;
 
-  ngOnInit(): void {
+  constructor(private apiService: ApiService,
+    public dialog: MatDialog) { }
+
+  ngOnInit() {
+
+    this.apiService.fetchAllCountries().subscribe((res) => {
+        this.departments = res;
+    });
+  }
+
+  search(searchvalue) : void {
+    alert(searchvalue)
+  }
+
+  editRow(){
+    console.log('hhh')
+  }
+
+  deleteRow(){
+    console.log('hhh')
+  }
+
+  openDialog() {
+    this.dialog.open(DepartmentAddComponent);
   }
 
 }
