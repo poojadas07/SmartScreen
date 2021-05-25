@@ -1,4 +1,6 @@
 const Country = require('../model/country.model.js');
+const Region = require('../model/region.model.js');
+const mongoose = require('mongoose');
 
 // create and save a new country
 exports.create = (req, res) => {
@@ -10,21 +12,48 @@ exports.create = (req, res) => {
         });
     }
 
-    // create country
-    const country = new Country({
-        name: req.body.name || "Untitled Country",
-        region: []
-    });
+    const region = new Region({
+        _id: new mongoose.Types.ObjectId(),
+        regionName: req.body.region.regionName
+      });
 
-    country.save()
-    .then(data => {
-        res.send(data);
-    })
-    .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the Country."
+    // create country
+    // const country = new Country({
+    //     name: req.body.name || "Untitled Country",
+    //     region: [
+            
+    //     ]
+    // });
+
+    region
+    .save()
+    .then(() => {
+        const country = new Country({
+            _id: new mongoose.Types.ObjectId(),
+            name: req.body.name || "Untitled Country",
+            region: region._id,
+        });
+
+        country.save()
+        .then(data => {
+            res.send(data);
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || "Some error occurred while creating the Country."
+            });
         });
     });
+
+    // country.save()
+    // .then(data => {
+    //     res.send(data);
+    // })
+    // .catch(err => {
+    //     res.status(500).send({
+    //         message: err.message || "Some error occurred while creating the Country."
+    //     });
+    // });
 };
 
 // Retrieve and return all countries from the database.

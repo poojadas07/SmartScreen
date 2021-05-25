@@ -28,6 +28,8 @@ import { ShareComponent } from './share/share.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ProfileComponent } from './profile/profile.component';
 import { CountryAddComponent } from './countries/country-add/country-add.component';
+import { RegionAddComponent } from './regions/region-add/region-add.component';
+import { LocationAddComponent } from './locations/location-add/location-add.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +42,8 @@ import { CountryAddComponent } from './countries/country-add/country-add.compone
     ShareComponent,
     ProfileComponent,
     CountryAddComponent,
+    RegionAddComponent,
+    LocationAddComponent,
   ],
   imports: [
     CommonModule,
