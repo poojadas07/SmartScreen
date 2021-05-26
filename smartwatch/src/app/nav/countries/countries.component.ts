@@ -31,8 +31,12 @@ export class CountriesComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(country){
+    // console.log('hhh');
+
+    this.apiService.deleteCountry(country._id).subscribe((res) => {
+      alert(res.message);
+    })
   }
 
   openDialog() {
