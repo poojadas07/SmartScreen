@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-country-add',
@@ -10,17 +11,24 @@ export class CountryAddComponent implements OnInit {
 
   country_name: string;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,
+    private apiService: ApiService,) { }
 
   ngOnInit(): void {
   }
 
-  login() : void {
-    if(this.country_name == 'admin'){
-     this.router.navigate(["nav"]);
-    }else {
-      alert("Invalid credentials");
-    }
+  addCountry() : void {
+    
+    this.apiService.addCountry(this.country_name).subscribe(res => {
+      if(res.status == 200){
+        console.log('200');
+        alert(res.message);
+      }
+      else{
+        console.log('hello');
+        alert(res.message);
+      }
+    })
   }
 
 }
