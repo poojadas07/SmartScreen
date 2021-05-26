@@ -37,6 +37,57 @@ export class ApiService {
       );
   }
 
+  fetchCountryById(countryId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'country/' + countryId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchCountryByName(countryName: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'country/search';
+
+    return this.http.post(urlString, countryName , {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  addCountry(data: Object): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'country';
+    console.log(data);
+    return this.http.post(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  updateCountry(countryId: String , countryName: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'country/' + countryId;
+
+    return this.http.put(urlString, countryName, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  deleteCountry(countryId: String): Observable<any>{
+    let urlString = environment.serverBaseUrl + 'country/' + countryId;
+    console.log(urlString);
+
+    return this.http.delete(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchAllRegions(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region';
     // console.log('hello')
@@ -47,5 +98,58 @@ export class ApiService {
         catchError(this.handleError)
       );
   }
+
+  fetchAllLocations(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'location';
+    // console.log('hello');
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchAllClients(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'client';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchAllDepartments(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'department';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchAllScreens(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'screen';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchPanelByScreen(screenId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'screen/' + screenId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+
 
 }
