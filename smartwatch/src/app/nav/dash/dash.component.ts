@@ -1,14 +1,15 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
+import { ApiService } from 'src/app/service/api.service';
 
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
   styleUrls: ['./dash.component.css']
 })
-export class DashComponent {
+export class DashComponent implements OnInit {
   /** Based on the screen size, switch from standard to one column per row */
   // dashboard.component.js
 cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
@@ -31,7 +32,8 @@ cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
    })
  );
 
-  constructor(private breakpointObserver: BreakpointObserver) {}
+  constructor(private breakpointObserver: BreakpointObserver,
+    private apiService: ApiService,) {}
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -42,6 +44,32 @@ cardLayout = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
   menuItems = ['countries', 'regions' , 'locations' , 'client' , 'departments' , 'screens'];
 
   panelOpenState = false;
+  screens: Observable<any>;
+
+  ngOnInit(): void {
+
+    this.bindPanelData();
+
+  }
+
+  bindPanelData(): void {
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screens = res;
+      // this.screensSize = res.length;
+      console.log(res);
+
+      for (let i = 0; i < res.length; i++) {
+        this.apiService.fetchPanelByScreen(this.screens[i].screenId).subscribe((res) => {
+          this.screens[i].panels = res;
+
+          console.log(res);
+          for (let j = 0; j < this.screens[i].panels.length; j++) {
+            this.screens[i].panels[j].index = j+1;
+          }
+        });
+      }
+    });
+  }
 
   getColor(panel) {
     if (panel.currentValue == null) {
