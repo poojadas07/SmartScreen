@@ -12,16 +12,16 @@ app.use((req, res, next) => {
     next();
   });  
 
-// parse requests of content-type - application/x-www-form-urlencoded
-
+// parse requests of content-type - application/json
 app.use(express.json());
+
+// parse requests of content-type - application/x-www-form-urlencoded
 app.use(express.urlencoded({
   extended: true
 }));
+
+// cors
 app.use(cors({origin: '*'}));
-
-// parse requests of content-type - application/json
-
 
 // Configuring the database
 const dbConfig = require('./config/database.config');
@@ -46,8 +46,7 @@ app.get('/' , (req, res)=> {
 });
 
 // Require the country routes
-app.use('/api', apiRouter);
-// require('./app/routes/country.route.js')(app);
+require('./app/routes/country.route.js')(app);
 
 // Require the region routes
 require('./app/routes/region.route.js')(app);
@@ -55,8 +54,8 @@ require('./app/routes/region.route.js')(app);
 // Require the location routes
 require('./app/routes/location.route.js')(app);
 
-// listen for requests 
 
+// listen for requests 
 const port = process.env.PORT || 3000;
 
 app.listen(port , () => {

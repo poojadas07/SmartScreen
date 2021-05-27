@@ -10,10 +10,8 @@ import { Country } from './country';
   providedIn: 'root'
 })
 export class ApiService {
-  
-  // httpOptions= {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-  // headers = new HttpHeaders().set('Content-Type', 'application/json');
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) { }
 
@@ -63,12 +61,7 @@ export class ApiService {
 
   addCountry(data: Country): Observable<any> {
 
-    // const httpOptions= {headers: new HttpHeaders({'Content-Type':'application/json'})};
-
     let urlString = environment.serverBaseUrl + 'country';
-
-    // const json = JSON.stringify(data);
-
     console.log(data);
     return this.http.post(urlString, data, {})
       .pipe(
