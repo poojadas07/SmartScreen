@@ -26,7 +26,11 @@ export class LocationsComponent implements OnInit {
   search(searchvalue) : void {
     alert(searchvalue)
   }
-
+  
+  reset() : void {
+    alert('hello');
+  }
+  
   editRow(){
     console.log('hhh')
   }

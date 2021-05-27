@@ -27,6 +27,10 @@ export class CountriesComponent implements OnInit {
     alert(searchvalue)
   }
 
+  reset() : void {
+    alert('hello');
+  }
+  
   editRow(){
     console.log('hhh')
   }

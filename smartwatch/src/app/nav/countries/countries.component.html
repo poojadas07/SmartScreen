@@ -3,25 +3,24 @@
     <h2 style="padding: 0 3%;">Countries</h2>
     <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right; margin-right: 2%;" (click)="openDialog()">
         <i class="material-icons">add</i>
-        <div class="ripple-container"></div>
     </button>
     <br>
     <form class="example-form" style="margin: 0 2%;">
-        <form class="navbar-form">
-            <div class="input-group no-border" style="width: 20%;">
-              <input type="text" value="" class="form-control" placeholder="Search..." [(ngModel)]="searchvalue" name="searchvalue">
-              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="search(searchvalue)">
-                <i class="material-icons">search</i>
-                <div class="ripple-container"></div>
-              </button>
-            </div>
-        </form>
+      <div class="input-group no-border" style="width: 30%;">
+        <input type="text" value="" class="form-control" placeholder="Search..." [(ngModel)]="searchvalue" name="searchvalue">
+        <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="search(searchvalue)">
+          <i class="material-icons">search</i>
+        </button>
+        <button type="submit" class="btn btn-primary" (click)="reset()" style="margin-left: 4%;">
+          Reset
+        </button>
+      </div>
     </form>
 </mat-card-content>
 
 <div class="content">
     <div class="container-fluid">
-      <div class="container-fluid">
+
         <div class="row">
           <div class="col-md-12">
             <div class="card">
@@ -65,6 +64,5 @@
             </div>
           </div>
         </div>
-      </div>
     </div>
 </div>
