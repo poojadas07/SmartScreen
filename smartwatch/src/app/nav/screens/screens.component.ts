@@ -35,12 +35,32 @@ export class ScreensComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(screen){
+    // console.log('hhh');
+
+    this.apiService.deleteScreen(screen._id).subscribe((res) => {
+      alert(res.message);
+
+      this.apiService.fetchAllScreens().subscribe((res) => {
+        this.screens = res;
+      });
+
+    });
+
   }
 
   openDialog() {
-    this.dialog.open(ScreensAddComponent);
+    const dialogRef = this.dialog.open(ScreensAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllScreens().subscribe((res) => {
+        this.screens = res;
+      });
+
+    });
+
   }
 
 }

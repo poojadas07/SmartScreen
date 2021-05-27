@@ -35,12 +35,32 @@ export class DepartmentComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(department){
+    // console.log('hhh');
+
+    this.apiService.deleteDepartment(department._id).subscribe((res) => {
+      alert(res.message);
+
+      this.apiService.fetchAllDepartments().subscribe((res) => {
+        this.departments = res;
+      });
+
+    });
+
   }
 
   openDialog() {
-    this.dialog.open(DepartmentAddComponent);
+    const dialogRef = this.dialog.open(DepartmentAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllDepartments().subscribe((res) => {
+        this.departments = res;
+      });
+
+    });
+
   }
 
 }

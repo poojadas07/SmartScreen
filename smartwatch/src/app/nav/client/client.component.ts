@@ -35,12 +35,32 @@ export class ClientComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(client){
+    // console.log('hhh');
+
+    this.apiService.deleteClient(client._id).subscribe((res) => {
+      alert(res.message);
+
+      this.apiService.fetchAllClients().subscribe((res) => {
+        this.clients = res;
+      });
+
+    });
+
   }
 
   openDialog() {
-    this.dialog.open(ClientAddComponent);
+    const dialogRef = this.dialog.open(ClientAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllClients().subscribe((res) => {
+        this.clients = res;
+      });
+
+    });
+
   }
 
 }

@@ -35,12 +35,31 @@ export class RegionsComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(region){
+    // console.log('hhh')
+
+    this.apiService.deleteRegion(region._id).subscribe((res) => {
+      alert(res.message);
+
+      this.apiService.fetchAllRegions().subscribe((res) => {
+        this.regions = res;
+      });
+
+    });
+
   }
 
   openDialog() {
-    this.dialog.open(RegionAddComponent);
+    const dialogRef = this.dialog.open(RegionAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllRegions().subscribe((res) => {
+        this.regions = res;
+      });
+
+    });
   }
 
 }

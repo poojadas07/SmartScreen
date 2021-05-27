@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 
@@ -12,7 +13,7 @@ export class CountryAddComponent implements OnInit {
   country_name: string;
 
   constructor(private router: Router,
-    private apiService: ApiService,) { }
+    private apiService: ApiService,public dialogRef: MatDialogRef<CountryAddComponent>) { }
 
   ngOnInit(): void {
   }
@@ -21,11 +22,13 @@ export class CountryAddComponent implements OnInit {
     
     this.apiService.addCountry(this.country_name).subscribe(res => {
       if(res.status == 200){
+        this.dialogRef.close();
         console.log('200');
         alert(res.message);
       }
       else{
-        console.log('hello');
+        this.dialogRef.close();
+        console.log('error');
         alert(res.message);
       }
     })

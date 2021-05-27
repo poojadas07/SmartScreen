@@ -40,11 +40,25 @@ export class CountriesComponent implements OnInit {
 
     this.apiService.deleteCountry(country._id).subscribe((res) => {
       alert(res.message);
-    })
+
+      this.apiService.fetchAllCountries().subscribe((res) => {
+        this.countries = res;
+      });
+
+    });
   }
 
   openDialog() {
-    this.dialog.open(CountryAddComponent);
+    const dialogRef = this.dialog.open(CountryAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllCountries().subscribe((res) => {
+        this.countries = res;
+      });
+
+    });
   }
 
 }

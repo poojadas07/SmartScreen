@@ -35,12 +35,31 @@ export class LocationsComponent implements OnInit {
     console.log('hhh')
   }
 
-  deleteRow(){
-    console.log('hhh')
+  deleteRow(location){
+    // console.log('hhh');
+
+    this.apiService.deleteLocation(location._id).subscribe((res) => {
+      alert(res.message);
+
+      this.apiService.fetchAllLocations().subscribe((res) => {
+        this.locations = res;
+      });
+
+    });
+
   }
 
   openDialog() {
-    this.dialog.open(LocationAddComponent);
+    const dialogRef = this.dialog.open(LocationAddComponent);
+
+    dialogRef.afterClosed().subscribe(res => {
+      console.log('The dialog was closed');
+
+      this.apiService.fetchAllLocations().subscribe((res) => {
+        this.locations = res;
+      });
+
+    });
   }
 
 }
