@@ -3,6 +3,7 @@ import { ApiService } from 'src/app/service/api.service';
 import {MatDialog} from '@angular/material/dialog';
 import { CountryAddComponent } from './country-add/country-add.component';
 import { ModalService } from 'src/app/service/modal.service';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-countries',
@@ -12,11 +13,17 @@ import { ModalService } from 'src/app/service/modal.service';
 export class CountriesComponent implements OnInit {
 
   countries: any;
-  searchvalue: string;
 
-  constructor(private apiService: ApiService,
+  bookForm: FormGroup;
+
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
     public dialog: MatDialog,
-    private modalService: ModalService) { }
+    private modalService: ModalService) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
 
@@ -55,12 +62,18 @@ export class CountriesComponent implements OnInit {
   }
 
 
-  search(searchvalue) : void {
-    alert(searchvalue)
+  search() : any {
+    // alert(searchvalue)
+
+    // console.log(this.bookForm.value)
+    this.apiService.fetchCountryByName(this.bookForm.value).subscribe((res) => {
+      this.countries = res;
+      // console.log(res);
+    });
   }
 
   reset() : void {
-    this.searchvalue = " ";
+    this.bookForm.reset();
 
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.countries = res;

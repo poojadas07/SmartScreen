@@ -49,17 +49,18 @@ export class ApiService {
       );
   }
 
-  fetchCountryByName(countryName: String): Observable<any> {
+  fetchCountryByName(searchValue: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country/search';
 
-    return this.http.post(urlString, countryName , {})
+    // console.log(searchValue);
+    return this.http.post(urlString, searchValue , {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
       );
   }
 
-  addCountry(data: Country): Observable<any> {
+  addCountry(data): Observable<any> {
 
     let urlString = environment.serverBaseUrl + 'country';
     console.log(data);

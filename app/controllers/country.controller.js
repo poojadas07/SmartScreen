@@ -72,9 +72,12 @@ exports.findAll = (req , res) => {
 
 // Retrieve and return country by name from the database.
 exports.findByName = (req , res) => {
+
+    console.log(req.body.searchvalue);
+
     Country.find({
-        "$text" : {
-            "$search" : req.body.name
+        "name" : {
+            "$regex" : req.body.searchvalue , $options:'i'
         }
     })
     .then(country => {

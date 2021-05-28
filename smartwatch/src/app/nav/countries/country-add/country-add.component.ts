@@ -12,7 +12,6 @@ import { ModalService } from 'src/app/service/modal.service';
 })
 export class CountryAddComponent implements OnInit {
 
-  country_name: string;
   bookForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder,private router: Router,
