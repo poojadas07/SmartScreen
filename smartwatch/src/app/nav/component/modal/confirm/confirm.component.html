@@ -1,0 +1,15 @@
+<h2 mat-dialog-title style="margin: auto;">{{ data.title }}</h2>
+<mat-dialog-content>
+  <div style="margin: auto;">
+    {{ data.content }}
+  </div>
+</mat-dialog-content>
+<mat-divider></mat-divider>
+<mat-dialog-actions>
+  <button class="btn btn-primary" mat-dialog-close="true" style="margin: auto;">
+    {{ data.confirmButtonLabel }}
+  </button>
+  <button class="btn btn-primary" [mat-dialog-close]="false" style="margin: auto;">
+    {{ data.closeButtonLabel }}
+  </button>
+</mat-dialog-actions>

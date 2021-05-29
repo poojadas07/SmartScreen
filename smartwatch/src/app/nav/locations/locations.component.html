@@ -59,12 +59,12 @@
                             <td>{{location.updatedAt}}</td>
                             <td><input type="checkbox"></td>
                             <td>
-                                <a (click)="editRow(location)">
-                                    <span class="material-icons" style="color: green;">create</span>
-                                </a> 
-                                <a (click)="deleteRow(location)">
-                                    <span class="material-icons" style="color: red;">delete_outline</span>
-                                </a>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(location)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(location)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
                             </td>
                         </tr>
                     </tbody>

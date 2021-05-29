@@ -1,4 +1,4 @@
-const Region = require('../model/region.model');
+const Region = require('../model/region');
 
 // create and save a new region
 exports.create = (req, res) => {
@@ -12,7 +12,7 @@ exports.create = (req, res) => {
     // create region
     const region = new Region({
         name: req.body.name || "Untitled Region",
-        countryName: req.body.countryName || "Untitled Country"
+        // countryName: req.body.countryName || "Untitled Country"
     });
 
     region.save()

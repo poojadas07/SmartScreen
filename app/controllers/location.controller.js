@@ -1,4 +1,4 @@
-const Location = require('../model/location.model');
+const Location = require('../model/location');
 
 // create and save a new location
 exports.create = (req, res) => {

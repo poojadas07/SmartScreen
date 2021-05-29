@@ -1,5 +1,16 @@
 <br><br><br><br>
 <mat-card-content>
+
+  <div>
+    <div class="button-row">
+      <button mat-raised-button (click)="openInfoModal()">Show Info Modal</button>
+      <button mat-raised-button (click)="openWarningModal()">Show Warning Modal</button>
+      <button mat-raised-button (click)="openErrorModal()">Show Error Modal</button>
+      <!-- <button mat-raised-button (click)="openConfirmModal()">Show Confirm Modal</button> -->
+
+    </div>
+  </div>
+
     <h2 style="padding: 0 3%;">Countries</h2>
     <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right; margin-right: 2%;" (click)="openDialog()">
         <i class="material-icons">add</i>
@@ -49,12 +60,12 @@
                             <td>{{country.updatedAt}}</td>
                             <td><input type="checkbox"></td>
                             <td>
-                                <a (click)="editRow(country)">
-                                    <span class="material-icons" style="color: green;">create</span>
-                                </a> 
-                                <a (click)="deleteRow(country)">
-                                    <span class="material-icons" style="color: red;">delete_outline</span>
-                                </a>
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(country)">
+                                  <span class="material-icons" style="color: green;">create</span>
+                                </button>
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(country)">
+                                  <span class="material-icons" style="color: red;">delete_outline</span>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

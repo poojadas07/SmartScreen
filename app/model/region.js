@@ -1,10 +1,7 @@
 const mongoose = require('mongoose');
 
 const RegionSchema = mongoose.Schema({
-    _id: mongoose.Schema.Types.ObjectId,
-    regionName: {
-        type: String,
-    },
+    name: String,
 }, {
     timestamps: true
 });

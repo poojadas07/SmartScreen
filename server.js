@@ -2,16 +2,26 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
 
+var apiRouter = require('./app/routes/country.route');
+
 // create express app
 const app = express();
 
-// parse requests of content-type - application/x-www-form-urlencoded
-app.use(bodyParser.urlencoded({ extended: true}));
+app.use((req, res, next) => {
+    res.header('Access-Control-Allow-Origin', '*');
+    next();
+  });  
 
-app.use(cors());
+// parse requests of content-type - application/x-www-form-urlencoded
+
+app.use(express.json());
+app.use(express.urlencoded({
+  extended: true
+}));
+app.use(cors({origin: '*'}));
 
 // parse requests of content-type - application/json
-app.use(bodyParser.json());
+
 
 // Configuring the database
 const dbConfig = require('./config/database.config');
@@ -36,7 +46,8 @@ app.get('/' , (req, res)=> {
 });
 
 // Require the country routes
-require('./app/routes/country.route.js')(app);
+app.use('/api', apiRouter);
+// require('./app/routes/country.route.js')(app);
 
 // Require the region routes
 require('./app/routes/region.route.js')(app);

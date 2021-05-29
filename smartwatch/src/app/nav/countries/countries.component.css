@@ -25,3 +25,7 @@ table {
     background-color: #ddd;
     color: black;
   }
+
+  .button-row button {
+    margin-right: 8px;
+  }

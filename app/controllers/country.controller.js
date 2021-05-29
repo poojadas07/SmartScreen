@@ -1,59 +1,60 @@
-const Country = require('../model/country.model.js');
-const Region = require('../model/region.model.js');
+const Country = require('../model/country.js');
+const Region = require('../model/region.js');
 const mongoose = require('mongoose');
 
 // create and save a new country
 exports.create = (req, res) => {
     
     // Validate request
-    if(!req.body){
+    if(!req.body.name){
         return res.status(400).send({
             message: "Country can not be empty"
         });
     }
 
-    const region = new Region({
-        _id: new mongoose.Types.ObjectId(),
-        regionName: req.body.region.regionName
-      });
+    console.log(req.body.name);
+
+    // const region = new Region({
+    //     _id: new mongoose.Types.ObjectId(),
+    //     regionName: req.body.region.regionName
+    //   });
 
     // create country
-    // const country = new Country({
-    //     name: req.body.name || "Untitled Country",
-    //     region: [
-            
-    //     ]
-    // });
-
-    region
-    .save()
-    .then(() => {
-        const country = new Country({
-            _id: new mongoose.Types.ObjectId(),
-            name: req.body.name || "Untitled Country",
-            region: region._id,
-        });
-
-        country.save()
-        .then(data => {
-            res.send(data);
-        })
-        .catch(err => {
-            res.status(500).send({
-                message: err.message || "Some error occurred while creating the Country."
-            });
-        });
+    const country = new Country({
+        name: req.body.name,
     });
 
-    // country.save()
-    // .then(data => {
-    //     res.send(data);
-    // })
-    // .catch(err => {
-    //     res.status(500).send({
-    //         message: err.message || "Some error occurred while creating the Country."
+    // region
+    // .save()
+    // .then(() => {
+    //     const country = new Country({
+    //         _id: new mongoose.Types.ObjectId(),
+    //         name: req.body.name || "Untitled Country",
+    //         region: region._id,
+    //     });
+
+    //     country.save()
+    //     .then(data => {
+    //         res.send(data);
+    //     })
+    //     .catch(err => {
+    //         res.status(500).send({
+    //             message: err.message || "Some error occurred while creating the Country."
+    //         });
     //     });
     // });
+
+    country.save()
+    .then(data => {
+        res.send(data);
+    })
+    .catch(err => {
+        res.status(500).json({ type: 'error', message: err.message })
+        // res.status(500).send({
+        //     message: err.message || "Some error occurred while creating the Country."
+        // });
+    });
+    // res.json(JSON.parse(body));
 };
 
 // Retrieve and return all countries from the database.

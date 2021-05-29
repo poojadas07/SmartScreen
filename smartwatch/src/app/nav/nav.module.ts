@@ -7,7 +7,7 @@ import { CountriesComponent } from './countries/countries.component';
 import { RegionsComponent } from './regions/regions.component';
 import { LocationsComponent } from './locations/locations.component';
 import { LayoutModule } from '@angular/cdk/layout';
-import { FormsModule } from '@angular/forms';
+import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
@@ -37,6 +37,7 @@ import { ScreensComponent } from './screens/screens.component';
 import { ClientAddComponent } from './client/client-add/client-add.component';
 import { DepartmentAddComponent } from './department/department-add/department-add.component';
 import { ScreensAddComponent } from './screens/screens-add/screens-add.component';
+import { ComponentModule } from './component/component.module';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { ScreensAddComponent } from './screens/screens-add/screens-add.component
     MatDialogModule,
     MatButtonModule,
     FormsModule,
+    ReactiveFormsModule,
     MatInputModule,
     MatTableModule,
     MatSelectModule,
@@ -80,6 +82,7 @@ import { ScreensAddComponent } from './screens/screens-add/screens-add.component
     MatExpansionModule,
     ShareButtonsModule,
     FontAwesomeModule,
+    ComponentModule,
   ]
 })
 export class NavModule {
