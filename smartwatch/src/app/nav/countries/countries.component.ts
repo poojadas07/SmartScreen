@@ -80,8 +80,12 @@ export class CountriesComponent implements OnInit {
     });
   }
   
-  editRow(){
-    console.log('hhh')
+  editRow(country): void{
+    this.openDialog(true , country);
+  }
+
+  add(): void {
+    this.openDialog(false);
   }
 
   deleteRow(country){
@@ -90,17 +94,30 @@ export class CountriesComponent implements OnInit {
     this.openConfirmModal(country);
   }
 
-  openDialog() {
-    const dialogRef = this.dialog.open(CountryAddComponent);
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(CountryAddComponent , {
+        data: {dialogTitle: "Add Country"}
+      });
+    }
+    else {
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(CountryAddComponent ,{
+        data: {dialogTitle: "Edit Country" , dialogText: value}
+      });
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
       this.apiService.fetchAllCountries().subscribe((res) => {
         this.countries = res;
       });
 
     });
+    
   }
 
 }

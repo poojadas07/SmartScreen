@@ -35,7 +35,7 @@ export class ModalService {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('After Close Modal', result);
+      // console.log('After Close Modal', result);
     });
   }
 

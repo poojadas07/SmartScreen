@@ -71,10 +71,10 @@ export class ApiService {
       );
   }
 
-  updateCountry(countryId: String , countryName: String): Observable<any> {
+  updateCountry(countryId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country/' + countryId;
 
-    return this.http.put(urlString, countryName, {})
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)

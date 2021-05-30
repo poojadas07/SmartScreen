@@ -7,7 +7,7 @@ exports.create = (req, res) => {
     
     // Validate request
     if(!req.body.name){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Country can not be empty"
         });
     }
@@ -46,15 +46,13 @@ exports.create = (req, res) => {
 
     country.save()
     .then(data => {
-        res.send(data);
+        res.status(200).json(data);
     })
     .catch(err => {
-        res.status(500).json({ type: 'error', message: err.message })
-        // res.status(500).send({
-        //     message: err.message || "Some error occurred while creating the Country."
-        // });
+        res.status(500).json({
+            message: err.message || "Some error occurred while creating the Country."
+        });
     });
-    // res.json(JSON.parse(body));
 };
 
 // Retrieve and return all countries from the database.
@@ -117,7 +115,7 @@ exports.findOne = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Country cannot be empty"
         });
     }
@@ -128,18 +126,18 @@ exports.update = (req , res) => {
     }, {new : true})
     .then(country => {
         if(!country){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        res.send(country);
+        res.json(country);
     }).catch(err => {
         if(err.kind === "ObjectId"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error updating country with id " + req.params.countryId
         });
     });
