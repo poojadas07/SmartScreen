@@ -55,6 +55,97 @@
       </mat-expansion-panel>
     </mat-accordion>
     <br>
+
+    <mat-accordion>
+      <mat-expansion-panel (opened)="panelOpenState = true"
+                           (closed)="panelOpenState = false" style="background: none; color: white;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="color: white;">
+            <i class="material-icons" style="padding: 0 10%;">grid_on</i> Countries
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+
+        <mat-accordion *ngFor="let item of menuItems1">
+          <mat-expansion-panel (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false" style="background: none; color: white;">
+            <mat-expansion-panel-header>
+              <mat-panel-title style="color: white;">
+                {{item.name}} <!-- countries-->
+              </mat-panel-title>
+            </mat-expansion-panel-header>
+
+            <mat-accordion *ngFor="let item of menuItems1">
+              <mat-expansion-panel (opened)="panelOpenState = true"
+                                   (closed)="panelOpenState = false" style="background: none; color: white;">
+                <mat-expansion-panel-header>
+                  <mat-panel-title style="color: white;">
+                    {{item.name}} <!-- regions-->
+                  </mat-panel-title>
+                </mat-expansion-panel-header>
+                
+                <mat-accordion *ngFor="let item of menuItems1">
+                  <mat-expansion-panel (opened)="panelOpenState = true"
+                                       (closed)="panelOpenState = false" style="background: none; color: white;">
+                    <mat-expansion-panel-header>
+                      <mat-panel-title style="color: white;">
+                        {{item.name}} <!-- locations-->
+                      </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    
+                    <mat-accordion *ngFor="let item of menuItems1">
+                      <mat-expansion-panel (opened)="panelOpenState = true"
+                                           (closed)="panelOpenState = false" style="background: none; color: white;">
+                        <mat-expansion-panel-header>
+                          <mat-panel-title style="color: white;">
+                            {{item.name}} <!-- clients-->
+                          </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        
+                        <mat-accordion *ngFor="let item of menuItems1">
+                          <mat-expansion-panel (opened)="panelOpenState = true"
+                                               (closed)="panelOpenState = false" style="background: none; color: white;">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title style="color: white;">
+                                {{item.name}} <!-- departments-->
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            
+                            <mat-accordion *ngFor="let item of menuItems1">
+                              <mat-expansion-panel (opened)="panelOpenState = true"
+                                                   (closed)="panelOpenState = false" style="background: none; color: white;">
+                                <mat-expansion-panel-header>
+                                  <mat-panel-title style="color: white;">
+                                    {{item.name}} <!-- screens-->
+                                  </mat-panel-title>
+                                </mat-expansion-panel-header>
+                                <mat-nav-list>
+                                  <a *ngFor="let item of menuItems1" mat-list-item style="color: white;">
+                                     {{item.name}} 
+                                  </a>
+                                  <!-- <a *ngFor="let item of navList" mat-list-item [routerLink]="item.url"> {{item | titlecase}} </a> -->
+                                  
+                                </mat-nav-list>
+                              </mat-expansion-panel>
+                            </mat-accordion>
+
+                          </mat-expansion-panel>
+                        </mat-accordion>
+
+                      </mat-expansion-panel>
+                    </mat-accordion>
+
+                  </mat-expansion-panel>
+                </mat-accordion>
+
+              </mat-expansion-panel>
+            </mat-accordion>
+
+          </mat-expansion-panel>
+        </mat-accordion>
+
+      </mat-expansion-panel>
+    </mat-accordion>
+    <br>
     <mat-accordion>
       <mat-expansion-panel (opened)="panelOpenState = true"
                            (closed)="panelOpenState = false" style="background: none; color: white;">

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import {MatDialog} from '@angular/material/dialog';
 import { Observable } from 'rxjs';
@@ -13,18 +13,26 @@ import { Router } from '@angular/router';
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })
-export class NavComponent {
+export class NavComponent implements OnInit{
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+  menuItems1: any;
 
   constructor(private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
     private modalService: ModalService,
-    private router: Router) {}
+    private router: Router ,
+    private apiService: ApiService) {}
+
+  ngOnInit(): void {
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.menuItems1 = res;
+    });
+  }
 
   openDialog() {
     this.dialog.open(ShareComponent);
