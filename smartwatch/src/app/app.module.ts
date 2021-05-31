@@ -25,6 +25,7 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
+import {MatTreeModule} from '@angular/material/tree';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     ChartsModule,
     ReactiveFormsModule,
     LayoutModule,
+    MatTreeModule,
     MatToolbarModule,
     MatTabsModule,
     MatCheckboxModule,

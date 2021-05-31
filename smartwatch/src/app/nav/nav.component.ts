@@ -7,6 +7,66 @@ import { ShareComponent } from './share/share.component';
 import { ModalService } from '../service/modal.service';
 import { ApiService } from '../service/api.service';
 import { Router } from '@angular/router';
+import {FlatTreeControl} from '@angular/cdk/tree';
+import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
+
+interface FoodNode {
+  name: string;
+  children?: FoodNode[];
+}
+
+const TREE_DATA: FoodNode[] = [
+  {
+    name: 'Countries',
+    children: [
+      {
+        name: 'India',
+        children: [
+          {
+            name: 'Jodhpur',
+            children: [
+              {
+                name: 'Villa' , 
+                children: [
+                  {
+                    name: 'Tata Manager',
+                    children: [
+                      {
+                        name: 'Adminstration',
+                        children: [
+                          {name: 'Screen A'},
+                          {name: 'Screen B'},
+                          {name: 'Screen C'},
+                        ]
+                      },
+                      {name: 'India'},
+                    ]
+                  },
+                  {name: 'India'},
+                ]
+              },
+              {name: 'India'},
+            ]
+        },
+          {name: 'India'},
+        ]
+      }, {
+        name: 'India',
+        children: [
+          {name: 'USA'},
+          {name: 'India'},
+        ]
+      },
+    ]
+  },
+];
+
+/** Flat node with expandable and level information */
+interface ExampleFlatNode {
+  expandable: boolean;
+  name: string;
+  level: number;
+}
 
 @Component({
   selector: 'app-nav',
@@ -14,6 +74,24 @@ import { Router } from '@angular/router';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent implements OnInit{
+
+  private _transformer = (node: FoodNode, level: number) => {
+    return {
+      expandable: !!node.children && node.children.length > 0,
+      name: node.name,
+      level: level,
+    };
+  }
+
+  treeControl = new FlatTreeControl<ExampleFlatNode>(
+      node => node.level, node => node.expandable);
+
+  treeFlattener = new MatTreeFlattener(
+      this._transformer, node => node.level, node => node.expandable, node => node.children);
+
+  dataSource = new MatTreeFlatDataSource(this.treeControl, this.treeFlattener);
+
+  hasChild = (_: number, node: ExampleFlatNode) => node.expandable;
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
@@ -26,7 +104,10 @@ export class NavComponent implements OnInit{
     public dialog: MatDialog,
     private modalService: ModalService,
     private router: Router ,
-    private apiService: ApiService) {}
+    private apiService: ApiService) 
+    {
+      this.dataSource.data = TREE_DATA;
+    }
 
   ngOnInit(): void {
     this.apiService.fetchAllCountries().subscribe((res) => {

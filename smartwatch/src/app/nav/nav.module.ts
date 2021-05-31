@@ -38,6 +38,9 @@ import { ClientAddComponent } from './client/client-add/client-add.component';
 import { DepartmentAddComponent } from './department/department-add/department-add.component';
 import { ScreensAddComponent } from './screens/screens-add/screens-add.component';
 import { ComponentModule } from './component/component.module';
+import {MatTreeModule} from '@angular/material/tree';
+import { SettingsComponent } from './settings/settings.component';
+import { InfoComponent } from './info/info.component';
 
 @NgModule({
   declarations: [
@@ -58,11 +61,14 @@ import { ComponentModule } from './component/component.module';
     ClientAddComponent,
     DepartmentAddComponent,
     ScreensAddComponent,
+    SettingsComponent,
+    InfoComponent,
   ],
   imports: [
     CommonModule,
     NavRoutingModule,
     ChartsModule,
+    MatTreeModule,
     LayoutModule,
     MatToolbarModule,
     MatDialogModule,
