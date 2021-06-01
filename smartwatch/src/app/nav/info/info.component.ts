@@ -12,24 +12,79 @@ import { CountryAddComponent } from '../countries/country-add/country-add.compon
 })
 export class InfoComponent implements OnInit {
 
-  countries: any;
+  areas: any;
 
   bookForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+  title: String;
+
+  headers = ['Department' , 'Client' , 'Location' , 'Region' , 'Country'];
+  headervalues = [];
+  value: number;
+
+  constructor(public formBuilder: FormBuilder,
+    private apiService: ApiService,
     public dialog: MatDialog,
-    private modalService: ModalService) 
+    private modalService: ModalService,) 
     {
       this.bookForm = this.formBuilder.group({
         searchvalue: [''],
-      })
+      });
      }
 
   ngOnInit() {
 
-    this.apiService.fetchAllCountries().subscribe((res) => {
-        this.countries = res;
-    });
+    this.value = window.history.state.data;
+
+    switch(this.value){
+      case 0: this.title = 'Countries';
+              this.apiService.fetchAllCountries().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 1: this.title = 'Regions';
+              for(let i=this.value; i>0; i--){
+                this.headervalues.push(this.headers[this.headers.length-i]);
+              }
+              this.apiService.fetchAllRegions().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 2: this.title = 'Locations';
+              for(let i=this.value; i>0; i--){
+                this.headervalues.push(this.headers[this.headers.length-i]);
+              }
+              this.apiService.fetchAllLocations().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 3: this.title = 'Clients';
+              for(let i=this.value; i>0; i--){
+                this.headervalues.push(this.headers[this.headers.length-i]);
+              }
+              this.apiService.fetchAllClients().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 4: this.title = 'Departments';
+              for(let i=this.value; i>0; i--){
+                this.headervalues.push(this.headers[this.headers.length-i]);
+              }
+              this.apiService.fetchAllDepartments().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 5: this.title = 'Screens';
+              for(let i=this.value; i>0; i--){
+                this.headervalues.push(this.headers[this.headers.length-i]);
+              }
+              this.apiService.fetchAllScreens().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+    }
+
+    console.log(window.history.state.data);
   }
     
   openConfirmModal(country) {
@@ -39,7 +94,7 @@ export class InfoComponent implements OnInit {
           // alert(res.message);
   
           this.apiService.fetchAllCountries().subscribe((res) => {
-            this.countries = res;
+            this.areas = res;
           });
   
         });
@@ -54,7 +109,7 @@ export class InfoComponent implements OnInit {
 
     // console.log(this.bookForm.value)
     this.apiService.fetchCountryByName(this.bookForm.value).subscribe((res) => {
-      this.countries = res;
+      this.areas = res;
       // console.log(res);
     });
   }
@@ -63,7 +118,7 @@ export class InfoComponent implements OnInit {
     this.bookForm.reset();
 
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countries = res;
+      this.areas = res;
     });
   }
   
@@ -100,7 +155,7 @@ export class InfoComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchAllCountries().subscribe((res) => {
-        this.countries = res;
+        this.areas = res;
       });
 
     });
