@@ -1,7 +1,7 @@
 <br>
 <mat-card-content>
 
-    <h2 style="padding: 0 3%;">Countries</h2>
+    <h2 style="padding: 0 3%;">{{ title }}</h2>
     <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right; margin-right: 2%;" (click)="add()">
         <i class="material-icons">add</i>
     </button>
@@ -33,7 +33,7 @@
                 <div class="card-icon">
                   <i class="material-icons">assignment</i>
                 </div>
-                <h4 class="card-title ">Countries</h4>
+                <h4 class="card-title ">{{ title }}</h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
@@ -41,27 +41,127 @@
                     <thead class=" text-primary">
                         <th>Sort</th>
                         <th>Name</th>
+                        <th *ngFor="let item of headervalues;">{{item}}</th>
                         <th>Created On</th>
                         <th>Updated On</th>
                         <th>Enable</th>
                         <th>Action</th>
                     </thead>
-                    <tbody>
-                        <tr *ngFor="let country of countries; let i = index">
+                    <tbody *ngIf="value==0;">
+                      <tr *ngFor="let item of areas; let i = index">
+                          <td>{{ i+1 }}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.createdAt}}</td>
+                          <td>{{item.updatedAt}}</td>
+                          <td><input type="checkbox"></td>
+                          <td>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
+                          </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="value==1;">
+                        <tr *ngFor="let item of areas; let i = index">
                             <td>{{ i+1 }}</td>
-                            <td>{{country.name}}</td>
-                            <td>{{country.createdAt}}</td>
-                            <td>{{country.updatedAt}}</td>
+                            <td>{{item.name}}</td>
+                            <td>{{item.country.name}}</td>
+                            <td>{{item.createdAt}}</td>
+                            <td>{{item.updatedAt}}</td>
                             <td><input type="checkbox"></td>
                             <td>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(country)">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                   <span class="material-icons" style="color: green;">create</span>
                                 </button>
-                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(country)">
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
                                   <span class="material-icons" style="color: red;">delete_outline</span>
                                 </button>
                             </td>
                         </tr>
+                    </tbody>
+                    <tbody *ngIf="value==2;">
+                      <tr *ngFor="let item of areas; let i = index">
+                          <td>{{ i+1 }}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.region.name}}</td>
+                          <td>{{item.region.country.name}}</td>
+                          <td>{{item.createdAt}}</td>
+                          <td>{{item.updatedAt}}</td>
+                          <td><input type="checkbox"></td>
+                          <td>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
+                          </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="value==3;">
+                      <tr *ngFor="let item of areas; let i = index">
+                          <td>{{ i+1 }}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.location.name}}</td>
+                          <td>{{item.location.region.name}}</td>
+                          <td>{{item.location.region.country.name}}</td>
+                          <td>{{item.createdAt}}</td>
+                          <td>{{item.updatedAt}}</td>
+                          <td><input type="checkbox"></td>
+                          <td>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
+                          </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="value==4;">
+                      <tr *ngFor="let item of areas; let i = index">
+                          <td>{{ i+1 }}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.client.name}}</td>
+                          <td>{{item.client.location.name}}</td>
+                          <td>{{item.client.location.region.name}}</td>
+                          <td>{{item.client.location.region.country.name}}</td>
+                          <td>{{item.createdAt}}</td>
+                          <td>{{item.updatedAt}}</td>
+                          <td><input type="checkbox"></td>
+                          <td>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
+                          </td>
+                      </tr>
+                    </tbody>
+                    <tbody *ngIf="value==5;">
+                      <tr *ngFor="let item of areas; let i = index">
+                          <td>{{ i+1 }}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{item.department.name}}</td>
+                          <td>{{item.department.client.location.name}}</td>
+                          <td>{{item.department.client.location.region.name}}</td>
+                          <td>{{item.department.client.location.region.country.name}}</td>
+                          <td>{{item.createdAt}}</td>
+                          <td>{{item.updatedAt}}</td>
+                          <td><input type="checkbox"></td>
+                          <td>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
+                                <span class="material-icons" style="color: green;">create</span>
+                              </button>
+                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(item)">
+                                <span class="material-icons" style="color: red;">delete_outline</span>
+                              </button>
+                          </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
