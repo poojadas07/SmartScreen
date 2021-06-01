@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { ClientAddComponent } from './client-add/client-add.component';
 
@@ -10,57 +12,50 @@ import { ClientAddComponent } from './client-add/client-add.component';
 })
 export class ClientComponent implements OnInit {
 
+  bookForm: FormGroup;
   clients: any;
-  searchvalue: string;
 
-  constructor(private apiService: ApiService,
-    public dialog: MatDialog) { }
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+    public dialog: MatDialog,
+    private router: Router ,) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
-
-    this.apiService.fetchAllCountries().subscribe((res) => {
-        this.clients = res;
-    });
   }
 
-  search(searchvalue) : void {
-    alert(searchvalue)
+  add(): void {
+    this.openDialog(false);
   }
 
-  reset() : void {
-    alert('hello');
-  }
-  
-  editRow(){
-    console.log('hhh')
+  info(): void{
+    this.router.navigate(["nav/info"], { state: { data: 3 } });
   }
 
-  deleteRow(client){
-    // console.log('hhh');
 
-    this.apiService.deleteClient(client._id).subscribe((res) => {
-      alert(res.message);
-
-      this.apiService.fetchAllClients().subscribe((res) => {
-        this.clients = res;
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(ClientAddComponent , {
+        data: {dialogTitle: "Add Client"}
       });
-
-    });
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ClientAddComponent);
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
       this.apiService.fetchAllClients().subscribe((res) => {
         this.clients = res;
       });
 
     });
-
+    
   }
+
+
 
 }

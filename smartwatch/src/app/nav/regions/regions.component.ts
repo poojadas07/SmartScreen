@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { RegionAddComponent } from './region-add/region-add.component';
 
@@ -10,56 +12,48 @@ import { RegionAddComponent } from './region-add/region-add.component';
 })
 export class RegionsComponent implements OnInit {
 
-  searchvalue: string;
+  bookForm: FormGroup;
   regions: any;
 
-  constructor(private apiService: ApiService,
-    public dialog: MatDialog) { }
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+    public dialog: MatDialog,
+    private router: Router ,) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
-
-    this.apiService.fetchAllRegions().subscribe((res) => {
-        this.regions = res;
-    });
   }
 
-  search(searchvalue) : void {
-    alert(searchvalue)
+  add(): void {
+    this.openDialog(false);
   }
 
-  reset() : void {
-    alert('hello');
+  info(): void{
+    this.router.navigate(["nav/info"], { state: { data: 1 } });
   }
 
-  editRow(){
-    console.log('hhh')
-  }
 
-  deleteRow(region){
-    // console.log('hhh')
-
-    this.apiService.deleteRegion(region._id).subscribe((res) => {
-      alert(res.message);
-
-      this.apiService.fetchAllRegions().subscribe((res) => {
-        this.regions = res;
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(RegionAddComponent , {
+        data: {dialogTitle: "Add Region"}
       });
-
-    });
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(RegionAddComponent);
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
       this.apiService.fetchAllRegions().subscribe((res) => {
         this.regions = res;
       });
 
     });
+    
   }
 
 }

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { LocationAddComponent } from './location-add/location-add.component';
 
@@ -10,56 +12,49 @@ import { LocationAddComponent } from './location-add/location-add.component';
 })
 export class LocationsComponent implements OnInit {
 
-  searchvalue: string;
+  bookForm: FormGroup;
   locations: any;
 
-  constructor(private apiService: ApiService,
-    public dialog: MatDialog) { }
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+    public dialog: MatDialog,
+    private router: Router ,) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
-
-    this.apiService.fetchAllRegions().subscribe((res) => {
-        this.locations = res;
-    });
   }
 
-  search(searchvalue) : void {
-    alert(searchvalue)
-  }
-  
-  reset() : void {
-    alert('hello');
-  }
-  
-  editRow(){
-    console.log('hhh')
+  add(): void {
+    this.openDialog(false);
   }
 
-  deleteRow(location){
-    // console.log('hhh');
+  info(): void{
+    this.router.navigate(["nav/info"], { state: { data: 2 } });
+  }
 
-    this.apiService.deleteLocation(location._id).subscribe((res) => {
-      alert(res.message);
 
-      this.apiService.fetchAllLocations().subscribe((res) => {
-        this.locations = res;
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(LocationAddComponent , {
+        data: {dialogTitle: "Add Location"}
       });
-
-    });
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(LocationAddComponent);
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
       this.apiService.fetchAllLocations().subscribe((res) => {
         this.locations = res;
       });
 
     });
+    
   }
+
 
 }

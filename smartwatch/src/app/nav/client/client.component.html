@@ -1,74 +1,146 @@
-<br><br><br><br>
-<mat-card-content>
-    <h2 style="padding: 0 3%;">Clients</h2>
-    <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right; margin-right: 2%;" (click)="openDialog()">
-        <i class="material-icons">add</i>
-    </button>
-    <br>
-    <form class="example-form" style="margin: 0 2%;">
-      <div class="input-group no-border" style="width: 30%;">
-        <input type="text" value="" class="form-control" placeholder="Search..." [(ngModel)]="searchvalue" name="searchvalue">
-        <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="search(searchvalue)">
-          <i class="material-icons">search</i>
-        </button>
-        <button type="submit" class="btn btn-primary" (click)="reset()" style="margin-left: 4%;">
-          Reset
-        </button>
-      </div>
-    </form>
-</mat-card-content>
-
+<br><br>
 <div class="content">
-    <div class="container-fluid">
+  <div class="container-fluid">
 
-        <div class="row">
-          <div class="col-md-12">
-            <div class="card">
-              <div class="card-header card-header-icon card-header-rose">
-                <div class="card-icon">
-                  <i class="material-icons">assignment</i>
-                </div>
-                <h4 class="card-title ">Clients</h4>
+      <h3 style="padding-left: 2%;">Clients
+        <button type="submit" class="btn btn-info btn-round btn-just-icon" style="margin: 0 1%;" (click)="info()">
+            <i class="material-icons">priority_high</i>
+        </button>
+        <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="add()">
+          <i class="material-icons">add</i>
+        </button>
+      </h3>
+    
+
+    <div class="row">
+      <div class="col-xl-2">
+       
+      </div>
+      <div class="col-xl-8 col-lg-12 col-md-12 col-sm-12">
+        <div class="card">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons"></i>
+            </div>
+            <h4 class="card-title"><b>Statistics</b></h4>
+          </div>
+          <div class="card-body">
+            <div class="row" style="text-align: center;">
+  
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4 class="card-category" style="color: black;">Total Clients</h4>
+                <h2>9</h2><!--{{clientSize}}-->
               </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table">
-                    <thead class=" text-primary">
-                        <th>Sort</th>
-                        <th>Name</th>
-                        <th>Location</th>
-                        <th>Region</th>
-                        <th>Country</th>
-                        <th>Created On</th>
-                        <th>Updated On</th>
-                        <th>Enable</th>
-                        <th>Action</th>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let client of clients; let i = index">
-                            <td>{{ i+1 }}</td>
-                            <td>{{client.name}}</td>
-                            <td>{{client.locationName}}</td>
-                            <td>{{client.regionName}}</td>
-                            <td>{{client.countryName}}</td>
-                            <td>{{client.createdAt}}</td>
-                            <td>{{client.updatedAt}}</td>
-                            <td><input type="checkbox"></td>
-                            <td>
-                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(client)">
-                                <span class="material-icons" style="color: green;">create</span>
-                              </button>
-                              <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="deleteRow(client)">
-                                <span class="material-icons" style="color: red;">delete_outline</span>
-                              </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                  </table>
-                </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4 class="card-category" style="color: black;">Total SmartScreens</h4>
+                <h2>1</h2><!--{{locationSize}}-->
               </div>
+              <div class="col-lg-4 col-md-4 col-sm-4">
+                <h4 class="card-category" style="color: black;">Active SmartScreens</h4>
+                <h2>0</h2><!--{{screensSize}}-->
+              </div>
+  
+            </div>
+          </div>
+          <hr>
+          <div class="card-footer">
+            <div class="stats" style="margin: auto; font-size: medium;">
+              <a href="#" style="text-decoration: underline;">More ></a>
             </div>
           </div>
         </div>
+        
+      </div>
+      <div class="col-xl-3">
+        
+      </div>
     </div>
+    
+    <div class="row">
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-success card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">check</i>
+            </div>
+            <p class="card-category" style="color: black;">Departments : 5</p>
+            <h3 class="card-title" style="color: black;">Client 1</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <h6 style="color: green;">All OK</h6>
+            </div>
+            <a href="#" style="text-decoration: underline;">More ></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-danger card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">clear</i>
+            </div>
+            <p class="card-category" style="color: black;">Departments : 3</p>
+            <h3 class="card-title" style="color: black;">Client 2</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <h6 style="color: red;">Panel Defective</h6>
+            </div>
+            <a href="#" style="text-decoration: underline;">More ></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6 col-sm-6">
+        <div class="card card-stats">
+          <div class="card-header card-header-warning card-header-icon">
+            <div class="card-icon">
+              <i class="material-icons">priority_high</i>
+            </div>
+            <p class="card-category" style="color: black;">Departments : 2</p>
+            <h3 class="card-title" style="color: black;">Client 3</h3>
+          </div>
+          <div class="card-footer">
+            <div class="stats">
+              <h6 style="color: orange;">Panel Idle</h6>
+            </div>
+            <a href="#" style="text-decoration: underline;">More ></a>
+          </div>
+        </div>
+      </div>
+
+    <!-- <div class="row"> -->
+      <!-- <ng-container *ngFor="let screen of screens;">  -->
+      <!-- <ng-container> -->
+        <!-- <div class="col-lg-4 col-md-4 col-sm-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons"></i>
+              </div> -->
+              <!-- <h4 class="card-title" style="text-align: left;"><b>{{screen.screenName}}</b></h4> -->
+              <!-- <h4 class="card-title" style="text-align: left;"><b>Screen A</b></h4> -->
+            <!-- </div> -->
+            <!-- <div class="card-body ">
+              <mat-grid-list class="card" cols="{{screen.columnCount}}" rowHeight="60px" >
+                <mat-grid-tile *ngFor="let panel of screen.panels;" [ngStyle]="{'background-color': getColor(panel)}">
+                    <p (click)="editRow(panel)">P-{{panel.index.toString()}}</p>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div> -->
+            <!-- <div class="card-body ">
+                <mat-grid-list class="card" cols="5" rowHeight="60px" >
+                  <mat-grid-tile>
+                      <p>P-1</p>
+                      <p>P-1</p>
+                      <p>P-1</p>
+                      <p>P-1</p>
+                  </mat-grid-tile>
+                </mat-grid-list>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </div> -->
+  </div>
 </div>

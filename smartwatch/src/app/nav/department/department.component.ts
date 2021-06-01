@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { DepartmentAddComponent } from './department-add/department-add.component';
 
@@ -10,57 +12,48 @@ import { DepartmentAddComponent } from './department-add/department-add.componen
 })
 export class DepartmentComponent implements OnInit {
 
+  bookForm: FormGroup;
   departments: any;
-  searchvalue: string;
 
-  constructor(private apiService: ApiService,
-    public dialog: MatDialog) { }
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+    public dialog: MatDialog,
+    private router: Router ,) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
-
-    this.apiService.fetchAllCountries().subscribe((res) => {
-        this.departments = res;
-    });
   }
 
-  search(searchvalue) : void {
-    alert(searchvalue)
+  add(): void {
+    this.openDialog(false);
   }
 
-  reset() : void {
-    alert('hello');
+  info(): void{
+    this.router.navigate(["nav/info"], { state: { data: 4 } });
   }
 
-  editRow(){
-    console.log('hhh')
-  }
 
-  deleteRow(department){
-    // console.log('hhh');
-
-    this.apiService.deleteDepartment(department._id).subscribe((res) => {
-      alert(res.message);
-
-      this.apiService.fetchAllDepartments().subscribe((res) => {
-        this.departments = res;
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(DepartmentAddComponent , {
+        data: {dialogTitle: "Add Department"}
       });
-
-    });
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(DepartmentAddComponent);
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
       this.apiService.fetchAllDepartments().subscribe((res) => {
         this.departments = res;
       });
 
     });
-
+    
   }
 
 }

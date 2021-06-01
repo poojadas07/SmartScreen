@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { ScreensAddComponent } from './screens-add/screens-add.component';
 
@@ -10,57 +12,47 @@ import { ScreensAddComponent } from './screens-add/screens-add.component';
 })
 export class ScreensComponent implements OnInit {
 
+  bookForm: FormGroup;
   screens: any;
-  searchvalue: string;
 
-  constructor(private apiService: ApiService,
-    public dialog: MatDialog) { }
+  constructor(public formBuilder: FormBuilder,private apiService: ApiService,
+    public dialog: MatDialog,
+    private router: Router ,) 
+    {
+      this.bookForm = this.formBuilder.group({
+        searchvalue: [''],
+      })
+     }
 
   ngOnInit() {
-
-    this.apiService.fetchAllCountries().subscribe((res) => {
-        this.screens = res;
-    });
   }
 
-  search(searchvalue) : void {
-    alert(searchvalue)
+  add(): void {
+    this.openDialog(false);
   }
 
-  reset() : void {
-    alert('hello');
+  info(): void{
+    this.router.navigate(["nav/info"], { state: { data: 5 } });
   }
 
-  editRow(){
-    console.log('hhh')
-  }
 
-  deleteRow(screen){
-    // console.log('hhh');
-
-    this.apiService.deleteScreen(screen._id).subscribe((res) => {
-      alert(res.message);
-
-      this.apiService.fetchAllScreens().subscribe((res) => {
-        this.screens = res;
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(ScreensAddComponent , {
+        data: {dialogTitle: "Add Screen"}
       });
-
-    });
-
-  }
-
-  openDialog() {
-    const dialogRef = this.dialog.open(ScreensAddComponent);
+    }
 
     dialogRef.afterClosed().subscribe(res => {
-      console.log('The dialog was closed');
+      // console.log('The dialog was closed');
 
-      this.apiService.fetchAllScreens().subscribe((res) => {
+      this.apiService.fetchAllDepartments().subscribe((res) => {
         this.screens = res;
       });
 
     });
-
+    
   }
-
 }
