@@ -1,20 +1,25 @@
 <div class="container">
-    <h4><b>Add Client</b></h4>
-    <form class="example-form" style="margin: 5%; width: 100% !important;">
-        <mat-form-field appearance="legacy" style="width:90% !important">
-            <mat-label>Choose Location...</mat-label>
-            <mat-select>
-              <mat-option value="option1">Option 1</mat-option>
-              <mat-option value="option2">Option 2</mat-option>
-              <mat-option value="option3">Option 3</mat-option>
-            </mat-select>
-        </mat-form-field>
-        <mat-form-field appearance="legacy" style="width:90% !important">
-            <mat-label>Client Name</mat-label>
-            <input matInput placeholder="Client Name" [(ngModel)]="client_name" name="client_name" required>
-            <mat-icon matSuffix>place</mat-icon>
-        </mat-form-field>
-        <br><br>
-        <button mat-raised-button (click)="addClient()" color="primary" style="width:90% !important"> + ADD</button>
+    <h4><b>{{dialogTitle}}</b></h4>
+    
+    <form class="example-form" style="margin: 2%;" [formGroup]="bookForm" (ngSubmit)="addClient()">
+        
+        <div class="form-group">
+            <mat-form-field appearance="legacy" style="width:90% !important">
+                <mat-label>Choose Location...</mat-label>
+                <mat-select formControlName="locationName">
+                    <mat-option *ngFor="let location of locations;" value="{{location.name}}">{{location.name}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="legacy" style="width:90% !important">
+                <mat-label>Client Name</mat-label>
+                <input matInput placeholder="Client Name" formControlName="name" required>
+                <mat-icon matSuffix>place</mat-icon>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <button mat-raised-button color="primary" style="width:90% !important" type="submit">{{dialogTitle}}</button>
+        </div>
     </form>    
 </div>

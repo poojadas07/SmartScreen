@@ -3,7 +3,12 @@ import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalService } from 'src/app/service/modal.service';
+import { ClientAddComponent } from '../client/client-add/client-add.component';
 import { CountryAddComponent } from '../countries/country-add/country-add.component';
+import { DepartmentAddComponent } from '../department/department-add/department-add.component';
+import { LocationAddComponent } from '../locations/location-add/location-add.component';
+import { RegionAddComponent } from '../regions/region-add/region-add.component';
+import { ScreensAddComponent } from '../screens/screens-add/screens-add.component';
 
 @Component({
   selector: 'app-info',
@@ -87,76 +92,285 @@ export class InfoComponent implements OnInit {
     console.log(window.history.state.data);
   }
     
-  openConfirmModal(country) {
-    this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
-      if (answer) {
-        this.apiService.deleteCountry(country._id).subscribe((res) => {
-          // alert(res.message);
-  
-          this.apiService.fetchAllCountries().subscribe((res) => {
-            this.areas = res;
-          });
-  
-        });
-        return;
-      }
-    });
+  openConfirmModal(item) {
+
+    switch(this.value){
+      case 0: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteCountry(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllCountries().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+      case 1: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteRegion(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllRegions().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+      case 2: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteLocation(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllLocations().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+      case 3: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteClient(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllClients().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+      case 4: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteDepartment(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllDepartments().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+      case 5: this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
+                if (answer) {
+                  this.apiService.deleteScreen(item._id).subscribe((res) => {
+                    // alert(res.message);
+            
+                    this.apiService.fetchAllScreens().subscribe((res) => {
+                      this.areas = res;
+                    });
+            
+                  });
+                  return;
+                }
+              });
+              break;
+    }
   }
 
 
   search() : any {
-    // alert(searchvalue)
-
-    // console.log(this.bookForm.value)
-    this.apiService.fetchCountryByName(this.bookForm.value).subscribe((res) => {
-      this.areas = res;
-      // console.log(res);
-    });
+    
+    switch(this.value){
+      case 0: this.apiService.fetchCountryByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 1: this.apiService.fetchRegionByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 2: this.apiService.fetchLocationByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 3: this.apiService.fetchClientByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 4: this.apiService.fetchDepartmentByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 5: this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+    }
   }
 
   reset() : void {
     this.bookForm.reset();
 
-    this.apiService.fetchAllCountries().subscribe((res) => {
-      this.areas = res;
-    });
+    switch(this.value){
+      case 0: this.apiService.fetchAllCountries().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 1: this.apiService.fetchAllRegions().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 2: this.apiService.fetchAllLocations().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 3: this.apiService.fetchAllClients().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 4: this.apiService.fetchAllDepartments().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+      case 5: this.apiService.fetchAllScreens().subscribe((res) => {
+                this.areas = res;
+              });
+              break;
+    }
   }
   
-  editRow(country): void{
-    this.openDialog(true , country);
+  editRow(item): void{
+    this.openDialog(true , item);
   }
 
   add(): void {
     this.openDialog(false);
   }
 
-  deleteRow(country){
+  deleteRow(item){
     // console.log('hhh');
 
-    this.openConfirmModal(country);
+    this.openConfirmModal(item);
   }
 
   openDialog(isEdit: boolean, value = null): void {
     let dialogRef;
-    if (isEdit == false){
-      // console.log(isEdit);
-      dialogRef = this.dialog.open(CountryAddComponent , {
-        data: {dialogTitle: "Add Country"}
-      });
-    }
-    else {
-      // console.log(isEdit);
-      dialogRef = this.dialog.open(CountryAddComponent ,{
-        data: {dialogTitle: "Edit Country" , dialogText: value}
-      });
+
+    switch(this.value){
+      case 0: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(CountryAddComponent , {
+                  data: {dialogTitle: "Add Country"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(CountryAddComponent ,{
+                  data: {dialogTitle: "Edit Country" , dialogText: value}
+                });
+              }
+              break;
+      case 1: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(RegionAddComponent , {
+                  data: {dialogTitle: "Add Region"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(RegionAddComponent ,{
+                  data: {dialogTitle: "Edit Region" , dialogText: value}
+                });
+              }
+              break;
+      case 2: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(LocationAddComponent , {
+                  data: {dialogTitle: "Add Location"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(LocationAddComponent ,{
+                  data: {dialogTitle: "Edit Location" , dialogText: value}
+                });
+              }
+              break;
+      case 3: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(ClientAddComponent , {
+                  data: {dialogTitle: "Add Client"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(ClientAddComponent ,{
+                  data: {dialogTitle: "Edit Client" , dialogText: value}
+                });
+              }
+              break;
+      case 4: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(DepartmentAddComponent , {
+                  data: {dialogTitle: "Add Department"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(DepartmentAddComponent ,{
+                  data: {dialogTitle: "Edit Department" , dialogText: value}
+                });
+              }
+              break;
+      case 5: if (isEdit == false){
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(ScreensAddComponent , {
+                  data: {dialogTitle: "Add Screen"}
+                });
+              }
+              else {
+                // console.log(isEdit);
+                dialogRef = this.dialog.open(ScreensAddComponent ,{
+                  data: {dialogTitle: "Edit Screen" , dialogText: value}
+                });
+              }
+              break;
     }
 
     dialogRef.afterClosed().subscribe(res => {
       // console.log('The dialog was closed');
 
-      this.apiService.fetchAllCountries().subscribe((res) => {
-        this.areas = res;
-      });
+      switch(this.value){
+        case 0: this.apiService.fetchAllCountries().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+        case 1: this.apiService.fetchAllRegions().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+        case 2: this.apiService.fetchAllLocations().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+        case 3: this.apiService.fetchAllClients().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+        case 4: this.apiService.fetchAllDepartments().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+        case 5: this.apiService.fetchAllScreens().subscribe((res) => {
+                  this.areas = res;
+                });
+                break;
+      }
 
     });
     
