@@ -1,7 +1,9 @@
-<br><br>
 <div class="content">
   <div class="container-fluid">
 
+      <button type="submit" class="btn btn-white btn-round btn-just-icon" style="z-index: 1; margin-left: 1%;" (click)="back()">
+        <i class="material-icons">chevron_left</i>
+      </button>
       <h3 style="padding-left: 2%;">Screens
         <button type="submit" class="btn btn-info btn-round btn-just-icon" style="margin: 0 1%;" (click)="info()">
             <i class="material-icons">priority_high</i>
@@ -53,6 +55,90 @@
       </div>
       <div class="col-xl-3">
         
+      </div>
+    </div>
+
+    <div class="row">
+      <!-- <ng-container *ngFor="let screen of screens;">  -->
+      <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons"></i>
+              </div>
+              <!-- <h4 class="card-title" style="text-align: left;"><b>{{screen.screenName}}</b></h4> -->
+              <h4 class="card-title" style="text-align: left;"><b>Screen A</b></h4>
+            </div>
+            <br>
+            <!-- <div class="card-body ">
+              <mat-grid-list class="card" cols="{{screen.columnCount}}" rowHeight="60px" >
+                <mat-grid-tile *ngFor="let panel of screen.panels;" [ngStyle]="{'background-color': getColor(panel)}">
+                    <p (click)="editRow(panel)">P-{{panel.index.toString()}}</p>
+                </mat-grid-tile>
+              </mat-grid-list>
+            </div> -->
+            <div class="card-body ">
+              <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="add()">
+                <i class="material-icons">edit</i>
+              </button>
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
+                  <mat-grid-list cols="5" rowHeight="40px">
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
+                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                  </mat-grid-list>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9" style="border: black;">
+                  <br><br>
+                  <div class="row" style="text-align: center;">
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Total Screens</h4>
+                      <h2>9</h2><!--{{clientSize}}-->
+                    </div>
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Total SmartScreens</h4>
+                      <h2>1</h2><!--{{locationSize}}-->
+                    </div>
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Active SmartScreens</h4>
+                      <h2>0</h2><!--{{screensSize}}-->
+                    </div>
+                  </div>
+                  <div class="row" style="text-align: center;">
+                    <div class="col-12">
+                      <button class="btn btn-danger" style="margin: 4%">Remove</button>
+                      <button class="btn btn-info">Report</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

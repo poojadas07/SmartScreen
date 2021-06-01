@@ -27,6 +27,10 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
   }
 
+  back(): void {
+    this.router.navigate(["nav/locations"]);
+  }
+  
   add(): void {
     this.openDialog(false);
   }

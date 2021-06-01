@@ -16,6 +16,10 @@ export class ScreensAddComponent implements OnInit {
   dialogTitle: string;
   screen: any;
   departments: any;
+  countries: any;
+  regions: any;
+  locations: any;
+  clients: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -35,6 +39,22 @@ export class ScreensAddComponent implements OnInit {
   ngOnInit(): void {
     this.dialogTitle = this.data.dialogTitle;
 
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.countries = res;
+    });
+    
+    this.apiService.fetchAllRegions().subscribe((res) => {
+      this.regions = res;
+    });
+
+    this.apiService.fetchAllLocations().subscribe((res) => {
+      this.locations = res;
+    });
+    
+    this.apiService.fetchAllClients().subscribe((res) => {
+      this.clients = res;
+    });
+    
     this.apiService.fetchAllDepartments().subscribe((res) => {
       this.departments = res;
     });

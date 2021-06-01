@@ -5,6 +5,14 @@
         
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
+                <mat-label>Choose Country...</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let country of countries;" value="{{country.name}}">{{country.name}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Region...</mat-label>
                 <mat-select formControlName="regionName">
                     <mat-option *ngFor="let region of regions;" value="{{region.name}}">{{region.name}}</mat-option>

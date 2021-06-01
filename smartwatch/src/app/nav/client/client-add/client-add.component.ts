@@ -16,6 +16,8 @@ export class ClientAddComponent implements OnInit {
   dialogTitle: string;
   client: any;
   locations: any;
+  regions: any;
+  countries: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -32,6 +34,18 @@ export class ClientAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialogTitle = this.data.dialogTitle;
+
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.countries = res;
+    });
+    
+    this.apiService.fetchAllRegions().subscribe((res) => {
+      this.regions = res;
+    });
+
+    this.apiService.fetchAllLocations().subscribe((res) => {
+      this.locations = res;
+    });
 
     if (this.dialogTitle == "Edit Client"){
       this.apiService.fetchClientById(this.data.dialogText._id).subscribe((res) => {

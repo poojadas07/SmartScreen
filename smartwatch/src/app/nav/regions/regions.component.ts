@@ -27,6 +27,10 @@ export class RegionsComponent implements OnInit {
   ngOnInit() {
   }
 
+  back(): void {
+    this.router.navigate(["/nav/countries"]);
+  }
+
   add(): void {
     this.openDialog(false);
   }

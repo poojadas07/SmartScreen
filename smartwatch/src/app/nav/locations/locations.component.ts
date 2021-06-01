@@ -27,6 +27,10 @@ export class LocationsComponent implements OnInit {
   ngOnInit() {
   }
 
+  back(): void {
+    this.router.navigate(["nav/regions"]);
+  }
+
   add(): void {
     this.openDialog(false);
   }

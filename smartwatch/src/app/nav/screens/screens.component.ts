@@ -27,6 +27,10 @@ export class ScreensComponent implements OnInit {
   ngOnInit() {
   }
 
+  back(): void {
+    this.router.navigate(["nav/departments"]);
+  }
+
   add(): void {
     this.openDialog(false);
   }

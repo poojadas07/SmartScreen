@@ -16,6 +16,9 @@ export class DepartmentAddComponent implements OnInit {
   dialogTitle: string;
   department: any;
   clients: any;
+  countries: any;
+  regions: any;
+  locations: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -33,6 +36,18 @@ export class DepartmentAddComponent implements OnInit {
   ngOnInit(): void {
     this.dialogTitle = this.data.dialogTitle;
 
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.countries = res;
+    });
+    
+    this.apiService.fetchAllRegions().subscribe((res) => {
+      this.regions = res;
+    });
+
+    this.apiService.fetchAllLocations().subscribe((res) => {
+      this.locations = res;
+    });
+    
     this.apiService.fetchAllClients().subscribe((res) => {
       this.clients = res;
     });

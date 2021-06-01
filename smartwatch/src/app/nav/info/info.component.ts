@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalService } from 'src/app/service/modal.service';
 import { ClientAddComponent } from '../client/client-add/client-add.component';
@@ -30,7 +31,8 @@ export class InfoComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
     public dialog: MatDialog,
-    private modalService: ModalService,) 
+    private modalService: ModalService,
+    private router: Router,) 
     {
       this.bookForm = this.formBuilder.group({
         searchvalue: [''],
@@ -374,6 +376,24 @@ export class InfoComponent implements OnInit {
 
     });
     
+  }
+
+  back(): void{
+    
+    switch(this.value){
+      case 0: this.router.navigate(["/nav/countries"]);
+              break;
+      case 1: this.router.navigate(["/nav/regions"]);
+              break;
+      case 2: this.router.navigate(["/nav/locations"]);
+              break;
+      case 3: this.router.navigate(["/nav/clients"]);
+              break;
+      case 4: this.router.navigate(["/nav/departments"]);
+              break;
+      case 5: this.router.navigate(["/nav/screens"]);
+              break;
+    }
   }
 
 }

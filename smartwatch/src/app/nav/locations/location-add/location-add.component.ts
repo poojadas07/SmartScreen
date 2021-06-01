@@ -16,6 +16,7 @@ export class LocationAddComponent implements OnInit {
   dialogTitle: string;
   location: any;
   regions: any;
+  countries: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -33,6 +34,10 @@ export class LocationAddComponent implements OnInit {
   ngOnInit(): void {
     this.dialogTitle = this.data.dialogTitle;
 
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.countries = res;
+    });
+    
     this.apiService.fetchAllRegions().subscribe((res) => {
       this.regions = res;
     });

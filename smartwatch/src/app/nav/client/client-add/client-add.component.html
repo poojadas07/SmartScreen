@@ -4,6 +4,20 @@
     <form class="example-form" style="margin: 2%;" [formGroup]="bookForm" (ngSubmit)="addClient()">
         
         <div class="form-group">
+            <mat-form-field appearance="legacy" style="width:45% !important; margin-right: 2% ;">
+                <mat-label>Choose Country...</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let country of countries;" value="{{country.name}}">{{country.name}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="legacy" style="width:45% !important">
+                <mat-label>Choose Region...</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let region of regions;" value="{{region.name}}">{{region.name}}</mat-option>
+                  </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Location...</mat-label>
                 <mat-select formControlName="locationName">

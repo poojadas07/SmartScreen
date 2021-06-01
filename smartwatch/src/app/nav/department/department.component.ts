@@ -27,6 +27,10 @@ export class DepartmentComponent implements OnInit {
   ngOnInit() {
   }
 
+  back(): void {
+    this.router.navigate(["nav/clients"]);
+  }
+
   add(): void {
     this.openDialog(false);
   }
