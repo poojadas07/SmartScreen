@@ -32,7 +32,7 @@ export class CountriesComponent implements OnInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"]);
+    this.router.navigate(["nav/info"], { state: { data: 0 } });
   }
 
 
@@ -42,12 +42,6 @@ export class CountriesComponent implements OnInit {
       // console.log(isEdit);
       dialogRef = this.dialog.open(CountryAddComponent , {
         data: {dialogTitle: "Add Country"}
-      });
-    }
-    else {
-      // console.log(isEdit);
-      dialogRef = this.dialog.open(CountryAddComponent ,{
-        data: {dialogTitle: "Edit Country" , dialogText: value}
       });
     }
 
