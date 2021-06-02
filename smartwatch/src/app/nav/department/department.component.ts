@@ -14,6 +14,7 @@ export class DepartmentComponent implements OnInit {
 
   bookForm: FormGroup;
   departments: any;
+  collapsed: boolean;
 
   constructor(public formBuilder: FormBuilder,private apiService: ApiService,
     public dialog: MatDialog,
@@ -58,6 +59,10 @@ export class DepartmentComponent implements OnInit {
 
     });
     
+  }
+
+  more(): void {
+    this.collapsed = !this.collapsed;
   }
 
 }

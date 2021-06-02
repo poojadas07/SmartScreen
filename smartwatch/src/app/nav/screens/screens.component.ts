@@ -24,6 +24,7 @@ export class ScreensComponent implements AfterViewInit {
   setfilters = ['All', 'Faulty', 'Active'];
 
   messagelist: any;
+  collapsed: boolean;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -148,5 +149,8 @@ export class ScreensComponent implements AfterViewInit {
     });
   }
 
+  more(): void {
+    this.collapsed = !this.collapsed;
+  }
   
 }

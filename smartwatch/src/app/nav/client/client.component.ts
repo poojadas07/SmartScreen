@@ -14,6 +14,7 @@ export class ClientComponent implements OnInit {
 
   bookForm: FormGroup;
   clients: any;
+  collapsed: boolean;
 
   constructor(public formBuilder: FormBuilder,private apiService: ApiService,
     public dialog: MatDialog,
@@ -60,6 +61,9 @@ export class ClientComponent implements OnInit {
     
   }
 
+  more(): void {
+    this.collapsed = !this.collapsed;
+  }
 
 
 }

@@ -41,16 +41,32 @@
                 <h4 class="card-category" style="color: black;">Active SmartScreens</h4>
                 <h2>0</h2><!--{{screensSize}}-->
               </div>
+            </div>
+            
+              <div class="row" style="text-align: center;" *ngIf="collapsed">
   
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <h4 class="card-category" style="color: black;">Avg LifeSpan</h4>
+                  <h2>44 d</h2><!--{{clientSize}}-->
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <h4 class="card-category" style="color: black;">Latest Installation</h4>
+                  <h2>2021-05-29</h2><!--{{locationSize}}-->
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                  <h4 class="card-category" style="color: black;">Latest Breakdown</h4>
+                  <h2>2021-07-29</h2><!--{{screensSize}}-->
+                </div>
+    
+              </div>
+            </div>
+            <hr>
+            <div class="card-footer">
+              <div class="stats" style="margin: auto; font-size: medium;">
+                <a style="text-decoration: underline; cursor: pointer;" (click)="more()">More ></a>
+              </div>
             </div>
           </div>
-          <hr>
-          <div class="card-footer">
-            <div class="stats" style="margin: auto; font-size: medium;">
-              <a href="#" style="text-decoration: underline;">More ></a>
-            </div>
-          </div>
-        </div>
         
       </div>
       <div class="col-xl-3">

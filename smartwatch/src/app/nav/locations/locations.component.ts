@@ -14,6 +14,7 @@ export class LocationsComponent implements OnInit {
 
   bookForm: FormGroup;
   locations: any;
+  collapsed: boolean;
 
   constructor(public formBuilder: FormBuilder,private apiService: ApiService,
     public dialog: MatDialog,
@@ -58,6 +59,10 @@ export class LocationsComponent implements OnInit {
 
     });
     
+  }
+
+  more(): void {
+    this.collapsed = !this.collapsed;
   }
 
 
