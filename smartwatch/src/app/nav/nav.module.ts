@@ -44,6 +44,7 @@ import { InfoComponent } from './info/info.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './component/table/table.component';
+import { ScreenIdAddComponent } from './screens/screen-id-add/screen-id-add.component';
 
 @NgModule({
   declarations: [
@@ -67,6 +68,7 @@ import { TableComponent } from './component/table/table.component';
     ScreensAddComponent,
     SettingsComponent,
     InfoComponent,
+    ScreenIdAddComponent,
   ],
   imports: [
     CommonModule,

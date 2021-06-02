@@ -64,6 +64,13 @@ export class ScreensAddComponent implements OnInit {
         this.screen = res;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.screen.name);
+        this.bookForm.get('rows').setValue(this.screen.row);
+        this.bookForm.get('columns').setValue(this.screen.column);
+        this.bookForm.get('deptName').setValue(this.screen.department.name);
+        this.bookForm.get('clientName').setValue(this.screen.department.client.name);
+        this.bookForm.get('locationName').setValue(this.screen.department.client.location.name);
+        this.bookForm.get('regionName').setValue(this.screen.department.client.location.region.name);
+        this.bookForm.get('countryName').setValue(this.screen.department.client.location.region.country.name);
       });
     }
   }

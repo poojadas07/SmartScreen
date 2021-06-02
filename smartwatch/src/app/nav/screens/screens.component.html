@@ -86,31 +86,7 @@
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
                   <mat-grid-list cols="5" rowHeight="40px">
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">2</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">3</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">4</mat-grid-tile>
-                    <mat-grid-tile style="background: lightgrey;">1</mat-grid-tile>
+                    <mat-grid-tile *ngFor="let x of [].constructor(25); let i = index;" style="background: lightgrey; cursor: pointer;" (click)="addScreenToPanel()">{{i}}</mat-grid-tile>
                   </mat-grid-list>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9" style="border: black;">

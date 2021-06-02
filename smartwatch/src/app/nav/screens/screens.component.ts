@@ -4,6 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalService } from 'src/app/service/modal.service';
+import { ScreenIdAddComponent } from './screen-id-add/screen-id-add.component';
 import { ScreensAddComponent } from './screens-add/screens-add.component';
 
 
@@ -53,6 +54,22 @@ export class ScreensComponent implements AfterViewInit {
 
   add(): void {
     this.openDialog(false);
+  }
+
+  addScreenToPanel(): void {
+    let dialogRef = this.dialog.open(ScreenIdAddComponent , {
+        data: {dialogTitle: "Add Screen Id"}
+      });
+    
+
+    dialogRef.afterClosed().subscribe(res => {
+      // console.log('The dialog was closed');
+
+      this.apiService.fetchAllScreens().subscribe((res) => {
+        this.screens = res;
+      });
+
+    });
   }
 
   info(): void{
