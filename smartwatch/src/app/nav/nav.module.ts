@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
 import { NavComponent } from './nav.component';
 import { DashComponent } from './dash/dash.component';
-import { CardComponent } from './card/card.component';
+import { CardComponent } from './component/card/card.component';
 import { CountriesComponent } from './countries/countries.component';
 import { RegionsComponent } from './regions/regions.component';
 import { LocationsComponent } from './locations/locations.component';
@@ -43,12 +43,14 @@ import { SettingsComponent } from './settings/settings.component';
 import { InfoComponent } from './info/info.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { TableComponent } from './component/table/table.component';
 
 @NgModule({
   declarations: [
     NavComponent,
     DashComponent,
     CardComponent,
+    TableComponent,
     CountriesComponent,
     RegionsComponent,
     LocationsComponent,
