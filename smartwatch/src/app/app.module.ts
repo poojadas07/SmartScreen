@@ -26,6 +26,8 @@ import { FormsModule ,ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDialogModule } from '@angular/material/dialog';
 import {MatTreeModule} from '@angular/material/tree';
+import { MatSortModule } from '@angular/material/sort';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 @NgModule({
   declarations: [
@@ -37,8 +39,10 @@ import {MatTreeModule} from '@angular/material/tree';
     AppRoutingModule,
     BrowserAnimationsModule,
     ChartsModule,
+    MatSortModule,
     ReactiveFormsModule,
     LayoutModule,
+    MatPaginatorModule ,
     MatTreeModule,
     MatToolbarModule,
     MatTabsModule,

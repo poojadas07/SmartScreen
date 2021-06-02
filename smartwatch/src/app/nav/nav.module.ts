@@ -41,6 +41,8 @@ import { ComponentModule } from './component/component.module';
 import {MatTreeModule} from '@angular/material/tree';
 import { SettingsComponent } from './settings/settings.component';
 import { InfoComponent } from './info/info.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -68,8 +70,10 @@ import { InfoComponent } from './info/info.component';
     CommonModule,
     NavRoutingModule,
     ChartsModule,
+    MatPaginatorModule,
     MatTreeModule,
     LayoutModule,
+    MatSortModule,
     MatToolbarModule,
     MatDialogModule,
     MatButtonModule,

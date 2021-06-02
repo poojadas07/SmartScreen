@@ -48,7 +48,6 @@
                         <th *ngFor="let item of headervalues;">{{item}}</th>
                         <th>Created On</th>
                         <th>Updated On</th>
-                        <th>Enable</th>
                         <th>Action</th>
                     </thead>
                     <tbody *ngIf="value==0;">
@@ -57,7 +56,6 @@
                           <td>{{item.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
-                          <td><input type="checkbox"></td>
                           <td>
                               <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                 <span class="material-icons" style="color: green;">create</span>
@@ -75,7 +73,6 @@
                             <td>{{item.country.name}}</td>
                             <td>{{item.createdAt}}</td>
                             <td>{{item.updatedAt}}</td>
-                            <td><input type="checkbox"></td>
                             <td>
                                 <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                   <span class="material-icons" style="color: green;">create</span>
@@ -94,7 +91,6 @@
                           <td>{{item.region.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
-                          <td><input type="checkbox"></td>
                           <td>
                               <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                 <span class="material-icons" style="color: green;">create</span>
@@ -114,7 +110,6 @@
                           <td>{{item.location.region.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
-                          <td><input type="checkbox"></td>
                           <td>
                               <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                 <span class="material-icons" style="color: green;">create</span>
@@ -135,7 +130,6 @@
                           <td>{{item.client.location.region.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
-                          <td><input type="checkbox"></td>
                           <td>
                               <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                 <span class="material-icons" style="color: green;">create</span>
@@ -156,7 +150,6 @@
                           <td>{{item.department.client.location.region.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
-                          <td><input type="checkbox"></td>
                           <td>
                               <button type="submit" class="btn btn-white btn-round btn-just-icon" (click)="editRow(item)">
                                 <span class="material-icons" style="color: green;">create</span>
