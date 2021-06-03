@@ -45,6 +45,8 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { TableComponent } from './component/table/table.component';
 import { ScreenIdAddComponent } from './screens/screen-id-add/screen-id-add.component';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ProfileAddComponent } from './profile/profile-add/profile-add.component';
 
 @NgModule({
   declarations: [
@@ -69,9 +71,11 @@ import { ScreenIdAddComponent } from './screens/screen-id-add/screen-id-add.comp
     SettingsComponent,
     InfoComponent,
     ScreenIdAddComponent,
+    ProfileAddComponent,
   ],
   imports: [
     CommonModule,
+    MatProgressBarModule,
     NavRoutingModule,
     ChartsModule,
     MatPaginatorModule,

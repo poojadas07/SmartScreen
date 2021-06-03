@@ -28,6 +28,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import {MatTreeModule} from '@angular/material/tree';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     ReactiveFormsModule,
     LayoutModule,
     MatPaginatorModule ,
+    MatProgressBarModule,
     MatTreeModule,
     MatToolbarModule,
     MatTabsModule,

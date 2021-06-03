@@ -1,4 +1,5 @@
 <br><br>
+
 <div class="content">
     <div class="container-fluid">
 
@@ -16,32 +17,44 @@
                     <div class="card-body">
                         <div class="row" style="padding: 4%;">
                             <div class="col-4">
-                                <div>
-                                    <img mat-card-avatar class="avatar" src="https://www.w3schools.com/w3images/avatar_hat.jpg" alt="User Avatar">
-                                </div>
-                                <div style="margin: 15% 15% 0;">
-                                    <a class="btn btn-secondary" style="cursor: pointer;">Change Photo</a>
-                                </div>
+                                <div *ngIf="filePath && filePath !== ''">
+                                    <img mat-card-avatar class="avatar" [src]="filePath" [alt]="myForm.value.name">
+                                  </div>
+                                <br>
+                                <ul style="text-align: center;">  
+                                    <li *ngFor="let file of files">  
+                                        <mat-progress-bar [value]="file.progress"></mat-progress-bar>  
+                                        <span id="file-label">  
+                                            
+                                        </span> 
+                                        <p>{{file.data.name}}</p> 
+                                    </li>  
+                                </ul>  
+                                <button class="btn btn-secondary" (click)="onClick()" style="margin: 10% 10% 0;">  
+                                    <i class="material-icons">upload</i>  
+                                    Change Photo
+                                </button>
+                                <input type="file" (change)="imagePreview($event)" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" /> 
                             </div>
-                            <div class="col-8">
-                                <p style="border-bottom: 1px solid lightgray; width: 25%;">Pooja Das
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;">
+                            <div class="col-8" *ngFor="let item of profile;">
+                                <p style="border-bottom: 1px solid lightgray; width: 25%;">{{item.name}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editName(item)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
-                                <p style="border-bottom: 1px solid lightgray; width: 40%;">poojadas04kv@gmail.com
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 20%;">
+                                <p style="border-bottom: 1px solid lightgray; width: 40%;">{{item.email}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 20%;" (click)="editEmail(item)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
-                                <p style="border-bottom: 1px solid lightgray; width: 35%;">+91-6370677192
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;">
+                                <p style="border-bottom: 1px solid lightgray; width: 35%;">{{item.phone}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editPhone(item)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
 
                                 <a class="btn btn-secondary" style="cursor: pointer;" (click)="more()">Change Password</a>
-                                <form *ngIf="collapsed" class="example-form" style="margin: 2%;" [formGroup]="bookForm" (ngSubmit)="addCountry()">
+                                <form *ngIf="collapsed" class="example-form" style="margin: 2%;" [formGroup]="bookForm" (ngSubmit)="changePass()">
 
                                     <div class="form-group">
                                       <mat-form-field appearance="legacy" style="width:45% !important">
@@ -75,3 +88,38 @@
     </div>
 </div>
 
+<!-- <div style="text-align:center; margin-top: 100px; ">
+    <mat-card style="margin-top:10px; width: 50%;">  
+        <mat-card-content>  
+            <ul>  
+                <li *ngFor="let file of files">  
+                    <mat-progress-bar [value]="file.progress"></mat-progress-bar>  
+                    <span id="file-label">  
+                        
+                    </span> 
+                    <p>{{file.data.name}}</p> 
+                </li>  
+            </ul>  
+        </mat-card-content>  
+        <mat-card-actions>  
+            <button mat-button color="warn" (click)="onClick()">  
+                <mat-icon>file_upload</mat-icon>  
+                Upload  
+            </button>  
+        </mat-card-actions>  
+    </mat-card>
+    <input type="file" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" />
+</div> -->
+<!-- 
+<form [formGroup]="myForm" (ngSubmit)="submit()">
+
+    <div *ngIf="filePath && filePath !== ''">
+      <img mat-card-avatar class="avatar" [src]="filePath" [alt]="myForm.value.name">
+    </div>
+  
+    <input type="file" accept="image/*" (change)="imagePreview($event)" />
+  
+    <input formControlName="filename" placeholder="File name">
+  
+    <button type="submit">Upload</button>
+  </form> -->

@@ -4,3 +4,10 @@
   height: 200px;
   border-radius: 50%;
 }
+
+ul,  
+li {  
+      margin: 0;  
+      padding: 0;  
+      list-style: none;  
+}

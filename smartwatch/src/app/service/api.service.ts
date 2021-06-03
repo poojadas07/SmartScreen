@@ -28,6 +28,26 @@ export class ApiService {
     return Promise.reject(errMsg);
   }
 
+  fetchUserById(userId: String): Observable<any>{
+    let urlString = environment.serverBaseUrl + 'user/' + userId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  updateProfile(userId: String , data): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'user/' + userId;
+
+    return this.http.put(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchAllCountries(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country';
     // console.log('hello')
