@@ -47,6 +47,7 @@ import { TableComponent } from './component/table/table.component';
 import { ScreenIdAddComponent } from './screens/screen-id-add/screen-id-add.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProfileAddComponent } from './profile/profile-add/profile-add.component';
+import { ReportComponent } from './report/report.component';
 
 @NgModule({
   declarations: [
@@ -72,6 +73,7 @@ import { ProfileAddComponent } from './profile/profile-add/profile-add.component
     InfoComponent,
     ScreenIdAddComponent,
     ProfileAddComponent,
+    ReportComponent,
   ],
   imports: [
     CommonModule,

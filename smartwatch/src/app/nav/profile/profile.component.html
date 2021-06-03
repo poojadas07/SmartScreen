@@ -34,7 +34,7 @@
                                     <i class="material-icons">upload</i>  
                                     Change Photo
                                 </button>
-                                <input type="file" (change)="imagePreview($event)" #fileUpload id="fileUpload" name="fileUpload" multiple="multiple" accept="image/*" style="display:none;" /> 
+                                <input type="file" (change)="imagePreview($event)" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display:none;" /> 
                             </div>
                             <div class="col-8" *ngFor="let item of profile;">
                                 <p style="border-bottom: 1px solid lightgray; width: 25%;">{{item.name}}

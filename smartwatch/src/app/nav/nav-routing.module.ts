@@ -9,6 +9,7 @@ import { LocationsComponent } from './locations/locations.component';
 import { NavComponent } from './nav.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegionsComponent } from './regions/regions.component';
+import { ReportComponent } from './report/report.component';
 import { ScreensComponent } from './screens/screens.component';
 import { SettingsComponent } from './settings/settings.component';
 
@@ -23,7 +24,8 @@ const routes: Routes = [ {path: '', component: NavComponent, children: [
                             { path: 'screens', component: ScreensComponent},
                             { path: 'profile', component: ProfileComponent},
                             { path: 'settings', component: SettingsComponent},
-                            { path: 'info', component: InfoComponent}]}];
+                            { path: 'info', component: InfoComponent},
+                            { path: 'reports', component: ReportComponent}]}];
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
