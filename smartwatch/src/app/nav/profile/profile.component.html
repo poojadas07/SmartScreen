@@ -1,45 +1,77 @@
-<br><br><br><br>
-<h2 style="padding: 0 3%;">Profile</h2>
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
-    <div class="w3-row-padding">
-        <div class="w3-third">
-            <div class="w3-white w3-text-grey w3-card-4">
-                <div class="w3-display-container">
-                    <img src="https://www.w3schools.com/w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
-                    <div class="w3-display-bottomleft w3-container w3-text-black">
-                        <h2>Jane Doe</h2>
+<br><br>
+<div class="content">
+    <div class="container-fluid">
+
+        <h3 style="padding-left: 2%;">Profile</h3>
+
+        <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header card-header-icon card-header-rose">
+                    <div class="card-icon">
+                        <i class="material-icons">person</i>
                     </div>
-                </div>
-                <div class="w3-container" style="padding: 5%;">
-                    <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal" style="color: blue !important;"></i>Designer</p>
-                    <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal" style="color: blue !important;"></i>London, UK</p>
-                    <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal" style="color: blue !important;"></i>ex@mail.com</p>
-                    <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal" style="color: blue !important;"></i>1224435534</p>
-                    <button mat-raised-button color="primary"> Edit Profile </button>
-                </div>
-            </div>
-        </div>
-        <div class="w3-twothird">
-            <div class="w3-container w3-card w3-white w3-margin-bottom">
-                <h2 class="w3-text-grey w3-padding-14"><i class="fa fa-suitcase fa-fw w3-margin-right w3-xxlarge w3-text-teal" style="color: blue !important;"></i>Work Experience</h2>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Front End Developer</b></h5>
-                    <h6 class="w3-text-teal" style="color: blue !important;"><i class="fa fa-calendar fa-fw w3-margin-right" style="color: blue !important;"></i>Jan 2015 - Current</h6>
-                    <p>Lorem ipsum dolor sit amet. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-                    <hr>
-                </div>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Web Developer</b></h5>
-                    <h6 class="w3-text-teal" style="color: blue !important;"><i class="fa fa-calendar fa-fw w3-margin-right" style="color: blue !important;"></i>Mar 2012 - Dec 2014</h6>
-                    <p>Consectetur adipisicing elit. Praesentium magnam consectetur vel in deserunt aspernatur est reprehenderit sunt hic. Nulla tempora soluta ea et odio, unde doloremque repellendus iure, iste.</p>
-                    <hr>
-                </div>
-                <div class="w3-container">
-                    <h5 class="w3-opacity"><b>Graphic Designer</b></h5>
-                    <h6 class="w3-text-teal" style="color: blue !important;"><i class="fa fa-calendar fa-fw w3-margin-right" style="color: blue !important;"></i>Jun 2010 - Mar 2012</h6>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. </p><br>
+                    <h4 class="card-title ">Profile</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="row" style="padding: 4%;">
+                            <div class="col-4">
+                                <div>
+                                    <img mat-card-avatar class="avatar" src="https://www.w3schools.com/w3images/avatar_hat.jpg" alt="User Avatar">
+                                </div>
+                                <div style="margin: 15% 15% 0;">
+                                    <a class="btn btn-secondary" style="cursor: pointer;">Change Photo</a>
+                                </div>
+                            </div>
+                            <div class="col-8">
+                                <p style="border-bottom: 1px solid lightgray; width: 25%;">Pooja Das
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </p>
+                                <p style="border-bottom: 1px solid lightgray; width: 40%;">poojadas04kv@gmail.com
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 20%;">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </p>
+                                <p style="border-bottom: 1px solid lightgray; width: 35%;">+91-6370677192
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;">
+                                        <i class="material-icons">edit</i>
+                                    </button>
+                                </p>
+
+                                <a class="btn btn-secondary" style="cursor: pointer;" (click)="more()">Change Password</a>
+                                <form *ngIf="collapsed" class="example-form" style="margin: 2%;" [formGroup]="bookForm" (ngSubmit)="addCountry()">
+
+                                    <div class="form-group">
+                                      <mat-form-field appearance="legacy" style="width:45% !important">
+                                          <mat-label>Old Password</mat-label>
+                                          <input matInput placeholder="Old Password" formControlName="old" required>
+                                      </mat-form-field>
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field appearance="legacy" style="width:45% !important">
+                                            <mat-label>New Password</mat-label>
+                                            <input matInput placeholder="New Password" formControlName="new" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="form-group">
+                                        <mat-form-field appearance="legacy" style="width:45% !important">
+                                            <mat-label>Re-enter New Password</mat-label>
+                                            <input matInput placeholder="Re-enter New Password" formControlName="confirm" required>
+                                        </mat-form-field>
+                                    </div>
+                                    <div class="form-group">
+                                      <button mat-raised-button class="btn btn-sm btn-info" type="submit">Confirm</button>
+                                    </div>
+                                      
+                                </form>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+

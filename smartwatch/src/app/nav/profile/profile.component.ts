@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { map, shareReplay } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
+import { FormGroup, FormBuilder } from '@angular/forms';
 
 export interface Tile {
   color: string;
@@ -17,16 +18,25 @@ export interface Tile {
 })
 export class ProfileComponent implements OnInit {
 
-  constructor(){}
+  bookForm: FormGroup;
+  collapsed: boolean;
+
+  constructor(public formBuilder: FormBuilder,){
+      this.bookForm = this.formBuilder.group({
+        old: [''],
+        new: [''],
+        confirm: [''],
+      })
+     }
   
   ngOnInit(): void {
   }
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
-  ];
+  more(): void {
+    this.collapsed = !this.collapsed;
+  }
 
+  addCountry(): void{
+
+  }
 }

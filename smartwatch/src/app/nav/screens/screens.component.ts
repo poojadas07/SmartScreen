@@ -50,7 +50,7 @@ export class ScreensComponent implements AfterViewInit {
   }
 
   back(): void {
-    this.router.navigate(["nav/departments"]);
+    this.router.navigate(["dashboard/departments"]);
   }
 
   add(): void {
@@ -74,7 +74,7 @@ export class ScreensComponent implements AfterViewInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"], { state: { data: 5 } });
+    this.router.navigate(["dashboard/info"], { state: { data: 5 } });
   }
 
   delete(screen){

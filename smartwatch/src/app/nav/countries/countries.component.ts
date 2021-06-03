@@ -33,7 +33,7 @@ export class CountriesComponent implements OnInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"], { state: { data: 0 } });
+    this.router.navigate(["dashboard/info"], { state: { data: 0 } });
   }
 
 

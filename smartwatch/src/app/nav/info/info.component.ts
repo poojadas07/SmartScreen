@@ -381,17 +381,17 @@ export class InfoComponent implements OnInit {
   back(): void{
     
     switch(this.value){
-      case 0: this.router.navigate(["/nav/countries"]);
+      case 0: this.router.navigate(["/dashboard/countries"]);
               break;
-      case 1: this.router.navigate(["/nav/regions"]);
+      case 1: this.router.navigate(["/dashboard/regions"]);
               break;
-      case 2: this.router.navigate(["/nav/locations"]);
+      case 2: this.router.navigate(["/dashboard/locations"]);
               break;
-      case 3: this.router.navigate(["/nav/clients"]);
+      case 3: this.router.navigate(["/dashboard/clients"]);
               break;
-      case 4: this.router.navigate(["/nav/departments"]);
+      case 4: this.router.navigate(["/dashboard/departments"]);
               break;
-      case 5: this.router.navigate(["/nav/screens"]);
+      case 5: this.router.navigate(["/dashboard/screens"]);
               break;
     }
   }

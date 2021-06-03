@@ -1,13 +1,6 @@
-.example-card {
-    width: 400px;
-    height: 500px;
-  }
-  .example-card1 {
-    width: 600px;
-    height: 550px;
-  }
-  .example-header-image {
-    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
-    background-size: cover;
-  }
-  
+.avatar {
+  vertical-align: middle;
+  width: 75%;
+  height: 200px;
+  border-radius: 50%;
+}

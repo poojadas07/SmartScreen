@@ -29,7 +29,7 @@ export class ClientComponent implements OnInit {
   }
 
   back(): void {
-    this.router.navigate(["nav/locations"]);
+    this.router.navigate(["dashboard/locations"]);
   }
   
   add(): void {
@@ -37,7 +37,7 @@ export class ClientComponent implements OnInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"], { state: { data: 3 } });
+    this.router.navigate(["dashboard/info"], { state: { data: 3 } });
   }
 
 

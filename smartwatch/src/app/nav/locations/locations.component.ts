@@ -29,7 +29,7 @@ export class LocationsComponent implements OnInit {
   }
 
   back(): void {
-    this.router.navigate(["nav/regions"]);
+    this.router.navigate(["dashboard/regions"]);
   }
 
   add(): void {
@@ -37,7 +37,7 @@ export class LocationsComponent implements OnInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"], { state: { data: 2 } });
+    this.router.navigate(["dashboard/info"], { state: { data: 2 } });
   }
 
 

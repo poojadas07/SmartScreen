@@ -29,7 +29,7 @@ export class DepartmentComponent implements OnInit {
   }
 
   back(): void {
-    this.router.navigate(["nav/clients"]);
+    this.router.navigate(["dashboard/clients"]);
   }
 
   add(): void {
@@ -37,7 +37,7 @@ export class DepartmentComponent implements OnInit {
   }
 
   info(): void{
-    this.router.navigate(["nav/info"], { state: { data: 4 } });
+    this.router.navigate(["dashboard/info"], { state: { data: 4 } });
   }
 
 

@@ -13,8 +13,8 @@ import { ScreensComponent } from './screens/screens.component';
 import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [ {path: '', component: NavComponent, children: [
-                            {path: '', pathMatch: 'full', redirectTo: 'dashboard'},
-                            {path: 'dashboard',  component: DashComponent},
+                            {path: '', pathMatch: 'full', redirectTo: 'countries'},
+                            {path: 'nav',  component: DashComponent},
                             { path: 'countries', component: CountriesComponent },
                             { path: 'regions', component: RegionsComponent},
                             { path: 'locations', component: LocationsComponent},

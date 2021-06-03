@@ -17,10 +17,10 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
-          <a mat-list-item [routerLink]="'/nav/profile'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">person</i> My Profile </a>
+          <a mat-list-item [routerLink]="'/dashboard/profile'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">person</i> My Profile </a>
         </mat-nav-list>
         <mat-nav-list>
-          <a mat-list-item [routerLink]="'/nav/settings'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">settings</i> Settings </a>
+          <a mat-list-item [routerLink]="'/dashboard/settings'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">settings</i> Settings </a>
         </mat-nav-list>
         <mat-nav-list>
           <a mat-list-item (click)="logout()" style="cursor: pointer" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">logout</i> Logout </a>
@@ -42,7 +42,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
-          <a mat-list-item [routerLink]="'/nav/dashboard'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">dashboard</i> Dashboard </a>
+          <a mat-list-item [routerLink]="'/dashboard/nav'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">dashboard</i> Dashboard </a>
         </mat-nav-list>
       </mat-expansion-panel>
     </mat-accordion>
@@ -56,7 +56,7 @@
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
-          <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/nav/'+item" style="color: white;"><i class="material-icons" style="padding: 0 10%;">widgets</i> {{item | titlecase}} </a>
+          <a *ngFor="let item of menuItems" mat-list-item [routerLink]="'/dashboard/'+item" style="color: white;"><i class="material-icons" style="padding: 0 10%;">widgets</i> {{item | titlecase}} </a>
           <!-- <a *ngFor="let item of navList" mat-list-item [routerLink]="item.url"> {{item | titlecase}} </a> -->
         </mat-nav-list>
       </mat-expansion-panel>
@@ -258,8 +258,8 @@
                 </p>
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
-                <a class="dropdown-item" [routerLink]="'/nav/profile'">Profile</a>
-                <a class="dropdown-item" href="#">Settings</a>
+                <a class="dropdown-item" [routerLink]="'/dashboard/profile'">Profile</a>
+                <a class="dropdown-item" [routerLink]="'/dashboard/settings'">Settings</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" (click)="logout()" style="cursor: pointer">Log out</a>
               </div>
