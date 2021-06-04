@@ -37,52 +37,55 @@
                                 </mat-form-field>
                 
                             </div> -->
-                            <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
-                                <a [matMenuTriggerFor]="all" style="cursor: pointer;">All</a>
+                            <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="margin: 1.5% 0; color: grey;">
+                                <!-- <button class="btn btn-sm" >All</button> -->
+                                <h5 [matMenuTriggerFor]="all" style="border-bottom: 1px solid gray; cursor: pointer;">All
+                                    <i style="float: right;" class="material-icons">arrow_drop_down</i>
+                                </h5>
 
                                 <mat-menu #all="matMenu">
-                                <button class="btn btn-sm" *ngFor='let in of setareas ;' mat-menu-item [matMenuTriggerFor]="country">{{in}}</button>
+                                <h5 style="  cursor: pointer;"  *ngFor='let in of setareas ;' mat-menu-item [matMenuTriggerFor]="country">{{in}}</h5>
                                 </mat-menu>
 
                                 <mat-menu #country="matMenu">
-                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
-                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
-                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
-                                <button class="btn btn-sm" mat-menu-item>Birds</button>
-                                <button class="btn btn-sm" mat-menu-item>Mammals</button>
+                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="fish">Fishes</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Birds</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Mammals</h5>
                                 </mat-menu>
 
                                 <mat-menu #invertebrates="matMenu">
-                                <button class="btn btn-sm" mat-menu-item>Insects</button>
-                                <button class="btn btn-sm" mat-menu-item>Molluscs</button>
-                                <button class="btn btn-sm" mat-menu-item>Crustaceans</button>
-                                <button class="btn btn-sm" mat-menu-item>Corals</button>
-                                <button class="btn btn-sm" mat-menu-item>Arachnids</button>
-                                <button class="btn btn-sm" mat-menu-item>Velvet worms</button>
-                                <button class="btn btn-sm" mat-menu-item>Horseshoe crabs</button>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Insects</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Molluscs</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Crustaceans</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Corals</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Arachnids</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Velvet worms</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Horseshoe crabs</h5>
                                 </mat-menu>
 
                                 <mat-menu #fish="matMenu">
-                                <button class="btn btn-sm" mat-menu-item>Baikal oilfish</button>
-                                <button class="btn btn-sm" mat-menu-item>Bala shark</button>
-                                <button class="btn btn-sm" mat-menu-item>Ballan wrasse</button>
-                                <button class="btn btn-sm" mat-menu-item>Bamboo shark</button>
-                                <button class="btn btn-sm" mat-menu-item>Banded killifish</button>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Baikal oilfish</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Bala shark</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Ballan wrasse</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Bamboo shark</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded killifish</h5>
                                 </mat-menu>
 
                                 <mat-menu #amphibians="matMenu">
-                                <button class="btn btn-sm" mat-menu-item>Sonoran desert toad</button>
-                                <button class="btn btn-sm" mat-menu-item>Western toad</button>
-                                <button class="btn btn-sm" mat-menu-item>Arroyo toad</button>
-                                <button class="btn btn-sm" mat-menu-item>Yosemite toad</button>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Sonoran desert toad</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Western toad</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Arroyo toad</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Yosemite toad</h5>
                                 </mat-menu>
 
                                 <mat-menu #reptiles="matMenu">
-                                <button class="btn btn-sm" mat-menu-item>Banded Day Gecko</button>
-                                <button class="btn btn-sm" mat-menu-item>Banded Gila Monster</button>
-                                <button class="btn btn-sm" mat-menu-item>Black Tree Monitor</button>
-                                <button class="btn btn-sm" mat-menu-item>Blue Spiny Lizard</button>
-                                <button class="btn btn-sm" mat-menu-item disabled>Velociraptor</button>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded Day Gecko</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded Gila Monster</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Black Tree Monitor</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item>Blue Spiny Lizard</h5>
+                                <h5 style="  cursor: pointer;"  mat-menu-item disabled>Velociraptor</h5>
                                 </mat-menu>
 
                             </div>
