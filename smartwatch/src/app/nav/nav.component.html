@@ -52,13 +52,14 @@
         <!-- <button mat-icon-button disabled></button> -->
         <button class="btn btn-lg btn-link btn-primary" style="color: white">
             <i class="material-icons" style="font-size: 25px;">image</i>
-             {{node.name}}
+             <span routerLink="/dashboard/nav">{{node.name}}</span>
         </button>
       </mat-tree-node>
-      <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
+      <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
         <button class="btn btn-lg btn-link btn-primary" matTreeNodeToggle
                 [attr.aria-label]="'Toggle ' + node.name" style="color: white">
                 <i class="material-icons" style=" font-size: 25px;">image</i>
+                <!-- <span click="navigateToPage(node.name)">{{node.name}}</span> -->
                 {{node.name}}
           <!-- <span class="btn-label btn-label-right">
             <i class="material-icons" [innerText]="treeControl.isExpanded(node) ? 'expand_less' : 'expand_more'"></i>

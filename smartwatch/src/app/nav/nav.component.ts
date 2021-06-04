@@ -134,6 +134,13 @@ export class NavComponent implements OnInit{
 
   panelOpenState = false;
 
+  navigateToPage(name: string) {
+    console.log(name);
+    // if (name === 'Screen A') {
+      this.router.navigate(["dashboard/info"]);
+    // }
+  }
+
   logout(): void {
     this.modalService.openConfirmModal('Are you sure you want to exit?', (answer: boolean) => {
       if (answer) {
