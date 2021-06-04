@@ -27,7 +27,7 @@
                                 </mat-form-field>
                                 
                             </div>
-                            <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
+                            <!-- <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
                         
                                 <mat-form-field appearance="legacy">
                                     <mat-label>All</mat-label>
@@ -36,41 +36,57 @@
                                     </mat-select>
                                 </mat-form-field>
                 
+                            </div> -->
+                            <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
+                                <a [matMenuTriggerFor]="all" style="cursor: pointer;">All</a>
+
+                                <mat-menu #all="matMenu">
+                                <button class="btn btn-sm" *ngFor='let in of setareas ;' mat-menu-item [matMenuTriggerFor]="country">{{in}}</button>
+                                </mat-menu>
+
+                                <mat-menu #country="matMenu">
+                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="fish">Fishes</button>
+                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</button>
+                                <button class="btn btn-sm" mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</button>
+                                <button class="btn btn-sm" mat-menu-item>Birds</button>
+                                <button class="btn btn-sm" mat-menu-item>Mammals</button>
+                                </mat-menu>
+
+                                <mat-menu #invertebrates="matMenu">
+                                <button class="btn btn-sm" mat-menu-item>Insects</button>
+                                <button class="btn btn-sm" mat-menu-item>Molluscs</button>
+                                <button class="btn btn-sm" mat-menu-item>Crustaceans</button>
+                                <button class="btn btn-sm" mat-menu-item>Corals</button>
+                                <button class="btn btn-sm" mat-menu-item>Arachnids</button>
+                                <button class="btn btn-sm" mat-menu-item>Velvet worms</button>
+                                <button class="btn btn-sm" mat-menu-item>Horseshoe crabs</button>
+                                </mat-menu>
+
+                                <mat-menu #fish="matMenu">
+                                <button class="btn btn-sm" mat-menu-item>Baikal oilfish</button>
+                                <button class="btn btn-sm" mat-menu-item>Bala shark</button>
+                                <button class="btn btn-sm" mat-menu-item>Ballan wrasse</button>
+                                <button class="btn btn-sm" mat-menu-item>Bamboo shark</button>
+                                <button class="btn btn-sm" mat-menu-item>Banded killifish</button>
+                                </mat-menu>
+
+                                <mat-menu #amphibians="matMenu">
+                                <button class="btn btn-sm" mat-menu-item>Sonoran desert toad</button>
+                                <button class="btn btn-sm" mat-menu-item>Western toad</button>
+                                <button class="btn btn-sm" mat-menu-item>Arroyo toad</button>
+                                <button class="btn btn-sm" mat-menu-item>Yosemite toad</button>
+                                </mat-menu>
+
+                                <mat-menu #reptiles="matMenu">
+                                <button class="btn btn-sm" mat-menu-item>Banded Day Gecko</button>
+                                <button class="btn btn-sm" mat-menu-item>Banded Gila Monster</button>
+                                <button class="btn btn-sm" mat-menu-item>Black Tree Monitor</button>
+                                <button class="btn btn-sm" mat-menu-item>Blue Spiny Lizard</button>
+                                <button class="btn btn-sm" mat-menu-item disabled>Velociraptor</button>
+                                </mat-menu>
+
                             </div>
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                  Dropdown
-                                </button>
-                                <ul class="dropdown-menu multi-level" role="menu" aria-labelledby="dropdownMenu">
-                                    <li class="dropdown-item"><a href="#">Some action</a></li>
-                                    <li class="dropdown-item"><a href="#">Some other action</a></li>
-                                    <li class="dropdown-divider"></li>
-                                    <li class="dropdown-submenu">
-                                      <a  class="dropdown-item" tabindex="-1">Hover me for more options</a>
-                                      <ul class="dropdown-menu">
-                                        <li class="dropdown-item"><a tabindex="-1" href="#">Second level</a></li>
-                                        <li class="dropdown-submenu">
-                                          <a class="dropdown-item" href="#">Even More..</a>
-                                          <ul class="dropdown-menu">
-                                              <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                                <li class="dropdown-submenu"><a class="dropdown-item" href="#">another level</a>
-                                                <ul class="dropdown-menu">
-                                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                                    <li class="dropdown-item"><a href="#">4th level</a></li>
-                                                </ul>
-                                              </li>
-                                                <li class="dropdown-item"><a href="#">3rd level</a></li>
-                                          </ul>
-                                        </li>
-                                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                                        <li class="dropdown-item"><a href="#">Second level</a></li>
-                                      </ul>
-                                    </li>
-                                  </ul>
-                            </div>
-                    
-                      </div>
+                        
                             <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
                         
                                 <mat-form-field appearance="legacy">
