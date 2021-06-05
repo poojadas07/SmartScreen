@@ -39,54 +39,52 @@
                             </div> -->
                             <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="margin: 1.5% 0; color: grey;">
                                 <!-- <button class="btn btn-sm" >All</button> -->
-                                <h5 [matMenuTriggerFor]="all" style="border-bottom: 1px solid gray; cursor: pointer;">All
+                                <h5 [matMenuTriggerFor]="country" style="border-bottom: 1px solid gray; cursor: pointer;">All
                                     <i style="float: right;" class="material-icons">arrow_drop_down</i>
                                 </h5>
 
-                                <mat-menu #all="matMenu">
-                                <h5 style="  cursor: pointer;"  *ngFor='let in of setareas ;' mat-menu-item [matMenuTriggerFor]="country">{{in}}</h5>
-                                </mat-menu>
-
                                 <mat-menu #country="matMenu">
-                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="fish">Fishes</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="amphibians">Amphibians</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="reptiles">Reptiles</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Birds</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Mammals</h5>
+                                    <h5 style="cursor: pointer;" mat-menu-item [matMenuTriggerFor]="region" *ngFor="let country of countries;">{{country.name}}</h5>
                                 </mat-menu>
 
-                                <mat-menu #invertebrates="matMenu">
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Insects</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Molluscs</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Crustaceans</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Corals</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Arachnids</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Velvet worms</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Horseshoe crabs</h5>
+                                <mat-menu #region="matMenu">
+                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">East</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">West</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">North</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>South</h5>
                                 </mat-menu>
 
-                                <mat-menu #fish="matMenu">
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Baikal oilfish</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Bala shark</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Ballan wrasse</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Bamboo shark</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded killifish</h5>
+                                <mat-menu #location="matMenu">
+                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="department">Jamshedpur</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Jodhpur</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Tata Steel</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Kolkata</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Bhubaneswar</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Jaipur</h5>
                                 </mat-menu>
 
-                                <mat-menu #amphibians="matMenu">
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Sonoran desert toad</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Western toad</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Arroyo toad</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Yosemite toad</h5>
+                                <mat-menu #department="matMenu">
+                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="screen">Baikal oilfish</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Bala shark</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Ballan wrasse</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Bamboo shark</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Banded killifish</h5>
                                 </mat-menu>
 
-                                <mat-menu #reptiles="matMenu">
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded Day Gecko</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Banded Gila Monster</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Black Tree Monitor</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item>Blue Spiny Lizard</h5>
-                                <h5 style="  cursor: pointer;"  mat-menu-item disabled>Velociraptor</h5>
+                                <mat-menu #screen="matMenu">
+                                <h5 style="cursor: pointer;"  mat-menu-item>Sonoran desert toad</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Western toad</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Arroyo toad</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Yosemite toad</h5>
                                 </mat-menu>
+
+                                <!-- <mat-menu #reptiles="matMenu">
+                                <h5 style="cursor: pointer;"  mat-menu-item>Banded Day Gecko</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Banded Gila Monster</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Black Tree Monitor</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item>Blue Spiny Lizard</h5>
+                                <h5 style="cursor: pointer;"  mat-menu-item disabled>Velociraptor</h5>
+                                </mat-menu> -->
 
                             </div>
                         

@@ -30,3 +30,7 @@
   flex-shrink: 0;
   object-fit: cover;
 }
+
+.mat-tree-node {
+  padding-left: 0px !important;
+}

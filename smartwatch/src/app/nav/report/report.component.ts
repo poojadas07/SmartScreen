@@ -63,6 +63,7 @@ export class ReportComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   screens: any;
+  countries: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService) {
@@ -78,6 +79,10 @@ export class ReportComponent implements AfterViewInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     
+    this.apiService.fetchAllCountries().subscribe((res) => {
+      this.countries = res;
+      console.log(res)
+    });
   }
 
   searchentity(value): void{

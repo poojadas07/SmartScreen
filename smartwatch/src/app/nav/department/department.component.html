@@ -1,11 +1,11 @@
 <div class="content">
   <div class="container-fluid">
 
-      <button type="submit" class="btn btn-white btn-round btn-just-icon" style="z-index: 1; margin-left: 1%;" (click)="back()">
+      <button type="submit" class="btn btn-sm btn-white btn-round btn-just-icon" style="z-index: 1; margin-left: 1%;" (click)="back()">
         <i class="material-icons">chevron_left</i>
       </button>
       <h3 style="padding-left: 2%;">Departments
-        <button type="submit" class="btn btn-info btn-round btn-just-icon" style="margin: 0 1%;" (click)="info()">
+        <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin: 0 1%;" (click)="info()">
             <i class="material-icons">priority_high</i>
         </button>
         <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="add()">
@@ -83,13 +83,26 @@
             </div>
             <p class="card-category" style="color: black;">Screens : 5</p>
             <h3 class="card-title" style="color: black;">Department 1</h3>
+            <br>
+            <h6 style="color: green;">All OK</h6>
           </div>
           <div class="card-footer">
-            <div class="stats">
-              <h6 style="color: green;">All OK</h6>
-            </div>
-            <a href="#" style="text-decoration: underline;">More ></a>
           </div>
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="margin: auto;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+              <button class="btn btn-secondary" disabled></button>
+              {{node.name}}
+            </mat-tree-node>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+              <button class="btn btn-link btn-primary" matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                      {{node.name}}
+                <span class="btn-label btn-label-right">
+                  <i class="material-icons" [innerText]="treeControl.isExpanded(node) ? 'expand_less' : 'chevron_right'"></i>
+                </span>
+              </button>
+            </mat-tree-node>
+          </mat-tree>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-6">
@@ -100,13 +113,26 @@
             </div>
             <p class="card-category" style="color: black;">Screens : 3</p>
             <h3 class="card-title" style="color: black;">Department 2</h3>
+            <br>
+            <h6 style="color: red;">Panel Defective</h6>
           </div>
           <div class="card-footer">
-            <div class="stats">
-              <h6 style="color: red;">Panel Defective</h6>
-            </div>
-            <a href="#" style="text-decoration: underline;">More ></a>
           </div>
+          <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl1" style="margin: auto;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+              <button class="btn btn-secondary" disabled></button>
+              {{node.name}}
+            </mat-tree-node>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+              <button class="btn btn-link btn-primary" matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                      {{node.name}}
+                <span class="btn-label btn-label-right">
+                  <i class="material-icons" [innerText]="treeControl1.isExpanded(node) ? 'expand_less' : 'chevron_right'"></i>
+                </span>
+              </button>
+            </mat-tree-node>
+          </mat-tree>
         </div>
       </div>
       <div class="col-lg-4 col-md-6 col-sm-6">
@@ -117,13 +143,26 @@
             </div>
             <p class="card-category" style="color: black;">Screens : 2</p>
             <h3 class="card-title" style="color: black;">Department 3</h3>
+            <br>
+            <h6 style="color: orange;">Panel Idle</h6>
           </div>
           <div class="card-footer">
-            <div class="stats">
-              <h6 style="color: orange;">Panel Idle</h6>
-            </div>
-            <a href="#" style="text-decoration: underline;">More ></a>
           </div>
+          <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl2" style="margin: auto;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
+              <button class="btn btn-secondary" disabled></button>
+              {{node.name}}
+            </mat-tree-node>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+              <button class="btn btn-link btn-primary" matTreeNodeToggle
+                      [attr.aria-label]="'Toggle ' + node.name">
+                      {{node.name}}
+                <span class="btn-label btn-label-right">
+                  <i class="material-icons" [innerText]="treeControl2.isExpanded(node) ? 'expand_less' : 'chevron_right'"></i>
+                </span>
+              </button>
+            </mat-tree-node>
+          </mat-tree>
         </div>
       </div>
 

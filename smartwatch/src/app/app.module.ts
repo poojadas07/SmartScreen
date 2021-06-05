@@ -29,6 +29,8 @@ import {MatTreeModule} from '@angular/material/tree';
 import { MatSortModule } from '@angular/material/sort';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSelectModule} from '@angular/material/select';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import {MatProgressBarModule} from '@angular/material/progress-bar';
     BrowserAnimationsModule,
     ChartsModule,
     MatSortModule,
+    MatAutocompleteModule,
+    MatSelectModule,
     ReactiveFormsModule,
     LayoutModule,
     MatPaginatorModule ,

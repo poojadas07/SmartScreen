@@ -48,6 +48,8 @@ import { ScreenIdAddComponent } from './screens/screen-id-add/screen-id-add.comp
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { ProfileAddComponent } from './profile/profile-add/profile-add.component';
 import { ReportComponent } from './report/report.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,8 @@ import { ReportComponent } from './report/report.component';
     ChartsModule,
     MatPaginatorModule,
     MatTreeModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
     LayoutModule,
     MatSortModule,
     MatToolbarModule,
