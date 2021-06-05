@@ -27,7 +27,8 @@ export class LocationAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        regionName: ['', Validators.required],
+        region_id: ['', Validators.required],
+        country_id: ['', Validators.required],
       })
      }
 

@@ -24,7 +24,7 @@ export class InfoComponent implements OnInit {
 
   title: String;
 
-  headers = ['Department' , 'Client' , 'Location' , 'Region' , 'Country'];
+  headers = ['Rows', 'Columns', 'Department' , 'Client' , 'Location' , 'Region' , 'Country'];
   headervalues = [];
   value: number;
 
@@ -82,7 +82,7 @@ export class InfoComponent implements OnInit {
               });
               break;
       case 5: this.title = 'Screens';
-              for(let i=this.value; i>0; i--){
+              for(let i=this.value+2; i>0; i--){
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllScreens().subscribe((res) => {

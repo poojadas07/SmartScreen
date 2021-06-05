@@ -12,6 +12,8 @@ exports.create = (req, res) => {
     // create screen
     const screen = new Screen({
         name: req.body.name ,
+        rows: req.body.rows,
+        columns: req.body.columns,
         department_id: req.body.department_id,
         client_id: req.body.client_id,
         location_id: req.body.location_id,

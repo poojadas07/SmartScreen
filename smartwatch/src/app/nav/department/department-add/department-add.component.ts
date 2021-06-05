@@ -29,7 +29,10 @@ export class DepartmentAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        clientName: ['', Validators.required],
+        client_id: ['', Validators.required],
+        location_id: ['', Validators.required],
+        region_id: ['', Validators.required],
+        country_id: ['', Validators.required],
       })
      }
 

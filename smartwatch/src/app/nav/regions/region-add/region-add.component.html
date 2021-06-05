@@ -6,8 +6,8 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Country...</mat-label>
-                <mat-select formControlName="countryName">
-                  <mat-option *ngFor="let country of countries;" value="{{country.name}}">{{country.name}}</mat-option>
+                <mat-select formControlName="country_id">
+                  <mat-option *ngFor="let country of countries;" value="{{country._id}}">{{country.name}}</mat-option>
                 </mat-select>
             </mat-form-field>
         </div>

@@ -28,7 +28,9 @@ export class ClientAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        locationName: ['', Validators.required],
+        location_id: ['', Validators.required],
+        region_id: ['', Validators.required],
+        country_id: ['', Validators.required],
       })
      }
 

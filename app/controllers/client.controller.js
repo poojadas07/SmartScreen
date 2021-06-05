@@ -9,7 +9,7 @@ exports.create = (req, res) => {
         });
     }
 
-    console.log(req.body.name);
+    console.log(req.body);
 
     // create client
     const client = new Client({
@@ -22,6 +22,7 @@ exports.create = (req, res) => {
     client.save()
     .then(data => {
         res.send(data);
+        console.log(data);
     })
     .catch(err => {
         res.status(500).send({

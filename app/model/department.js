@@ -10,6 +10,21 @@ const Department = new mongoose.Schema({
         ref: "clients",
         require: true
     },
+    location_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "locations",
+        require: true
+    },
+    region_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "regions",
+      require: true
+    },
+    country_id: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "countries",
+      require: true
+    },
   },  
   {
     toJSON: { virtuals: true }

@@ -10,6 +10,11 @@ const Location = new mongoose.Schema({
         ref: "regions",
         require: true
       },
+      country_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "countries",
+        require: true
+      },
   },
   {
     toJSON: { virtuals: true }

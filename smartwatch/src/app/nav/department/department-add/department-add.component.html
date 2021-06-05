@@ -6,28 +6,28 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:45% !important; margin-right: 2% ;">
                 <mat-label>Choose Country...</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let country of countries;" value="{{country.name}}">{{country.name}}</mat-option>
+                <mat-select formControlName="country_id">
+                    <mat-option *ngFor="let country of countries;" value="{{country._id}}">{{country.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
             <mat-form-field appearance="legacy" style="width:45% !important">
                 <mat-label>Choose Region...</mat-label>
-                <mat-select>
-                    <mat-option *ngFor="let region of regions;" value="{{region.name}}">{{region.name}}</mat-option>
+                <mat-select formControlName="region_id">
+                    <mat-option *ngFor="let region of regions;" value="{{region._id}}">{{region.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
         </div>
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:45% !important; margin-right: 2% ;">
                 <mat-label>Choose Location...</mat-label>
-                <mat-select formControlName="locationName">
-                    <mat-option *ngFor="let location of locations;" value="{{location.name}}">{{location.name}}</mat-option>
+                <mat-select formControlName="location_id">
+                    <mat-option *ngFor="let location of locations;" value="{{location._id}}">{{location.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
             <mat-form-field appearance="legacy" style="width:45% !important">
                 <mat-label>Choose Client...</mat-label>
-                <mat-select formControlName="clientName">
-                    <mat-option *ngFor="let client of clients;" value="{{client.name}}">{{client.name}}</mat-option>
+                <mat-select formControlName="client_id">
+                    <mat-option *ngFor="let client of clients;" value="{{client._id}}">{{client.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
         </div>

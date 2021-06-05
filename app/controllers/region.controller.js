@@ -9,6 +9,8 @@ exports.create = (req, res) => {
         });
     }
 
+    console.log(req.body);
+    
     // create region
     const region = new Region({
         name: req.body.name,

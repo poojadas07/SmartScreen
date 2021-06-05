@@ -26,7 +26,7 @@ export class RegionAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        countryName: ['', Validators.required],
+        country_id: ['', Validators.required],
       })
      }
 

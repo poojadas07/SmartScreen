@@ -9,6 +9,8 @@ exports.create = (req, res) => {
         });
     }
 
+    console.log(req.body);
+    
     // create location
     const location = new Location({
         name: req.body.name ,
