@@ -19,46 +19,57 @@ const TREE_DATA: FoodNode[] = [
   {
     name: 'Countries',
     children: [
-      {
-        name: 'India',
-        children: [
-          {
-            name: 'Jodhpur',
-            children: [
-              {
-                name: 'Villa' , 
-                children: [
-                  {
-                    name: 'Tata Manager',
-                    children: [
-                      {
-                        name: 'Adminstration',
-                        children: [
-                          {name: 'Screen A'},
-                          {name: 'Screen B'},
-                          {name: 'Screen C'},
-                        ]
-                      },
-                      {name: 'India'},
-                    ]
-                  },
-                  {name: 'India'},
-                ]
-              },
-              {name: 'India'},
-            ]
+        {
+          name: 'India',
+          children: [
+            {
+              name: 'Jodhpur',
+              children: [
+                {
+                  name: 'Villa' , 
+                  children: [
+                    {
+                      name: 'Tata Manager',
+                      children: [
+                        {
+                          name: 'Adminstration',
+                          children: [
+                            {
+                              name: 'Screen A'
+                            },
+                            {
+                              name: 'Screen B'
+                            },
+                            {
+                              name: 'Screen C'
+                            },
+                          ]
+                        },
+                        {
+                          name: 'Management'
+                        },
+                      ]
+                    },
+                    {
+                      name: 'Country Manager'
+                    },
+                  ]
+                },
+            {
+              name: 'Western'
+            },
+          ]
         },
-          {name: 'India'},
-        ]
-      }, {
-        name: 'India',
-        children: [
-          {name: 'USA'},
-          {name: 'India'},
-        ]
-      },
-    ]
-  },
+        {
+          name: 'Jamshedpur'
+        },
+      ]
+    },
+    {
+      name: 'United Kingdom'
+    },
+  ]
+},
 ];
 
 /** Flat node with expandable and level information */

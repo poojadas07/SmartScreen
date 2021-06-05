@@ -3,7 +3,7 @@
 }
 
 .sidenav {
-  width: 300px;
+  width: 320px;
 }
 
 .sidenav .mat-toolbar {
@@ -32,5 +32,11 @@
 }
 
 .mat-tree-node {
-  padding-left: 0px !important;
+  background-color: transparent;
+  color: white;
+}
+
+.mat-tree {
+  background-color: transparent;
+  color: white;
 }
