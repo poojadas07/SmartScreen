@@ -128,6 +128,10 @@ export class RegionsComponent implements OnInit {
      }
 
   ngOnInit() {
+
+    this.apiService.fetchAllRegions().subscribe((res) => {
+      console.log(res[0].country_id.$ref)
+    });
   }
 
   back(): void {

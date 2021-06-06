@@ -1,11 +1,22 @@
 module.exports = (app) => {
     const region = require('../controllers/region.controller.js');
 
+    const Region = require('../model/region');
+
     // Create a new region
     app.post('/region' , region.create);
 
     // Reterive all regions
     app.get('/region' , region.findAll);
+
+    app.get("/feedback-region", async (req, res) => {
+        const result = await Region.findOne({ _id: "60bc9c192ad1b8fd9af22787" }).populate({
+          path: "location"
+        });
+      
+        // res.send(result.region[0].name);
+        res.send(result);
+      });
 
     // Reterive the single region
     app.get('/region/:regionId' , region.findOne);

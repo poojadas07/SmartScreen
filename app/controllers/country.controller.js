@@ -1,6 +1,15 @@
-const Country = require('../model/country.js');
-const Region = require('../model/region.js');
-const mongoose = require('mongoose');
+const Country = require('../model/country');
+
+const Region = require('../model/region');
+
+const Location = require('../model/location');
+
+const Client = require('../model/client');
+
+const Department = require('../model/department');
+
+const Screens = require('../model/screen');
+
 
 // create and save a new country
 exports.create = (req, res) => {
@@ -14,35 +23,9 @@ exports.create = (req, res) => {
 
     console.log(req.body.name);
 
-    // const region = new Region({
-    //     _id: new mongoose.Types.ObjectId(),
-    //     regionName: req.body.region.regionName
-    //   });
-
-    // create country
     const country = new Country({
         name: req.body.name,
     });
-
-    // region
-    // .save()
-    // .then(() => {
-    //     const country = new Country({
-    //         _id: new mongoose.Types.ObjectId(),
-    //         name: req.body.name || "Untitled Country",
-    //         region: region._id,
-    //     });
-
-    //     country.save()
-    //     .then(data => {
-    //         res.send(data);
-    //     })
-    //     .catch(err => {
-    //         res.status(500).send({
-    //             message: err.message || "Some error occurred while creating the Country."
-    //         });
-    //     });
-    // });
 
     country.save()
     .then(data => {
@@ -66,6 +49,39 @@ exports.findAll = (req , res) => {
             message: err.message || "Some error occurred while retrieving Countries."
         });
     });
+};
+
+exports.pop_country = (req , res) => {
+
+    Country.findOne({ _id: "60bc9afb2ad1b8fd9af22784" }).populate({
+        path: "region",
+        model: Region,
+        populate: {
+            path: "location",
+            model: Location,
+            populate: {
+                path: "client",
+                model: Client,
+                populate: {
+                    path: "department",
+                    model: Department,
+                    populate: {
+                        path: "screen",
+                        model: Screens
+                    }
+                }
+            }
+        }
+      })
+      .then( countries => {
+        res.send(countries);
+      })
+      .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Countries."
+        });
+      });
+    
 };
 
 // Retrieve and return country by name from the database.

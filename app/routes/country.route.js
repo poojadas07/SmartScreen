@@ -7,6 +7,8 @@ module.exports = (app) => {
     // Reterive all countries
     app.get('/country' , country.findAll);
 
+    app.get("/pop-country", country.pop_country);
+    
     // Reterive the single country
     app.get('/country/:countryId' , country.findOne);
 

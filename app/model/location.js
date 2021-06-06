@@ -1,10 +1,26 @@
 const mongoose = require('mongoose');
 
-const LocationSchema = mongoose.Schema({
-    name: String,
-    locationName: String
-}, {
-    timestamps: true
-});
+const Location = new mongoose.Schema({
+    name: {
+        type: String,
+        unique: true
+      },
+      region_id: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "regions",
+        require: true
+      },
+  },
+  {
+    toJSON: { virtuals: true }
+  }
+  );
 
-module.exports = mongoose.model('Location' , LocationSchema);
+  // Virtual populate
+  Location.virtual("client", {
+    ref: "clients",
+    foreignField: "location_id",
+    localField: "_id"
+  });
+  
+module.exports = mongoose.model("locations" , Location);
