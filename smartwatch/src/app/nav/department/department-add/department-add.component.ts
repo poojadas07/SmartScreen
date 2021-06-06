@@ -19,6 +19,7 @@ export class DepartmentAddComponent implements OnInit {
   countries: any;
   regions: any;
   locations: any;
+  condition: string;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -56,10 +57,15 @@ export class DepartmentAddComponent implements OnInit {
     });
 
     if (this.dialogTitle == "Edit Department"){
+      this.condition = 'disable';
       this.apiService.fetchDepartmentById(this.data.dialogText._id).subscribe((res) => {
         this.department = res;
-        // console.log(this.region);
+        // console.log(this.department);
         this.bookForm.get('name').setValue(this.department.name);
+        this.bookForm.get('client_id').setValue(this.department.client_id);
+        this.bookForm.get('location_id').setValue(this.department.location_id);
+        this.bookForm.get('region_id').setValue(this.department.region_id);
+        this.bookForm.get('country_id').setValue(this.department.country_id);
       });
     }
   }
@@ -70,6 +76,7 @@ export class DepartmentAddComponent implements OnInit {
       this.apiService.updateDepartment(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
           this.modalService.openInfoModal('Department '+res.name+' Edited Successfully !!');
+          console.log(res)
       });
     }
     else {

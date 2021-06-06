@@ -163,10 +163,10 @@ export class ApiService {
       );
   }
 
-  updateRegion(regionId: String , regionName: String): Observable<any> {
+  updateRegion(regionId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/' + regionId;
-
-    return this.http.put(urlString, regionName, {})
+    console.log(data)
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -226,10 +226,10 @@ export class ApiService {
       );
   }
 
-  updateLocation(locationId: String , locationName: String): Observable<any> {
+  updateLocation(locationId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/' + locationId;
 
-    return this.http.put(urlString, locationName, {})
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -288,10 +288,10 @@ export class ApiService {
       );
   }
 
-  updateClient(clientId: String , clientName: String): Observable<any> {
+  updateClient(clientId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/' + clientId;
 
-    return this.http.put(urlString, clientName, {})
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -350,10 +350,10 @@ export class ApiService {
       );
   }
 
-  updateDepartment(departmentId: String , departmentName: String): Observable<any> {
+  updateDepartment(departmentId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/' + departmentId;
 
-    return this.http.put(urlString, departmentName, {})
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -412,10 +412,10 @@ export class ApiService {
       );
   }
 
-  updateScreen(screenId: String , screenName: String): Observable<any> {
+  updateScreen(screenId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
 
-    return this.http.put(urlString, screenName, {})
+    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)

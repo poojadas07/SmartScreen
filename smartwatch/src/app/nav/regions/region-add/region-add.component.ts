@@ -16,6 +16,7 @@ export class RegionAddComponent implements OnInit {
   dialogTitle: string;
   region: any;
   countries: any;
+  condition: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -38,10 +39,12 @@ export class RegionAddComponent implements OnInit {
     });
 
     if (this.dialogTitle == "Edit Region"){
+      this.condition = 'disable';
       this.apiService.fetchRegionById(this.data.dialogText._id).subscribe((res) => {
         this.region = res;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.region.name);
+        this.bookForm.get('country_id').setValue(this.region.country_id);
       });
     }
   }

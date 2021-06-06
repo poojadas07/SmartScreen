@@ -149,6 +149,9 @@ exports.update = (req , res) => {
     // Find client and update it with the request body
     Client.findByIdAndUpdate(req.params.clientId , {
         name: req.body.name ,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     }, {new : true})
     .then(client => {
         if(!client){

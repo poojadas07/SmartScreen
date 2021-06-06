@@ -9,6 +9,7 @@ exports.create = (req, res) => {
         });
     }
 
+    console.log(req.body)
     // create screen
     const screen = new Screen({
         name: req.body.name ,
@@ -24,6 +25,7 @@ exports.create = (req, res) => {
     screen.save()
     .then(data => {
         res.send(data);
+        console.log(data);
     })
     .catch(err => {
         res.status(500).send({
@@ -174,6 +176,11 @@ exports.update = (req , res) => {
     // Find screen and update it with the request body
     Screen.findByIdAndUpdate(req.params.screenId , {
         name: req.body.name ,
+        department_id: req.body.department_id,
+        client_id: req.body.country_id,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     }, {new : true})
     .then(screen => {
         if(!screen){

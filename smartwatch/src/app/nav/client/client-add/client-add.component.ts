@@ -18,6 +18,7 @@ export class ClientAddComponent implements OnInit {
   locations: any;
   regions: any;
   countries: any;
+  condition: string;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -50,10 +51,14 @@ export class ClientAddComponent implements OnInit {
     });
 
     if (this.dialogTitle == "Edit Client"){
+      this.condition = 'disable';
       this.apiService.fetchClientById(this.data.dialogText._id).subscribe((res) => {
         this.client = res;
         // console.log(this.client);
         this.bookForm.get('name').setValue(this.client.name);
+        this.bookForm.get('location_id').setValue(this.client.location_id);
+        this.bookForm.get('region_id').setValue(this.client.region_id);
+        this.bookForm.get('country_id').setValue(this.client.country_id);
       });
     }
   }

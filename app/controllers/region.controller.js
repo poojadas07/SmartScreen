@@ -114,7 +114,7 @@ exports.findOne = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Region cannot be empty"
         });
     }
@@ -122,21 +122,22 @@ exports.update = (req , res) => {
     // Find region and update it with the request body
     Region.findByIdAndUpdate(req.params.regionId , {
         name: req.body.name ,
+        country_id: req.body.country_id,
     }, {new : true})
     .then(region => {
         if(!region){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Region not found with id " + req.params.regionId
             });
         }
         res.send(region);
     }).catch(err => {
         if(err.kind === "ObjectId"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Region not found with id " + req.params.regionId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error updating region with id " + req.params.regionId
         });
     });

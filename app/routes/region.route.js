@@ -21,6 +21,9 @@ module.exports = (app) => {
     app.get("/region" , region.findAll);
 
     // Reterive the single region
+    app.post('/region/search' , region.findByName);
+
+    // Reterive the single region
     app.get('/region/:regionId' , region.findOne);
 
     // Update the single region

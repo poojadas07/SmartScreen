@@ -8,6 +8,9 @@ module.exports = (app) => {
     app.get('/location' , location.findAll);
 
     // Reterive the single location
+    app.post('/location/search' , location.findByName);
+
+    // Reterive the single location
     app.get('/location/:locationId' , location.findOne);
 
     // Update the single location

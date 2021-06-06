@@ -6,13 +6,13 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:45% !important; margin-right: 2% ;">
                 <mat-label>Choose Country...</mat-label>
-                <mat-select formControlName="country_id">
+                <mat-select formControlName="country_id" [disabled]="condition">
                     <mat-option *ngFor="let country of countries;" value="{{country._id}}">{{country.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
             <mat-form-field appearance="legacy" style="width:45% !important">
                 <mat-label>Choose Region...</mat-label>
-                <mat-select formControlName="region_id">
+                <mat-select formControlName="region_id" [disabled]="condition">
                     <mat-option *ngFor="let region of regions;" value="{{region._id}}">{{region.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
@@ -20,13 +20,13 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:45% !important; margin-right: 2% ;">
                 <mat-label>Choose Location...</mat-label>
-                <mat-select formControlName="location_id">
+                <mat-select formControlName="location_id" [disabled]="condition">
                     <mat-option *ngFor="let location of locations;" value="{{location._id}}">{{location.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
             <mat-form-field appearance="legacy" style="width:45% !important">
                 <mat-label>Choose Client...</mat-label>
-                <mat-select formControlName="client_id">
+                <mat-select formControlName="client_id" [disabled]="condition">
                     <mat-option *ngFor="let client of clients;" value="{{client._id}}">{{client.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
@@ -34,7 +34,7 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Department...</mat-label>
-                <mat-select formControlName="department_id">
+                <mat-select formControlName="department_id" [disabled]="condition">
                     <mat-option *ngFor="let dept of departments;" value="{{dept._id}}">{{dept.name}}</mat-option>
                   </mat-select>
             </mat-form-field>

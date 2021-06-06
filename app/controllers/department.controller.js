@@ -96,6 +96,7 @@ exports.findAll = (req, res) => {
     )
     .then( departments => {
         res.send(departments);
+        console.log(departments)
     })
     .catch(err => {
         res.status(500).send({
@@ -129,7 +130,7 @@ exports.findOne = (req , res) => {
     Department.findById(req.params.departmentId)
     .then( department => {
         if(!department){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
@@ -137,11 +138,11 @@ exports.findOne = (req , res) => {
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving department with id " + req.params.departmentId
         });
     });
@@ -151,7 +152,7 @@ exports.findOne = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Department cannot be empty"
         });
     }
@@ -159,21 +160,25 @@ exports.update = (req , res) => {
     // Find department and update it with the request body
     Department.findByIdAndUpdate(req.params.departmentId , {
         name: req.body.name ,
+        client_id: req.body.country_id,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     }, {new : true})
     .then(department => {
         if(!department){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
         res.send(department);
     }).catch(err => {
         if(err.kind === "ObjectId"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error updating department with id " + req.params.departmentId
         });
     });
@@ -184,18 +189,18 @@ exports.delete = (req, res) => {
     Department.findByIdAndRemove(req.params.departmentId)
     .then(department => {
         if(!department){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
         res.send({message: "Department deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete department with id " + req.params.departmentId
         });
     });

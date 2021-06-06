@@ -135,6 +135,8 @@ exports.update = (req , res) => {
     // Find location and update it with the request body
     Location.findByIdAndUpdate(req.params.locationId , {
         name: req.body.name ,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     }, {new : true})
     .then(location => {
         if(!location){

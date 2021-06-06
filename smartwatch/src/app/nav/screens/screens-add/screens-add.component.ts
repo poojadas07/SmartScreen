@@ -20,6 +20,7 @@ export class ScreensAddComponent implements OnInit {
   regions: any;
   locations: any;
   clients: any;
+  condition: string;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -64,17 +65,18 @@ export class ScreensAddComponent implements OnInit {
     });
 
     if (this.dialogTitle == "Edit Screen"){
+      this.condition = 'disable';
       this.apiService.fetchScreenById(this.data.dialogText._id).subscribe((res) => {
         this.screen = res;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.screen.name);
-        this.bookForm.get('rows').setValue(this.screen.row);
-        this.bookForm.get('columns').setValue(this.screen.column);
-        this.bookForm.get('deptName').setValue(this.screen.department.name);
-        this.bookForm.get('clientName').setValue(this.screen.department.client.name);
-        this.bookForm.get('locationName').setValue(this.screen.department.client.location.name);
-        this.bookForm.get('regionName').setValue(this.screen.department.client.location.region.name);
-        this.bookForm.get('countryName').setValue(this.screen.department.client.location.region.country.name);
+        this.bookForm.get('rows').setValue(this.screen.rows);
+        this.bookForm.get('columns').setValue(this.screen.columns);
+        this.bookForm.get('department_id').setValue(this.screen.department_id);
+        this.bookForm.get('client_id').setValue(this.screen.client_id);
+        this.bookForm.get('location_id').setValue(this.screen.location_id);
+        this.bookForm.get('region_id').setValue(this.screen.region_id);
+        this.bookForm.get('country_id').setValue(this.screen.country_id);
       });
     }
   }

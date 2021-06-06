@@ -17,6 +17,7 @@ export class LocationAddComponent implements OnInit {
   location: any;
   regions: any;
   countries: any;
+  condition: string;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -44,10 +45,13 @@ export class LocationAddComponent implements OnInit {
     });
 
     if (this.dialogTitle == "Edit Location"){
+      this.condition = 'disable';
       this.apiService.fetchLocationById(this.data.dialogText._id).subscribe((res) => {
         this.location = res;
         // console.log(this.location);
         this.bookForm.get('name').setValue(this.location.name);
+        this.bookForm.get('region_id').setValue(this.location.region_id);
+        this.bookForm.get('country_id').setValue(this.location.country_id);
       });
     }
   }

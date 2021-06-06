@@ -79,6 +79,7 @@ export class InfoComponent implements OnInit {
               }
               this.apiService.fetchAllDepartments().subscribe((res) => {
                 this.areas = res;
+                console.log(this.areas)
               });
               break;
       case 5: this.title = 'Screens';
@@ -87,6 +88,7 @@ export class InfoComponent implements OnInit {
               }
               this.apiService.fetchAllScreens().subscribe((res) => {
                 this.areas = res;
+                console.log(res)
               });
               break;
     }
