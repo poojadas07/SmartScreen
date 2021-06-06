@@ -14,6 +14,9 @@ exports.create = (req, res) => {
     // create client
     const client = new Client({
         name: req.body.name ,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     });
 
     client.save()

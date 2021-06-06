@@ -12,6 +12,11 @@ exports.create = (req, res) => {
     // create screen
     const screen = new Screen({
         name: req.body.name ,
+        department_id: req.body.department_id,
+        client_id: req.body.client_id,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     });
 
     screen.save()

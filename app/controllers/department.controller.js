@@ -12,6 +12,10 @@ exports.create = (req, res) => {
     // create department
     const department = new Department({
         name: req.body.name,
+        client_id: req.body.client_id,
+        location_id: req.body.location_id,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     });
 
     department.save()

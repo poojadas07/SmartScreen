@@ -12,6 +12,8 @@ exports.create = (req, res) => {
     // create location
     const location = new Location({
         name: req.body.name ,
+        region_id: req.body.region_id,
+        country_id: req.body.country_id,
     });
 
     location.save()
