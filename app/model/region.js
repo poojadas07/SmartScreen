@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 
+// const Schema = mongoose.Schema;
 const Region = new mongoose.Schema({
     name: {
         type: String,

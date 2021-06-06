@@ -7,7 +7,7 @@ module.exports = (app) => {
     app.post('/region' , region.create);
 
     // Reterive all regions
-    app.get('/region' , region.findAll);
+    // app.get('/region' , region.findAll);
 
     app.get("/feedback-region", async (req, res) => {
         const result = await Region.findOne({ _id: "60bc9c192ad1b8fd9af22787" }).populate({
@@ -17,6 +17,8 @@ module.exports = (app) => {
         // res.send(result.region[0].name);
         res.send(result);
       });
+
+    app.get("/region" , region.findAll);
 
     // Reterive the single region
     app.get('/region/:regionId' , region.findOne);

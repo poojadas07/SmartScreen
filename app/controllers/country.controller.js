@@ -138,7 +138,7 @@ exports.update = (req , res) => {
 
     // Find country and update it with the request body
     Country.findByIdAndUpdate(req.params.countryId , {
-        name: req.body.name || "Untitles Country"
+        name: req.body.name,
     }, {new : true})
     .then(country => {
         if(!country){

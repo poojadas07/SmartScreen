@@ -11,8 +11,7 @@ exports.create = (req, res) => {
 
     // create location
     const location = new Location({
-        name: req.body.name || "Untitled Location",
-        locationName: req.body.locationName || "Untitled Location"
+        name: req.body.name ,
     });
 
     location.save()
@@ -28,8 +27,45 @@ exports.create = (req, res) => {
 
 
 // Retrieve and return all locations from the database.
-exports.findAll = (req , res) => {
-    Location.find()
+// exports.findAll = (req , res) => {
+//     Location.find()
+//     .then( locations => {
+//         res.send(locations);
+//     })
+//     .catch(err => {
+//         res.status(500).send({
+//             message: err.message || "Some error occurred while retrieving locations."
+//         });
+//     });
+// };
+
+exports.findAll = (req, res) => {
+    Location.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'regions',
+                    localField:'region_id', 
+                    foreignField:'_id',
+                    as:'region'
+                }
+            },
+            {   
+                $unwind:"$region"
+            },
+            {
+                $lookup:{
+                    from: "countries", 
+                    localField: "country_id", 
+                    foreignField: "_id",
+                    as: "country"
+                }
+            },
+            {   $unwind:"$country" },
+        
+        ]
+    )
     .then( locations => {
         res.send(locations);
     })
@@ -39,6 +75,26 @@ exports.findAll = (req , res) => {
         });
     });
 };
+
+// Retrieve and return location by name from the database.
+exports.findByName = (req , res) => {
+
+    console.log(req.body.searchvalue);
+
+    Location.find({
+        "name" : {
+            "$regex" : req.body.searchvalue , $options:'i'
+        }
+    })
+    .then(location => {
+        res.send(location);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving locations."
+        });
+    })
+}
 
 // Find a single location with a locationId
 exports.findOne = (req , res) => {
@@ -73,9 +129,8 @@ exports.update = (req , res) => {
     }
 
     // Find location and update it with the request body
-    Region.findByIdAndUpdate(req.params.locationId , {
-        name: req.body.name || "Untitles Location",
-        locationName: req.body.locationName || "Untitled Location"
+    Location.findByIdAndUpdate(req.params.locationId , {
+        name: req.body.name ,
     }, {new : true})
     .then(location => {
         if(!location){
@@ -96,24 +151,24 @@ exports.update = (req , res) => {
     });
 };
 
-// Delete a region with the specified regionId in the request
+// Delete a region with the specified locationId in the request
 exports.delete = (req, res) => {
-    Region.findByIdAndRemove(req.params.regionId)
-    .then(region => {
-        if(!region){
+    Location.findByIdAndRemove(req.params.locationId)
+    .then(location => {
+        if(!location){
             return res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
-        res.send({message: "Region deleted sucessfully !"});
+        res.send({message: "Location deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
             return res.status(404).send({
-                message: "Region not found with id " + req.params.regionId
+                message: "Location not found with id " + req.params.locationId
             });
         }
         return res.status(500).send({
-            message: "Could not delete region with id " + req.params.regionId
+            message: "Could not delete location with id " + req.params.locationId
         });
     });
 };

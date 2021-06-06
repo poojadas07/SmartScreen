@@ -11,8 +11,7 @@ exports.create = (req, res) => {
 
     // create region
     const region = new Region({
-        name: req.body.name || "Untitled Region",
-        // countryName: req.body.countryName || "Untitled Country"
+        name: req.body.name,
     });
 
     region.save()
@@ -28,8 +27,33 @@ exports.create = (req, res) => {
 
 
 // Retrieve and return all regions from the database.
-exports.findAll = (req , res) => {
-    Region.find()
+// exports.findAll = (req , res) => {
+//     Region.find()
+//     .then( regions => {
+//         res.send(regions);
+//     })
+//     .catch(err => {
+//         res.status(500).send({
+//             message: err.message || "Some error occurred while retrieving regions."
+//         });
+//     });
+// };
+
+exports.findAll = (req, res) => {
+    Region.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'countries',
+                    localField:'country_id', 
+                    foreignField:'_id',
+                    as:'country'
+                }
+            },
+            {   $unwind:"$country" },
+        ]
+    )
     .then( regions => {
         res.send(regions);
     })
@@ -39,6 +63,26 @@ exports.findAll = (req , res) => {
         });
     });
 };
+
+// Retrieve and return region by name from the database.
+exports.findByName = (req , res) => {
+
+    console.log(req.body.searchvalue);
+
+    Region.find({
+        "name" : {
+            "$regex" : req.body.searchvalue , $options:'i'
+        }
+    })
+    .then(region => {
+        res.send(region);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Regions."
+        });
+    })
+}
 
 // Find a single region with a regionId
 exports.findOne = (req , res) => {
@@ -74,8 +118,7 @@ exports.update = (req , res) => {
 
     // Find region and update it with the request body
     Region.findByIdAndUpdate(req.params.regionId , {
-        name: req.body.name || "Untitles Region",
-        countryName: req.body.countryName || "Untitled Country"
+        name: req.body.name ,
     }, {new : true})
     .then(region => {
         if(!region){

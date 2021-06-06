@@ -2,9 +2,6 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var cors = require('cors');
 
-
-var apiRouter = require('./app/routes/country.route');
-
 // create express app
 const app = express();
 
@@ -55,13 +52,14 @@ require('./app/routes/region.route.js')(app);
 // Require the location routes
 require('./app/routes/location.route.js')(app);
 
-// app.get("/feedback", async (req, res) => {
-//     const result = await Channel.findOne({ name: "Channel 1" }).populate({
-//       path: "feedbacks"
-//     });
-  
-//     res.send(result);
-//   });
+// Require the client routes
+require('./app/routes/client.route.js')(app);
+
+// Require the department routes
+require('./app/routes/department.route.js')(app);
+
+// Require the screen routes
+require('./app/routes/screen.route.js')(app);
 
 // listen for requests 
 const port = process.env.PORT || 3000;

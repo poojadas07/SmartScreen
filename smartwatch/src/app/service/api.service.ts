@@ -69,6 +69,16 @@ export class ApiService {
       );
   }
 
+  fetchPoPCountry(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'pop-country';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchCountryByName(searchValue: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country/search';
 

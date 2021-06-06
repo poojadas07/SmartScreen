@@ -88,7 +88,7 @@
                           <td>{{ i+1 }}</td>
                           <td>{{item.name}}</td>
                           <td>{{item.region.name}}</td>
-                          <td>{{item.region.country.name}}</td>
+                          <td>{{item.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
                           <td>
@@ -106,8 +106,8 @@
                           <td>{{ i+1 }}</td>
                           <td>{{item.name}}</td>
                           <td>{{item.location.name}}</td>
-                          <td>{{item.location.region.name}}</td>
-                          <td>{{item.location.region.country.name}}</td>
+                          <td>{{item.region.name}}</td>
+                          <td>{{item.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
                           <td>
@@ -125,9 +125,9 @@
                           <td>{{ i+1 }}</td>
                           <td>{{item.name}}</td>
                           <td>{{item.client.name}}</td>
-                          <td>{{item.client.location.name}}</td>
-                          <td>{{item.client.location.region.name}}</td>
-                          <td>{{item.client.location.region.country.name}}</td>
+                          <td>{{item.location.name}}</td>
+                          <td>{{item.region.name}}</td>
+                          <td>{{item.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
                           <td>
@@ -145,9 +145,10 @@
                           <td>{{ i+1 }}</td>
                           <td>{{item.name}}</td>
                           <td>{{item.department.name}}</td>
-                          <td>{{item.department.client.location.name}}</td>
-                          <td>{{item.department.client.location.region.name}}</td>
-                          <td>{{item.department.client.location.region.country.name}}</td>
+                          <td>{{item.client.name}}</td>
+                          <td>{{item.location.name}}</td>
+                          <td>{{item.region.name}}</td>
+                          <td>{{item.country.name}}</td>
                           <td>{{item.createdAt}}</td>
                           <td>{{item.updatedAt}}</td>
                           <td>
