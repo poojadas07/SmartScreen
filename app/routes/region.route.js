@@ -26,6 +26,9 @@ module.exports = (app) => {
     // Reterive the single region
     app.get('/region/:regionId' , region.findOne);
 
+    // Reterive the single regionByCountry
+    app.get('/region/country/:countryId' , region.findOneByCountry);
+
     // Update the single region
     app.put('/region/:regionId' , region.update);
 

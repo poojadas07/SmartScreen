@@ -9,6 +9,9 @@ module.exports = (app) => {
 
     // Reterive the single department by id
     app.get('/department/:departmentId' , department.findOne);
+    
+    // Reterive the single departmentByLocation
+    app.get('/department/client/:clientId' , department.findOneByClient);
 
     // Reterive the single department by name
     app.post('/department/search' , department.findByName);

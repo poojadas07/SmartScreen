@@ -10,6 +10,9 @@ module.exports = (app) => {
     // Reterive the single screen by id
     app.get('/screen/:screenId' , screen.findOne);
 
+     // Reterive the single screenByDepartment
+     app.get('/screen/department/:departmentId' , screen.findOneByDepartment);
+
     // Reterive the single screen by name
     app.post('/screen/search' , screen.findByName);
 

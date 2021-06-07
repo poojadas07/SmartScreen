@@ -165,6 +165,21 @@ exports.findOne = (req , res) => {
     });
 };
 
+// Find a single screen with a departmentId
+exports.findOneByDepartment = (req , res) => {
+    Screen.find({
+        "department_id" :  req.params.departmentId 
+    })
+    .then(screen => {
+        res.send(screen);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving screens."
+        });
+    });
+};
+
 // Update a screen identified by the screenId in the request
 exports.update = (req , res) => {
     // Validate request

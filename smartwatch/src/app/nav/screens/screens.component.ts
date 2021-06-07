@@ -42,11 +42,12 @@ export class ScreensComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.screens = res;
-    });
-
-    this.apiService.fetchAllCountries().subscribe((res) => {
       this.messagelist = res;
     });
+
+    // this.apiService.fetchAllCountries().subscribe((res) => {
+    //   this.messagelist = res;
+    // });
   }
 
   back(): void {

@@ -137,6 +137,21 @@ exports.findOne = (req , res) => {
     });
 };
 
+// Find a single client with a locationId
+exports.findOneByLocation = (req , res) => {
+    Client.find({
+        "location_id" :  req.params.locationId 
+    })
+    .then(client => {
+        res.send(client);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Clients."
+        });
+    });
+};
+
 // Update a client identified by the clientId in the request
 exports.update = (req , res) => {
     // Validate request

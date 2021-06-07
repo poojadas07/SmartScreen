@@ -110,6 +110,21 @@ exports.findOne = (req , res) => {
     });
 };
 
+// Find a single region with a countryId
+exports.findOneByCountry = (req , res) => {
+    Region.find({
+        "country_id" :  req.params.countryId 
+    })
+    .then(region => {
+        res.send(region);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Regions."
+        });
+    });
+};
+
 // Update a region identified by the regionId in the request
 exports.update = (req , res) => {
     // Validate request

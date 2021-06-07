@@ -76,7 +76,6 @@ export class NavComponent implements OnInit{
       },
       ];
       this.dataSource.data = TREE_DATA;
-      console.log(this.dataSource.data);
     });
   }
 

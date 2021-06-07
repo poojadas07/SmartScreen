@@ -142,6 +142,16 @@ export class ApiService {
       );
   }
 
+  fetchRegionByCountryId(countryId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'region/country/' + countryId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
 
   fetchRegionByName(regionName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/search';
@@ -197,6 +207,16 @@ export class ApiService {
 
   fetchLocationById(locationId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/' + locationId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchLocationByRegionId(regionId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'location/region/' + regionId;
 
     return this.http.get(urlString, {})
       .pipe(
@@ -267,6 +287,15 @@ export class ApiService {
       );
   }
 
+  fetchClientByLocationId(locationId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'client/location/' + locationId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
 
   fetchClientByName(clientName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/search';
@@ -329,6 +358,16 @@ export class ApiService {
       );
   }
 
+  fetchDepartmentByClientId(clientId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'department/client/' + clientId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
 
   fetchDepartmentByName(departmentName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/search';
@@ -383,6 +422,16 @@ export class ApiService {
 
   fetchScreenById(screenId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchScreenByDepartmentId(departmentId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'screen/department/' + departmentId;
 
     return this.http.get(urlString, {})
       .pipe(

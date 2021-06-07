@@ -33,7 +33,7 @@
 
             </div>
             <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
-            <div style="margin: 2%;">
+            <div>
                 <button class="btn btn-info btn-round btn-sm">All</button>
                 <button class="btn btn-info btn-round btn-sm">Faulty</button>
                 <button class="btn btn-info btn-round btn-sm">Active</button>
@@ -64,17 +64,17 @@
                 <!-- ID Column -->
                 <ng-container matColumnDef="sort">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Sort </th>
-                <td mat-cell *matCellDef="let row"> {{row.sort}} </td>
+                <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
                 </ng-container>
                 
                 <ng-container matColumnDef="id">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                <td mat-cell *matCellDef="let row"> {{row._id}} </td>
                 </ng-container>
                 
                 <ng-container matColumnDef="screen">
                 <th mat-header-cell *matHeaderCellDef mat-sort-header> Screen </th>
-                <td mat-cell *matCellDef="let row"> {{row.screen}} </td>
+                <td mat-cell *matCellDef="let row"> {{row.name}} </td>
                 </ng-container>
                 
                 <ng-container matColumnDef="installed">
@@ -113,7 +113,3 @@
     </div>
     </div>
 </div>
-
-<div class="messagelist" *ngFor="let m of messagelist;">  
-   {{ m.name }}  
-</div>  

@@ -150,6 +150,21 @@ exports.findOne = (req , res) => {
     });
 };
 
+// Find a single department with a clientId
+exports.findOneByClient = (req , res) => {
+    Department.find({
+        "client_id" :  req.params.clientId 
+    })
+    .then(department => {
+        res.send(department);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving departments."
+        });
+    });
+};
+
 // Update a department identified by the departmentId in the request
 exports.update = (req , res) => {
     // Validate request

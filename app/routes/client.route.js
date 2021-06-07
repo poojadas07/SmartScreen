@@ -10,6 +10,9 @@ module.exports = (app) => {
     // Reterive the single client by id
     app.get('/client/:clientId' , client.findOne);
 
+     // Reterive the single clientByLocation
+     app.get('/client/location/:locationId' , client.findOneByLocation);
+
     // Reterive the single client by name
     app.post('/client/search' , client.findByName);
 

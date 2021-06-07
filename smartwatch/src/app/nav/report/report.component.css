@@ -79,3 +79,8 @@ table {
     -moz-border-radius: 6px 0 6px 6px;
     border-radius: 6px 0 6px 6px;
 }
+
+.disabled {
+  pointer-events:none;
+  opacity:.5;
+ }

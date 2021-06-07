@@ -123,6 +123,21 @@ exports.findOne = (req , res) => {
     });
 };
 
+// Find a single location with a regionId
+exports.findOneByRegion = (req , res) => {
+    Location.find({
+        "region_id" :  req.params.regionId 
+    })
+    .then(location => {
+        res.send(location);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving Locations."
+        });
+    });
+};
+
 // Update a location identified by the locationId in the request
 exports.update = (req , res) => {
     // Validate request

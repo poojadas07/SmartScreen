@@ -67,7 +67,11 @@ export class TableComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
 
-    this.dataSource = new MatTableDataSource(ELEMENT_DATA);
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res);
+    });
+
+    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     

@@ -27,65 +27,50 @@
                                 </mat-form-field>
                                 
                             </div>
-                            <!-- <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
-                        
-                                <mat-form-field appearance="legacy">
-                                    <mat-label>All</mat-label>
-                                    <mat-select [(ngModel)]="setArea" (ngModelChange)="setarea(setArea)">
-                                    <mat-option *ngFor='let in of setareas ;'value="{{in}}">{{in}}</mat-option>
-                                    </mat-select>
-                                </mat-form-field>
-                
-                            </div> -->
                             <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="margin: 1.5% 0; color: grey;">
-                                <!-- <button class="btn btn-sm" >All</button> -->
                                 <h5 [matMenuTriggerFor]="country" style="border-bottom: 1px solid gray; cursor: pointer;">All
                                     <i style="float: right;" class="material-icons">arrow_drop_down</i>
                                 </h5>
 
                                 <mat-menu #country="matMenu">
-                                    <h5 style="cursor: pointer;" mat-menu-item [matMenuTriggerFor]="region" *ngFor="let country of countries;">{{country.name}}</h5>
+                                    <ng-container *ngFor="let ctry of areas; let i= index;">
+                                        <h5 style="cursor: pointer;" mat-menu-item [matMenuTriggerFor]="region" [ngClass]="{ 'disabled' : (ctry.children.length == 0) }">{{ctry.name}}</h5>
+
+                                        <mat-menu #region="matMenu">
+                                            <ng-container *ngFor="let reg of ctry.children;">
+                                                <h5 style="cursor: pointer;" mat-menu-item [matMenuTriggerFor]="location" [ngClass]="{ 'disabled' : (reg.children.length == 0) }">{{reg.name}}</h5>
+
+                                                <mat-menu #location="matMenu">
+                                                    <ng-container *ngFor="let loc of reg.children;">
+                                                        <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="client" [ngClass]="{ 'disabled' : (loc.children.length == 0) }">{{loc.name}}</h5>
+
+                                                        <mat-menu #client="matMenu">
+                                                            <ng-container *ngFor="let cli of loc.children;">
+                                                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="department" [ngClass]="{ 'disabled' : (cli.children.length == 0) }">{{cli.name}}</h5>
+
+                                                                <mat-menu #department="matMenu">
+                                                                    <ng-container *ngFor="let dept of cli.children;">
+                                                                        <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="screen" [ngClass]="{ 'disabled' : (dept.children.length == 0) }">{{dept.name}}</h5>
+                                            
+                                                                        <mat-menu #screen="matMenu">
+                                                                            <ng-container *ngFor="let scre of dept.children;">
+                                                                                <h5 style="cursor: pointer;"  mat-menu-item>{{scre.name}}</h5>
+                                                                            </ng-container>
+                                                                        </mat-menu>
+
+                                                                    </ng-container>
+                                                                </mat-menu>
+
+                                                            </ng-container>
+                                                        </mat-menu>
+            
+                                                    </ng-container>
+                                                </mat-menu>
+
+                                            </ng-container>
+                                        </mat-menu>
+                                    </ng-container>
                                 </mat-menu>
-
-                                <mat-menu #region="matMenu">
-                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">East</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">West</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="location">North</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>South</h5>
-                                </mat-menu>
-
-                                <mat-menu #location="matMenu">
-                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="department">Jamshedpur</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Jodhpur</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Tata Steel</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Kolkata</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Bhubaneswar</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Jaipur</h5>
-                                </mat-menu>
-
-                                <mat-menu #department="matMenu">
-                                <h5 style="cursor: pointer;"  mat-menu-item [matMenuTriggerFor]="screen">Baikal oilfish</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Bala shark</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Ballan wrasse</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Bamboo shark</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Banded killifish</h5>
-                                </mat-menu>
-
-                                <mat-menu #screen="matMenu">
-                                <h5 style="cursor: pointer;"  mat-menu-item>Sonoran desert toad</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Western toad</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Arroyo toad</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Yosemite toad</h5>
-                                </mat-menu>
-
-                                <!-- <mat-menu #reptiles="matMenu">
-                                <h5 style="cursor: pointer;"  mat-menu-item>Banded Day Gecko</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Banded Gila Monster</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Black Tree Monitor</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item>Blue Spiny Lizard</h5>
-                                <h5 style="cursor: pointer;"  mat-menu-item disabled>Velociraptor</h5>
-                                </mat-menu> -->
-
                             </div>
                         
                             <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
@@ -130,37 +115,37 @@
                                 <!-- ID Column -->
                                 <ng-container matColumnDef="sort">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> SI </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.sort}} </td>
+                                    <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
                                 </ng-container>
                                 
                                 <ng-container matColumnDef="id">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row._id}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="country">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Country </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.country}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.country.name}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="region">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Region </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.region}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.region.name}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="location">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.location}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.location.name}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="department">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Department </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.department}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.department.name}} </td>
                                 </ng-container>
                                 
                                 <ng-container matColumnDef="screen">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Screen </th>
-                                    <td mat-cell *matCellDef="let row"> {{row.screen}} </td>
+                                    <td mat-cell *matCellDef="let row"> {{row.name}} </td>
                                 </ng-container>
                                 
                                 <ng-container matColumnDef="installed">
