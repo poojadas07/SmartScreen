@@ -14,52 +14,6 @@ interface FoodNode {
   children?: FoodNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'More',
-    children: [
-      {
-        name: 'India',
-        children: [
-          {
-            name: 'Jodhpur',
-            children: [
-              {
-                name: 'Villa' , 
-                children: [
-                  {
-                    name: 'Tata Manager',
-                    children: [
-                      {
-                        name: 'Adminstration',
-                        children: [
-                          {name: 'Screen A'},
-                          {name: 'Screen B'},
-                          {name: 'Screen C'},
-                        ]
-                      },
-                      {name: 'India'},
-                    ]
-                  },
-                  {name: 'India'},
-                ]
-              },
-              {name: 'India'},
-            ]
-        },
-          {name: 'India'},
-        ]
-      }, {
-        name: 'India',
-        children: [
-          {name: 'USA'},
-          {name: 'India'},
-        ]
-      },
-    ]
-  },
-];
-
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
@@ -111,6 +65,8 @@ export class LocationsComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+  locationSize: any;
+  areas: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -121,12 +77,25 @@ export class LocationsComponent implements OnInit {
       this.bookForm = this.formBuilder.group({
         searchvalue: [''],
       });
-      this.dataSource.data = TREE_DATA;
-      this.dataSource1.data = TREE_DATA;
-      this.dataSource2.data = TREE_DATA;
      }
 
   ngOnInit() {
+    this.apiService.fetchAllLocations().subscribe((res) => {
+      this.locationSize = res.length;
+    });
+
+    this.apiService.fetchPoPCountry().subscribe((res) => {
+      this.areas = res;
+      const TREE_DATA = [
+        {
+          name: 'More',
+          children: this.areas
+      },
+      ];
+      this.dataSource.data = TREE_DATA;
+      this.dataSource1.data = TREE_DATA;
+      this.dataSource2.data = TREE_DATA;
+    });
   }
 
   back(): void {

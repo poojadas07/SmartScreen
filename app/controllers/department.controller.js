@@ -14,6 +14,8 @@ exports.create = (req, res) => {
     // create department
     const department = new Department({
         name: req.body.name ,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         client_id: req.body.client_id,
         location_id: req.body.location_id,
         region_id: req.body.region_id,
@@ -177,6 +179,7 @@ exports.update = (req , res) => {
     // Find client and update it with the request body
     Department.findByIdAndUpdate(req.params.departmentId , {
         name: req.body.name ,
+        updatedAt: new Date(),
         client_id: req.body.client_id,
         location_id: req.body.location_id,
         region_id: req.body.region_id,

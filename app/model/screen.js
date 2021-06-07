@@ -11,6 +11,12 @@ const Screen = new mongoose.Schema({
     columns: {
         type: Number,      
     },
+    createdAt: {
+      type: Date,
+    },
+    updatedAt: {
+      type: Date,
+    },
     department_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "departments",
@@ -36,6 +42,17 @@ const Screen = new mongoose.Schema({
       ref: "countries",
       require: true
     },
+  }, 
+  {
+    toJSON: { virtuals: true }
+  },
+  );
+
+// Virtual populate
+Screen.virtual("children", {
+    ref: "panels",
+    foreignField: "screen_id",
+    localField: "_id"
   });
 
 module.exports = mongoose.model("screens" , Screen);

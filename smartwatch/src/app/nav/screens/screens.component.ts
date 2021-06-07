@@ -25,6 +25,7 @@ export class ScreensComponent implements AfterViewInit {
 
   messagelist: any;
   collapsed: boolean;
+  screensSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -43,6 +44,8 @@ export class ScreensComponent implements AfterViewInit {
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.screens = res;
       this.messagelist = res;
+      this.screensSize = res.length;
+      console.log(this.screens)
     });
 
     // this.apiService.fetchAllCountries().subscribe((res) => {
@@ -58,9 +61,9 @@ export class ScreensComponent implements AfterViewInit {
     this.openDialog(false);
   }
 
-  addScreenToPanel(): void {
+  addScreenToPanel(screen: any): void {
     let dialogRef = this.dialog.open(ScreenIdAddComponent , {
-        data: {dialogTitle: "Add Screen Id"}
+        data: {dialogTitle: "Add Screen Id" , dialogText: screen}
       });
     
 

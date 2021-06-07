@@ -483,7 +483,7 @@ export class ApiService {
   }
 
   fetchPanelByScreen(screenId: String): Observable<any> {
-    let urlString = environment.serverBaseUrl + 'screen/' + screenId;
+    let urlString = environment.serverBaseUrl + 'panel/screen/' + screenId;
 
     return this.http.get(urlString, {})
       .pipe(
@@ -492,6 +492,25 @@ export class ApiService {
       );
   }
 
+  fetchPanelById(panelId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'panel/' + panelId;
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  pairPanelWithSensor(panelId: String , sensorId: String): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'panel/' + panelId + '&sensorId=' + sensorId;
+
+    return this.http.post(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
 
 
 }

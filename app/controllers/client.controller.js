@@ -14,6 +14,8 @@ exports.create = (req, res) => {
     // create client
     const client = new Client({
         name: req.body.name ,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         location_id: req.body.location_id,
         region_id: req.body.region_id,
         country_id: req.body.country_id,
@@ -164,6 +166,7 @@ exports.update = (req , res) => {
     // Find client and update it with the request body
     Client.findByIdAndUpdate(req.params.clientId , {
         name: req.body.name ,
+        updatedAt: new Date(),
         location_id: req.body.location_id,
         region_id: req.body.region_id,
         country_id: req.body.country_id,

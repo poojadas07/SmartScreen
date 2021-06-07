@@ -31,7 +31,7 @@
   
               <div class="col-lg-4 col-md-4 col-sm-4">
                 <h4 class="card-category" style="color: black;">Total Locations</h4>
-                <h2>9</h2><!--{{clientSize}}-->
+                <h2>{{locationSize}}</h2>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4">
                 <h4 class="card-category" style="color: black;">Total SmartScreens</h4>
@@ -89,12 +89,13 @@
           </div>
           <div class="card-footer">
           </div>
-          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="margin: auto;">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-              <button class="btn btn-secondary" disabled></button>
-              {{node.name}}
+          <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="margin: auto; padding-left: 13px;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="15">
+              <button class="btn btn-lg btn-link btn-primary">
+                <span>{{node.name}}</span>
+              </button>
             </mat-tree-node>
-            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
               <button class="btn btn-link btn-primary" matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                       {{node.name}}
@@ -119,12 +120,13 @@
           </div>
           <div class="card-footer">
           </div>
-          <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl1" style="margin: auto;">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-              <button class="btn btn-secondary" disabled></button>
-              {{node.name}}
+          <mat-tree [dataSource]="dataSource1" [treeControl]="treeControl1" style="margin: auto; padding-left: 13px;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="15">
+              <button class="btn btn-lg btn-link btn-primary">
+                <span>{{node.name}}</span>
+              </button>
             </mat-tree-node>
-            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
               <button class="btn btn-link btn-primary" matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                       {{node.name}}
@@ -149,12 +151,13 @@
           </div>
           <div class="card-footer">
           </div>
-          <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl2" style="margin: auto;">
-            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding>
-              <button class="btn btn-secondary" disabled></button>
-              {{node.name}}
+          <mat-tree [dataSource]="dataSource2" [treeControl]="treeControl2" style="margin: auto; padding-left: 13px;">
+            <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="15">
+              <button class="btn btn-lg btn-link btn-primary">
+                <span>{{node.name}}</span>
+              </button>
             </mat-tree-node>
-            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding>
+            <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
               <button class="btn btn-link btn-primary" matTreeNodeToggle
                       [attr.aria-label]="'Toggle ' + node.name">
                       {{node.name}}

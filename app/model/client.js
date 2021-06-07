@@ -5,6 +5,12 @@ const Client = new mongoose.Schema({
         type: String,
         unique: true
     },
+    createdAt: {
+      type: Date,
+    },
+    updatedAt: {
+      type: Date,
+    },
     location_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "locations",
@@ -20,10 +26,10 @@ const Client = new mongoose.Schema({
       ref: "countries",
       require: true
     },
-  },  
+  }, 
   {
     toJSON: { virtuals: true }
-  }
+  },
 );
 
  // Virtual populate

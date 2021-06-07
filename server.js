@@ -61,6 +61,9 @@ require('./app/routes/department.route.js')(app);
 // Require the screen routes
 require('./app/routes/screen.route.js')(app);
 
+// Require the panel routes
+require('./app/routes/panel.route.js')(app);
+
 // listen for requests 
 const port = process.env.PORT || 3000;
 

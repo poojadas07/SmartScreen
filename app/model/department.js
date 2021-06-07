@@ -4,7 +4,13 @@ const Department = new mongoose.Schema({
     name: {
         type: String,
         unique: true
-      },
+    },
+    createdAt: {
+        type: Date,
+    },
+    updatedAt: {
+        type: Date,
+    },
     client_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "clients",
@@ -25,10 +31,10 @@ const Department = new mongoose.Schema({
       ref: "countries",
       require: true
     },
-  },  
+  }, 
   {
     toJSON: { virtuals: true }
-  }
+  },
 );
 
 // Virtual populate

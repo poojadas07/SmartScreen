@@ -14,6 +14,8 @@ exports.create = (req, res) => {
     // create region
     const region = new Region({
         name: req.body.name,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         country_id: req.body.country_id,
     });
 
@@ -137,6 +139,7 @@ exports.update = (req , res) => {
     // Find region and update it with the request body
     Region.findByIdAndUpdate(req.params.regionId , {
         name: req.body.name ,
+        updatedAt: new Date(),
         country_id: req.body.country_id,
     }, {new : true})
     .then(region => {

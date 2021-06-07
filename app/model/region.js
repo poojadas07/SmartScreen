@@ -6,6 +6,12 @@ const Region = new mongoose.Schema({
         type: String,
         unique: true
       },
+      createdAt: {
+        type: Date,
+      },
+      updatedAt: {
+        type: Date,
+      },
       country_id: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "countries",
@@ -14,7 +20,7 @@ const Region = new mongoose.Schema({
   },  
   {
     toJSON: { virtuals: true }
-  }
+  },
   );
 
   // Virtual populate

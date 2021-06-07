@@ -1,4 +1,5 @@
 const Screen = require('../model/screen');
+const Panel = require('../model/panel');
 
 // create and save a new screen
 exports.create = (req, res) => {
@@ -16,6 +17,8 @@ exports.create = (req, res) => {
         name: req.body.name ,
         rows: req.body.rows,
         columns: req.body.columns,
+        createdAt: new Date(),
+        updatedAt: new Date(),
         department_id: req.body.department_id,
         client_id: req.body.client_id,
         location_id: req.body.location_id,
@@ -26,7 +29,29 @@ exports.create = (req, res) => {
     screen.save()
     .then(data => {
         res.send(data);
-        console.log(data);
+        // var screen_id = data._id;
+        // console.log(screen_id);
+
+        for (let i=0; i<req.body.rows; i++){
+            for (let j=0; j<req.body.columns; j++){
+                const panel = new Panel({
+                    name: "P-" + i + j,
+                    row_no: i,
+                    column_no: j,
+                    current_value: 0,
+                    createdAt: new Date(),
+                    updatedAt: new Date(),
+                    screen_id: data._id,
+                    department_id: req.body.department_id,
+                    client_id: req.body.client_id,
+                    location_id: req.body.location_id,
+                    region_id: req.body.region_id,
+                    country_id: req.body.country_id,
+                });
+
+                panel.save();
+            }
+        }
     })
     .catch(err => {
         res.status(500).send({
@@ -48,6 +73,24 @@ exports.create = (req, res) => {
 //         });
 //     });
 // };
+
+exports.screenPanel = (req , res) => {
+
+    Screen.find().populate({
+        path: "children",
+        model: Panel,
+      })
+      .then( screens => {
+        res.send(screens);
+        // console.log(countries)
+      })
+      .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving screens."
+        });
+      });
+    
+};
 
 exports.findAll = (req, res) => {
     Screen.aggregate(
@@ -194,6 +237,7 @@ exports.update = (req , res) => {
         name: req.body.name ,
         rows: req.body.rows,
         columns: req.body.columns,
+        updatedAt: new Date(),
         department_id: req.body.department_id,
         client_id: req.body.client_id,
         location_id: req.body.location_id,

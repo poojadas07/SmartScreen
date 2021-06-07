@@ -5,7 +5,9 @@ module.exports = (app) => {
     app.post('/screen' , screen.create);
 
     // Reterive all screens
-    app.get('/screen' , screen.findAll);
+    // app.get('/screen' , screen.findAll);
+
+    app.get("/screen", screen.screenPanel);
 
     // Reterive the single screen by id
     app.get('/screen/:screenId' , screen.findOne);

@@ -31,7 +31,7 @@
   
               <div class="col-lg-4 col-md-4 col-sm-4">
                 <h4 class="card-category" style="color: black;">Total Screens</h4>
-                <h2>9</h2><!--{{clientSize}}-->
+                <h2>{{screensSize}}</h2>
               </div>
               <div class="col-lg-4 col-md-4 col-sm-4">
                 <h4 class="card-category" style="color: black;">Total SmartScreens</h4>
@@ -86,22 +86,15 @@
               <h4 class="card-title" style="text-align: left;"><b>{{screen.name}}</b></h4>
             </div>
             <br>
-            <!-- <div class="card-body ">
-              <mat-grid-list class="card" cols="{{screen.columnCount}}" rowHeight="60px" >
-                <mat-grid-tile *ngFor="let panel of screen.panels;" [ngStyle]="{'background-color': getColor(panel)}">
-                    <p (click)="editRow(panel)">P-{{panel.index.toString()}}</p>
-                </mat-grid-tile>
-              </mat-grid-list>
-            </div> -->
             <div class="card-body ">
               <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="edit(screen)">
                 <i class="material-icons">edit</i>
               </button>
               <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
-                  <mat-grid-list cols="5" rowHeight="40px">
-                    <mat-grid-tile *ngFor="let x of [].constructor(25); let i = index;" 
-                    style="background: lightgrey; cursor: pointer;" (click)="addScreenToPanel()">{{i}}</mat-grid-tile>
+                  <mat-grid-list cols="{{screen.columns}}" rowHeight="40px">
+                    <mat-grid-tile *ngFor="let panel of screen.children; let i = index;" 
+                    style="background: lightgrey; cursor: pointer;" (click)="addScreenToPanel(panel)">{{i}}</mat-grid-tile>
                   </mat-grid-list>
                 </div>
                 <div class="col-lg-9 col-md-9 col-sm-9" style="border: black;">
@@ -109,7 +102,7 @@
                   <div class="row" style="text-align: center;">
                     <div class="col-4">
                       <h4 class="card-category" style="color: black;">Total Screens</h4>
-                      <h2>9</h2><!--{{clientSize}}-->
+                      <h2>{{screensSize}}</h2>
                     </div>
                     <div class="col-4">
                       <h4 class="card-category" style="color: black;">Total SmartScreens</h4>

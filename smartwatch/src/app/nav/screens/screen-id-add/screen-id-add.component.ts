@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalService } from 'src/app/service/modal.service';
@@ -23,7 +23,10 @@ export class ScreenIdAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) 
     {
       this.bookForm = this.formBuilder.group({
-        name: [''],
+        name: ['', Validators.required],
+        rows: ['', Validators.required],
+        columns: ['', Validators.required],
+        screenId: ['', Validators.required],
       })
      }
 
@@ -33,10 +36,10 @@ export class ScreenIdAddComponent implements OnInit {
     if (this.dialogTitle == "Add Screen Id"){
       this.apiService.fetchScreenById(this.data.dialogText._id).subscribe((res) => {
         this.screen = res;
-        // console.log(this.country);
+        console.log(this.screen);
         this.bookForm.get('name').setValue(this.screen.name);
-        this.bookForm.get('row').setValue(this.screen.row);
-        this.bookForm.get('column').setValue(this.screen.column);
+        this.bookForm.get('rows').setValue(this.screen.rows);
+        this.bookForm.get('columns').setValue(this.screen.columns);
       });
     }
   }

@@ -21,10 +21,12 @@ exports.create = (req, res) => {
         });
     }
 
-    console.log(req.body.name);
+    console.log(req.body);
 
     const country = new Country({
         name: req.body.name,
+        createdAt: new Date(),
+        updatedAt: new Date(),
     });
 
     country.save()
@@ -75,6 +77,7 @@ exports.pop_country = (req , res) => {
       })
       .then( countries => {
         res.send(countries);
+        console.log(countries)
       })
       .catch(err => {
         res.status(500).send({
@@ -139,6 +142,7 @@ exports.update = (req , res) => {
     // Find country and update it with the request body
     Country.findByIdAndUpdate(req.params.countryId , {
         name: req.body.name,
+        updatedAt: new Date(),
     }, {new : true})
     .then(country => {
         if(!country){
