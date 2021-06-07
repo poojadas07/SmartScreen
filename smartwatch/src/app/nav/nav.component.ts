@@ -15,63 +15,6 @@ interface FoodNode {
   children?: FoodNode[];
 }
 
-const TREE_DATA: FoodNode[] = [
-  {
-    name: 'Countries',
-    children: [
-        {
-          name: 'India',
-          children: [
-            {
-              name: 'Jodhpur',
-              children: [
-                {
-                  name: 'Villa' , 
-                  children: [
-                    {
-                      name: 'Tata Manager',
-                      children: [
-                        {
-                          name: 'Adminstration',
-                          children: [
-                            {
-                              name: 'Screen A'
-                            },
-                            {
-                              name: 'Screen B'
-                            },
-                            {
-                              name: 'Screen C'
-                            },
-                          ]
-                        },
-                        {
-                          name: 'Management'
-                        },
-                      ]
-                    },
-                    {
-                      name: 'Country Manager'
-                    },
-                  ]
-                },
-            {
-              name: 'Western'
-            },
-          ]
-        },
-        {
-          name: 'Jamshedpur'
-        },
-      ]
-    },
-    {
-      name: 'United Kingdom'
-    },
-  ]
-},
-];
-
 /** Flat node with expandable and level information */
 interface ExampleFlatNode {
   expandable: boolean;
@@ -110,19 +53,30 @@ export class NavComponent implements OnInit{
       shareReplay()
     );
   menuItems1: any;
+  areas: any;
 
   constructor(private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
     private modalService: ModalService,
     private router: Router ,
     private apiService: ApiService) 
-    {
-      this.dataSource.data = TREE_DATA;
-    }
+    { }
 
   ngOnInit(): void {
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.menuItems1 = res;
+    });
+
+    this.apiService.fetchPoPCountry().subscribe((res) => {
+      this.areas = res;
+      const TREE_DATA = [
+        {
+          name: 'Countries',
+          children: this.areas
+      },
+      ];
+      this.dataSource.data = TREE_DATA;
+      console.log(this.dataSource.data);
     });
   }
 
@@ -133,13 +87,6 @@ export class NavComponent implements OnInit{
   menuItems = ['countries', 'regions' , 'locations' , 'clients' , 'departments' , 'screens'];
 
   panelOpenState = false;
-
-  navigateToPage(name: string) {
-    console.log(name);
-    // if (name === 'Screen A') {
-      this.router.navigate(["dashboard/info"]);
-    // }
-  }
 
   logout(): void {
     this.modalService.openConfirmModal('Are you sure you want to exit?', (answer: boolean) => {

@@ -13,7 +13,7 @@ const Country = new mongoose.Schema(
 );
 
 // Virtual populate
-Country.virtual("region", {
+Country.virtual("children", {
   ref: "regions",
   foreignField: "country_id",
   localField: "_id"

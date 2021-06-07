@@ -22,7 +22,7 @@ const Location = new mongoose.Schema({
   );
 
   // Virtual populate
-  Location.virtual("client", {
+  Location.virtual("children", {
     ref: "clients",
     foreignField: "location_id",
     localField: "_id"

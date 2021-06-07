@@ -27,7 +27,7 @@ const Client = new mongoose.Schema({
 );
 
  // Virtual populate
- Client.virtual("department", {
+ Client.virtual("children", {
     ref: "departments",
     foreignField: "client_id",
     localField: "_id"

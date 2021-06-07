@@ -53,20 +53,20 @@ exports.findAll = (req , res) => {
 
 exports.pop_country = (req , res) => {
 
-    Country.findOne({ _id: "60bc9afb2ad1b8fd9af22784" }).populate({
-        path: "region",
+    Country.find().populate({
+        path: "children",
         model: Region,
         populate: {
-            path: "location",
+            path: "children",
             model: Location,
             populate: {
-                path: "client",
+                path: "children",
                 model: Client,
                 populate: {
-                    path: "department",
+                    path: "children",
                     model: Department,
                     populate: {
-                        path: "screen",
+                        path: "children",
                         model: Screens
                     }
                 }

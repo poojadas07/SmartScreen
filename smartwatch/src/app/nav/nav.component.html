@@ -49,7 +49,6 @@
     <br>
     <mat-tree [dataSource]="dataSource" [treeControl]="treeControl" style="padding-left: 13px;">
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="15">
-        <!-- <button mat-icon-button disabled></button> -->
         <button class="btn btn-lg btn-link btn-primary" style="color: white">
             <i class="material-icons" style="font-size: 25px;">image</i>
              <span routerLink="/dashboard/nav">{{node.name}}</span>
@@ -59,11 +58,7 @@
         <button class="btn btn-lg btn-link btn-primary" matTreeNodeToggle
                 [attr.aria-label]="'Toggle ' + node.name" style="color: white">
                 <i class="material-icons" style=" font-size: 25px;">image</i>
-                <!-- <span click="navigateToPage(node.name)">{{node.name}}</span> -->
                 {{node.name}}
-          <!-- <span class="btn-label btn-label-right">
-            <i class="material-icons" [innerText]="treeControl.isExpanded(node) ? 'expand_less' : 'expand_more'"></i>
-          </span> -->
         </button>
       </mat-tree-node>
     </mat-tree>

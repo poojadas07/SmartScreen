@@ -32,7 +32,7 @@ const Department = new mongoose.Schema({
 );
 
 // Virtual populate
-Department.virtual("screen", {
+Department.virtual("children", {
     ref: "screens",
     foreignField: "department_id",
     localField: "_id"
