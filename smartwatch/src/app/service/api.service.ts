@@ -451,10 +451,11 @@ export class ApiService {
   }
 
 
-  fetchScreenByName(screenName: String): Observable<any> {
+  fetchScreenByName(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/search';
 
-    return this.http.post(urlString, screenName , {})
+    console.log(data)
+    return this.http.post(urlString, data , {})
       .pipe(
         map(data => data),
         catchError(this.handleError)

@@ -74,6 +74,7 @@ export class ReportComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
+      console.log(this.dataSource)
       this.screens = res;
     });
 
@@ -106,7 +107,8 @@ export class ReportComponent implements AfterViewInit {
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
-      this.screens = res;
+      console.log(res)
+      this.dataSource = new MatTableDataSource(res);
     });
   }
   
