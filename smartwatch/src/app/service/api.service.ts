@@ -420,6 +420,16 @@ export class ApiService {
       );
   }
 
+  fetchAllScreensPanel(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'screenPanel';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchScreenById(screenId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
 

@@ -41,7 +41,7 @@ export class ScreensComponent implements AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.apiService.fetchAllScreens().subscribe((res) => {
+    this.apiService.fetchAllScreensPanel().subscribe((res) => {
       this.screens = res;
       this.messagelist = res;
       this.screensSize = res.length;

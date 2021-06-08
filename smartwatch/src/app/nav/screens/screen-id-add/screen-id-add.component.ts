@@ -15,6 +15,7 @@ export class ScreenIdAddComponent implements OnInit {
   bookForm: FormGroup;
   dialogTitle: string;
   screen: any;
+  panels: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -34,12 +35,12 @@ export class ScreenIdAddComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
 
     if (this.dialogTitle == "Add Screen Id"){
-      this.apiService.fetchScreenById(this.data.dialogText._id).subscribe((res) => {
-        this.screen = res;
-        console.log(this.screen);
-        this.bookForm.get('name').setValue(this.screen.name);
-        this.bookForm.get('rows').setValue(this.screen.rows);
-        this.bookForm.get('columns').setValue(this.screen.columns);
+      this.apiService.fetchPanelById(this.data.dialogText._id).subscribe((res) => {
+        this.panels = res;
+        console.log(this.panels);
+        this.bookForm.get('name').setValue(this.panels.name);
+        this.bookForm.get('rows').setValue(this.panels.row_no);
+        this.bookForm.get('columns').setValue(this.panels.column_no);
       });
     }
   }

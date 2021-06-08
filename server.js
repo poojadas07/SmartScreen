@@ -43,6 +43,10 @@ app.get('/' , (req, res)=> {
     res.json("Welcome to SMARTWATCH Application !");
 });
 
+app.get('/download', function(req, res){
+    res.download('Report.pdf');
+});
+
 // Require the country routes
 require('./app/routes/country.route.js')(app);
 
@@ -63,6 +67,8 @@ require('./app/routes/screen.route.js')(app);
 
 // Require the panel routes
 require('./app/routes/panel.route.js')(app);
+
+require('./app/routes/pdfGeneration.route.js')(app);
 
 // listen for requests 
 const port = process.env.PORT || 3000;
