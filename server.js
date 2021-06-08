@@ -43,7 +43,8 @@ app.get('/' , (req, res)=> {
     res.json("Welcome to SMARTWATCH Application !");
 });
 
-app.get('/download', function(req, res){
+app.get('/download', (req, res) => {
+    console.log("jii")
     res.download('Report.pdf');
 });
 

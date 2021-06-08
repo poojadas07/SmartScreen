@@ -1,9 +1,12 @@
-import { AfterViewInit, Component, Input, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import pdfMake from "pdfmake/build/pdfmake";
+import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ApiService } from 'src/app/service/api.service';
+pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 export interface ScreenData {
   sort: number;
@@ -11,6 +14,7 @@ export interface ScreenData {
   country: string;
   region: string;
   location: string;
+  client: string;
   department: string;
   screen: string;
   installed: any;
@@ -35,7 +39,7 @@ export class ReportComponent implements AfterViewInit {
   setareas = ['Country', 'Region', 'Location', 'Deptment', 'Screen'];
   rows = [5,10,15,20];
   
-  displayedColumns: string[] = ['sort' , 'id', 'country', 'region', 'location', 'department', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
+  displayedColumns: string[] = ['sort' , 'id', 'country', 'region', 'location', 'client', 'department', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
 
   @Input() messagelist: any[];
   
@@ -43,6 +47,7 @@ export class ReportComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
+
   screens: any;
   countries: any;
   regions: any;
@@ -69,6 +74,7 @@ export class ReportComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
+      this.screens = res;
     });
 
     // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
@@ -76,11 +82,6 @@ export class ReportComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   
   }
-    
-    
-  searchentity(value): void{
-    alert(value)
-   }
  
    setfilter(value): void{
      alert(value);
@@ -90,6 +91,18 @@ export class ReportComponent implements AfterViewInit {
      alert(value);
    }
 
+   generate(): void{
+     console.log("hjg")
+     const msg = "PDF Generation !!";
+      this.apiService.generatePDF(msg).subscribe((res) => {
+        console.log(res);
+      });
+   }
+
+   download(): void{
+    console.log("hjnbg")
+   }
+
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
@@ -97,5 +110,48 @@ export class ReportComponent implements AfterViewInit {
     });
   }
   
+  generatePDF(action = 'open') {
+    let docDefinition = {
+      content: [
+        {
+          text: 'Screen Report',
+          style: 'sectionHeader'
+        },
+        {
+          table: {
+            headerRows: 1,
+            style: 'tableStyle',
+            widths: ['auto', 'auto', 'auto', 'auto','auto', 'auto', 'auto', 'auto', 100],
+            body: [
+              ['SI', 'ID', 'Country', 'Region','Location', 'Client', 'Department' ,'Screen', 'Installed'],
+              ...this.screens.map(s => (['1', '1',  s.country.name, s.region.name, s.location.name, s.client.name, s.department.name, s.name, s.createdAt ]))
+            ]
+          }
+        },
+      ],
+      styles: {
+        sectionHeader: {
+          bold: true,
+          alignment: 'center',
+          color: '#047886',
+          decoration: 'underline',
+          fontSize: 14,
+          margin: [0, 15,0, 15]          
+        },
+        tableStyle: {
+          color: '#047886',
+        }
+      }
+    };
+
+    if(action==='download'){
+      pdfMake.createPdf(docDefinition).download();
+    }else if(action === 'print'){
+      pdfMake.createPdf(docDefinition).print();      
+    }else{
+      pdfMake.createPdf(docDefinition).open();      
+    }
+
+  }
 
 }

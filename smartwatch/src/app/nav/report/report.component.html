@@ -3,7 +3,20 @@
 <div class="content">
     <div class="container-fluid">
 
-        <h3 style="padding-left: 2%;">Reports</h3>
+        <h3 style="padding-left: 2%; position: relative;">Reports
+            <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="position: absolute; right: 110px; top: 5px;"
+                (click)="generatePDF()">
+                <i class="material-icons">drive_folder_upload</i>
+            </button>
+            <button type="submit" class="btn btn-danger btn-round btn-just-icon" style="position: absolute; right: 60px; top: 5px;"
+                (click)="generatePDF('print')">
+                <i class="material-icons">print</i>
+            </button>
+            <button type="submit" class="btn btn-success btn-round btn-just-icon" style="position: absolute; right: 10px; top: 5px;"
+                (click)="generatePDF('download')">
+                <i class="material-icons">get_app</i>
+            </button>
+        </h3>
 
         <div class="row">
         <div class="col-md-12">
@@ -17,17 +30,7 @@
                     <div class="card-body ">
         
                         <div class="row">
-                            <div class="col-lg-2 col-md-2 col-sm-2">
-                    
-                                <mat-form-field appearance="legacy">
-                                <mat-label>Select Entries</mat-label>
-                                <mat-select [(ngModel)]="selectedItem" (ngModelChange)="searchentity(selectedItem)">
-                                    <mat-option *ngFor='let in of rows;' value="{{in}}">{{in}}</mat-option>
-                                </mat-select>
-                                </mat-form-field>
-                                
-                            </div>
-                            <div dir="ltr" class="col-lg-2 col-md-2 col-sm-2" style="margin: 1.5% 0; color: grey;">
+                            <div dir="ltr" class="col-lg-3 col-md-3 col-sm-3" style="margin: 1.5% 0; color: grey;">
                                 <h5 [matMenuTriggerFor]="country" style="border-bottom: 1px solid gray; cursor: pointer;">All
                                     <i style="float: right;" class="material-icons">arrow_drop_down</i>
                                 </h5>
@@ -73,7 +76,7 @@
                                 </mat-menu>
                             </div>
                         
-                            <div class="col-lg-2 col-md-2 col-sm-2" style="border: black;">
+                            <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
                         
                                 <mat-form-field appearance="legacy">
                                     <mat-label>Set Filters</mat-label>
@@ -106,6 +109,8 @@
                             </form>
                             </div>
                         </div>
+
+                        
                 
                         <hr>
                         <div class="row">
@@ -120,7 +125,7 @@
                                 
                                 <ng-container matColumnDef="id">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-                                    <td mat-cell *matCellDef="let row"> {{row._id}} </td>
+                                    <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="country">
@@ -136,6 +141,11 @@
                                 <ng-container matColumnDef="location">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> Location </th>
                                     <td mat-cell *matCellDef="let row"> {{row.location.name}} </td>
+                                </ng-container>
+
+                                <ng-container matColumnDef="client">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Client </th>
+                                    <td mat-cell *matCellDef="let row"> {{row.client.name}} </td>
                                 </ng-container>
 
                                 <ng-container matColumnDef="department">
@@ -185,3 +195,30 @@
         </div>
     </div>
 </div>
+
+<!-- <div class="container">
+    <div class="row">
+  
+      <div class="col-md-8" id="htmlData">
+        <table class="table table-bordered">
+          <tr class="table-primary">
+            <th>Id</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+          </tr>
+          <tr *ngFor="let user of USERS">
+            <th>{{user.id}}</th>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+          </tr>
+        </table>
+      </div>
+  
+      <div class="col-md-4 text-right">
+        <button class="btn btn-success btn-block" >Download PDF</button>
+      </div>
+  
+    </div>
+  </div> -->

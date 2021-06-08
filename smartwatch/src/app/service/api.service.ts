@@ -522,5 +522,14 @@ export class ApiService {
       );
   }
 
+  generatePDF(msg: String) {
+    let urlString = environment.serverBaseUrl + 'generateReport';
+
+    return this.http.get(urlString , {})
+      .pipe(
+          map(data => data),
+          catchError(this.handleError)
+      );
+  }
 
 }
