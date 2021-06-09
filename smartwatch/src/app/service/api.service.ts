@@ -452,6 +452,7 @@ export class ApiService {
 
 
   fetchScreenByName(data: Object): Observable<any> {
+    console.log(data)
     let urlString = environment.serverBaseUrl + 'screen/search';
 
     console.log(data)

@@ -57,7 +57,7 @@
                                             
                                                                         <mat-menu #screen="matMenu">
                                                                             <ng-container *ngFor="let scre of dept.children;">
-                                                                                <h5 style="cursor: pointer;"  mat-menu-item>{{scre.name}}</h5>
+                                                                                <h5 style="cursor: pointer;"  mat-menu-item (click)="screenByName(scre.name)">{{scre.name}}</h5>
                                                                             </ng-container>
                                                                         </mat-menu>
 
@@ -110,8 +110,6 @@
                             </div>
                         </div>
 
-                        
-                
                         <hr>
                         <div class="row">
                             <div class="col-12">

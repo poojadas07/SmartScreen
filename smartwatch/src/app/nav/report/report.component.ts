@@ -92,18 +92,6 @@ export class ReportComponent implements AfterViewInit {
      alert(value);
    }
 
-   generate(): void{
-     console.log("hjg")
-     const msg = "PDF Generation !!";
-      this.apiService.generatePDF(msg).subscribe((res) => {
-        console.log(res);
-      });
-   }
-
-   download(): void{
-    console.log("hjnbg")
-   }
-
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
@@ -112,6 +100,14 @@ export class ReportComponent implements AfterViewInit {
     });
   }
   
+  screenByName(val): void{
+
+    const value = { searchvalue: val}
+    this.apiService.fetchScreenByName(value).subscribe((res) => {
+      console.log(res)
+      this.dataSource = new MatTableDataSource(res);
+    });
+  }
   generatePDF(action = 'open') {
     let docDefinition = {
       content: [

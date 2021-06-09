@@ -1,5 +1,8 @@
 const Region = require('../model/region');
 
+const Country = require('../model/country');
+const ObjectID = require('mongodb').ObjectID;
+
 // create and save a new region
 exports.create = (req, res) => {
     // Validate request
@@ -10,6 +13,7 @@ exports.create = (req, res) => {
     }
 
     console.log(req.body);
+
     
     // create region
     const region = new Region({
@@ -74,11 +78,25 @@ exports.findByName = (req , res) => {
 
     console.log(req.body.searchvalue);
 
-    Region.find({
-        "name" : {
-            "$regex" : req.body.searchvalue , $options:'i'
-        }
-    })
+    Region.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'countries',
+                    localField:'country_id', 
+                    foreignField:'_id',
+                    as:'country'
+                }
+            },
+            {   $unwind:"$country" },
+            {
+                $match: {
+                    "name": { $regex: req.body.searchvalue , $options:'i'}
+                }
+            }
+        ]
+    )
     .then(region => {
         res.send(region);
     })

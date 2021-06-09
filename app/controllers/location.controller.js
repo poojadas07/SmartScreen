@@ -87,11 +87,36 @@ exports.findByName = (req , res) => {
 
     console.log(req.body.searchvalue);
 
-    Location.find({
-        "name" : {
-            "$regex" : req.body.searchvalue , $options:'i'
-        }
-    })
+    Location.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'regions',
+                    localField:'region_id', 
+                    foreignField:'_id',
+                    as:'region'
+                }
+            },
+            {   
+                $unwind:"$region"
+            },
+            {
+                $lookup:{
+                    from: "countries", 
+                    localField: "country_id", 
+                    foreignField: "_id",
+                    as: "country"
+                }
+            },
+            {   $unwind:"$country" },
+            {
+                $match: {
+                    "name": { $regex: req.body.searchvalue , $options:'i'}
+                }
+            }
+        ]
+    )
     .then(location => {
         res.send(location);
     })

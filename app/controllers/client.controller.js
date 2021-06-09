@@ -101,11 +101,48 @@ exports.findByName = (req , res) => {
 
     console.log(req.body.searchvalue);
 
-    Client.find({
-        "name" : {
-            "$regex" : req.body.searchvalue , $options:'i'
-        }
-    })
+    Client.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'locations',
+                    localField:'location_id', 
+                    foreignField:'_id',
+                    as:'location'
+                }
+            },
+            {   
+                $unwind:"$location"
+            },
+            {
+                $lookup:
+                { 
+                    from: 'regions',
+                    localField:'region_id', 
+                    foreignField:'_id',
+                    as:'region'
+                }
+            },
+            {   
+                $unwind:"$region"
+            },
+            {
+                $lookup:{
+                    from: "countries", 
+                    localField: "country_id", 
+                    foreignField: "_id",
+                    as: "country"
+                }
+            },
+            {   $unwind:"$country" },
+            {
+                $match: {
+                    "name": { $regex: req.body.searchvalue , $options:'i'}
+                }
+            }
+        ]
+    )
     .then(client => {
         res.send(client);
     })

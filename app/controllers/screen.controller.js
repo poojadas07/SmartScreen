@@ -1,5 +1,6 @@
 const Screen = require('../model/screen');
 const Panel = require('../model/panel');
+const Department = require('../model/department');
 
 // create and save a new screen
 exports.create = (req, res) => {
@@ -170,13 +171,75 @@ exports.findByName = (req , res) => {
 
     console.log(req.body.searchvalue);
 
-    Screen.find({
-        "name" : {
-            "$regex" : req.body.searchvalue , $options:'i'
-        }
-    })
-    .then(screen => {
-        res.send(screen);
+    Screen.aggregate(
+        [
+            {
+                $lookup:
+                { 
+                    from: 'departments',
+                    localField:'department_id', 
+                    foreignField:'_id',
+                    as:'department'
+                }
+            },
+            {   
+                $unwind:"$department"
+            },
+            {
+                $lookup:
+                { 
+                    from: 'clients',
+                    localField:'client_id', 
+                    foreignField:'_id',
+                    as:'client'
+                }
+            },
+            {   
+                $unwind:"$client"
+            },
+            {
+                $lookup:
+                { 
+                    from: 'locations',
+                    localField:'location_id', 
+                    foreignField:'_id',
+                    as:'location'
+                }
+            },
+            {   
+                $unwind:"$location"
+            },
+            {
+                $lookup:
+                { 
+                    from: 'regions',
+                    localField:'region_id', 
+                    foreignField:'_id',
+                    as:'region'
+                }
+            },
+            {   
+                $unwind:"$region"
+            },
+            {
+                $lookup:{
+                    from: "countries", 
+                    localField: "country_id", 
+                    foreignField: "_id",
+                    as: "country"
+                }
+            },
+            {   $unwind:"$country" },
+            {
+                $match: {
+                    "name": { $regex: req.body.searchvalue , $options:'i'}
+                }
+            }
+        
+        ]
+    )
+    .then( screens => {
+        res.send(screens)
     })
     .catch(err => {
         res.status(500).send({
