@@ -17,6 +17,7 @@ export class ProfileAddComponent implements OnInit {
   dialogTitle: string;
   text: any;
   profile: any;
+  val: string;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -25,7 +26,9 @@ export class ProfileAddComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) 
     {
       this.bookForm = this.formBuilder.group({
-        name: [''],
+        username: [''],
+        email: [''],
+        phone: ['']
       })
      }
 
@@ -34,50 +37,41 @@ export class ProfileAddComponent implements OnInit {
 
     if (this.dialogTitle == "Edit Name"){
       this.text = 'Enter Name'; 
-      this.apiService.fetchUserById(this.data.dialogText._id).subscribe((res) => {
-        this.profile = res;
-        // console.log(this.country);
-        this.bookForm.get('name').setValue(this.profile.name);
-      });
+      this.val = 'username';
+      this.bookForm.get(this.val).setValue(this.data.dialogText);
     }
     else if (this.dialogTitle == "Edit Email"){
       this.text = 'Enter Email';
-      this.apiService.fetchUserById(this.data.dialogText._id).subscribe((res) => {
-        this.profile = res;
-        // console.log(this.country);
-        this.bookForm.get('name').setValue(this.profile.email);
-      });
+      this.val = 'email';
+      this.bookForm.get(this.val).setValue(this.data.dialogText);
     }
     else if (this.dialogTitle == "Edit Phone"){
       this.text = 'Enter Phone';
-      this.apiService.fetchUserById(this.data.dialogText._id).subscribe((res) => {
-        this.profile = res;
-        // console.log(this.country);
-        this.bookForm.get('name').setValue(this.profile.phone);
-      });
+      this.val = 'phone';
+      this.bookForm.get(this.val).setValue(this.data.dialogText);
     }
   }
 
   update() : any  {
 
     if (this.dialogTitle == "Edit Name"){
-      this.apiService.updateProfile(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
+      // alert(this.bookForm.value);
+      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Name '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal('Name '+res.username+' Edited Successfully !!');
       });
     }
     else if (this.dialogTitle == "Edit Email"){
-      this.apiService.updateProfile(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Email '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal('Email '+res.email+' Edited Successfully !!');
       });
     }
     else if (this.dialogTitle == "Edit Phone"){
-      this.apiService.updateProfile(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Phone '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal('Phone '+res.phone+' Edited Successfully !!');
       });
     }
   }
-
 }

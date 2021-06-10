@@ -21,24 +21,21 @@ export class ProfileComponent implements OnInit {
   myForm: FormGroup;
   file: File = null;
   selectedFiles: any;
-  profile = 
-  [
-    {
-      name: 'Pooja Das',
-      email: 'poojadas04kv@gmail.com',
-      phone: '+91-6370677192'
-    }
-  ];
+  name: any;
+  email: any;
+  phone: any;
 
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];
   userId: string;
+  profile: any;
+  password: any;
   constructor(public formBuilder: FormBuilder,
               private fileUploadService: FileUploadService,
               private apiService: ApiService,
               public dialog: MatDialog,){
       this.bookForm = this.formBuilder.group({
         old: [''],
-        new: [''],
+        password: [''],
         confirm: [''],
       });
 
@@ -52,8 +49,13 @@ export class ProfileComponent implements OnInit {
 
     this.userId = "";
 
-    this.apiService.fetchUserById(this.userId).subscribe((res) => {
-      this.profile = res;
+    this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+      this.name = res.username;
+      this.email = res.email;
+      this.phone = res.phone;
+
+      this.bookForm.get('old').setValue(res.password);
+      console.log(res)
     });
     
   }
@@ -123,9 +125,20 @@ export class ProfileComponent implements OnInit {
 
   changePass(): void{
     this.userId = "";
-    this.apiService.updateProfile(this.userId, this.bookForm.value).subscribe((res) => {
-      this.profile = res;
-    });
+    if (this.bookForm.value.confirm == this.bookForm.value.password){
+      this.apiService.forgotPassword('60c21a0d0a7f573538b27002', this.bookForm.value).subscribe((res) => {
+        this.profile = res;
+        this.collapsed = !this.collapsed;
+        alert("Password set successfully !!")
+      });
+    }
+    else{
+      alert("Password not same !!")
+    }
+  }
+
+  cancel(): void{
+    this.collapsed = !this.collapsed;
   }
 
   editName(item): void{
@@ -148,24 +161,40 @@ export class ProfileComponent implements OnInit {
         dialogRef = this.dialog.open(ProfileAddComponent , {
           data: {dialogTitle: "Edit Name" , dialogText: value}
         });
+
+        dialogRef.afterClosed().subscribe(res => {
+          this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+            this.name = res.username;
+          });
+        });
+        
     }
     else if (isEdit == 2){
       // console.log(isEdit);
       dialogRef = this.dialog.open(ProfileAddComponent ,{
         data: {dialogTitle: "Edit Email" , dialogText: value}
       });
+
+      dialogRef.afterClosed().subscribe(res => {
+        this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+          this.email = res.email;
+        });
+      });
+      
     }
     else if (isEdit == 3){
       // console.log(isEdit);
       dialogRef = this.dialog.open(ProfileAddComponent ,{
         data: {dialogTitle: "Edit Phone" , dialogText: value}
       });
+
+      dialogRef.afterClosed().subscribe(res => {
+        this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+          this.phone = res.phone;
+        });
+      });
+      
     }
-
-    dialogRef.afterClosed().subscribe(res => {
-      // console.log('The dialog was closed');
-
-    });
     
   }
 }

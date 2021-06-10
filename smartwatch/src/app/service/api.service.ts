@@ -77,6 +77,16 @@ export class ApiService {
       );
   }
 
+  forgotPassword(userId: String , data): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'forgot/' + userId;
+
+    return this.http.put(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchAllCountries(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country';
     // console.log('hello')

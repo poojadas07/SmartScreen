@@ -36,19 +36,19 @@
                                 </button>
                                 <input type="file" (change)="imagePreview($event)" #fileUpload id="fileUpload" name="fileUpload" accept="image/*" style="display:none;" /> 
                             </div>
-                            <div class="col-8" *ngFor="let item of profile;">
-                                <p style="border-bottom: 1px solid lightgray; width: 25%;">{{item.name}}
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editName(item)">
+                            <div class="col-8">
+                                <p style="border-bottom: 1px solid lightgray; width: 25%;">{{name}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editName(name)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
-                                <p style="border-bottom: 1px solid lightgray; width: 40%;">{{item.email}}
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 20%;" (click)="editEmail(item)">
+                                <p style="border-bottom: 1px solid lightgray; width: 40%;">{{email}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 20%;" (click)="editEmail(email)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
-                                <p style="border-bottom: 1px solid lightgray; width: 35%;">{{item.phone}}
-                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editPhone(item)">
+                                <p style="border-bottom: 1px solid lightgray; width: 35%;">{{phone}}
+                                    <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin-left: 35%;" (click)="editPhone(phone)">
                                         <i class="material-icons">edit</i>
                                     </button>
                                 </p>
@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <mat-form-field appearance="legacy" style="width:45% !important">
                                             <mat-label>New Password</mat-label>
-                                            <input matInput placeholder="New Password" formControlName="new" required>
+                                            <input matInput placeholder="New Password" formControlName="password" required>
                                         </mat-form-field>
                                     </div>
                                     <div class="form-group">
@@ -75,7 +75,9 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="form-group">
-                                      <button mat-raised-button class="btn btn-sm btn-info" type="submit">Confirm</button>
+                                        <button mat-raised-button class="btn btn-sm btn-info" type="submit">Confirm</button>
+                                    
+                                        <button mat-raised-button class="btn btn-sm btn-info" type="submit" (click)="cancel()" style="margin-left: 2%;">Cancel</button>
                                     </div>
                                       
                                 </form>
