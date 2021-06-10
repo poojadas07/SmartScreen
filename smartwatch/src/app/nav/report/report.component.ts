@@ -74,7 +74,7 @@ export class ReportComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
-      console.log(this.dataSource)
+      console.log(this.dataSource);
       this.screens = res;
     });
 
@@ -97,6 +97,16 @@ export class ReportComponent implements AfterViewInit {
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
       console.log(res)
       this.dataSource = new MatTableDataSource(res);
+      this.screens = res;
+    });
+  }
+
+  reset() : void {
+    this.bookForm.reset();
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res);
+      console.log(this.dataSource);
+      this.screens = res;
     });
   }
   
@@ -106,6 +116,7 @@ export class ReportComponent implements AfterViewInit {
     this.apiService.fetchScreenByName(value).subscribe((res) => {
       console.log(res)
       this.dataSource = new MatTableDataSource(res);
+      this.screens = res;
     });
   }
   generatePDF(action = 'open') {

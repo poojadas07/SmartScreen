@@ -87,7 +87,7 @@
                 
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
-                            <div style="margin: 2%;">
+                            <div style="margin: 2% 0 ;">
                                 <button class="btn btn-info btn-round btn-sm">All</button>
                                 <button class="btn btn-info btn-round btn-sm">Faulty</button>
                                 <button class="btn btn-info btn-round btn-sm">Active</button>
@@ -95,7 +95,7 @@
                             
                             </div>
                             <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
-                            <form class="example-form" style="margin: 0 2%;" [formGroup]="bookForm" (ngSubmit)="search()">
+                            <form class="example-form" style="margin: 0;" [formGroup]="bookForm" (ngSubmit)="search()">
                 
                                 <div class="form-group">
                                 <div class="input-group no-border" style="width: 100%;">
@@ -103,6 +103,9 @@
                                     <button type="submit" class="btn btn-white btn-round btn-just-icon">
                                     <i class="material-icons">search</i>
                                     </button>
+                                    <button type="submit" class="btn btn-sm btn-primary" (click)="reset()">
+                                        Reset
+                                      </button>
                                 </div>
                                 </div>
                         
