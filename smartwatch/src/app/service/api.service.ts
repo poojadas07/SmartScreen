@@ -27,6 +27,16 @@ export class ApiService {
     return Promise.reject(errMsg);
   }
 
+  sendEmail(name, email, message) {
+    let urlString = environment.serverBaseUrl +'sendMail';
+    const obj = {
+      name: name,
+      email: email,
+      message: message,
+    };
+    return this.http.post(urlString, obj);
+  }
+
   fetchUserById(userId: String): Observable<any>{
     let urlString = environment.serverBaseUrl + 'user/' + userId;
 

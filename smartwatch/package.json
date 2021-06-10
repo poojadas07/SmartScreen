@@ -26,6 +26,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.35",
     "@fortawesome/free-brands-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
+    "angular2-flash-messages": "^3.0.1",
     "chart.js": "^2.9.4",
     "jspdf": "^2.3.1",
     "ng-material-multilevel-menu": "^5.5.3",

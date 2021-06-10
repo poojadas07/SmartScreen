@@ -31,6 +31,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
+import { FlashMessagesModule } from 'angular2-flash-messages';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import {MatSelectModule} from '@angular/material/select';
     MatSelectModule,
     ReactiveFormsModule,
     LayoutModule,
+    FlashMessagesModule.forRoot(),
     MatPaginatorModule ,
     MatProgressBarModule,
     MatTreeModule,

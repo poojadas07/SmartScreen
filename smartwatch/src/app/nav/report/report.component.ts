@@ -7,6 +7,7 @@ import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 import { ApiService } from 'src/app/service/api.service';
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
+import { FlashMessagesModule, FlashMessagesService } from 'angular2-flash-messages';
 
 export interface ScreenData {
   sort: number;
@@ -58,7 +59,8 @@ export class ReportComponent implements AfterViewInit {
   areas: any;
 
   constructor(public formBuilder: FormBuilder,
-    private apiService: ApiService) {
+    private apiService: ApiService,
+    private flashMessages: FlashMessagesService,) {
     this.bookForm = this.formBuilder.group({
       searchvalue: [''],
     }); 
@@ -161,6 +163,19 @@ export class ReportComponent implements AfterViewInit {
       pdfMake.createPdf(docDefinition).open();      
     }
 
+  }
+
+  sendMail() {
+    const name = "Pooja";
+    const email = "poojadas04kv@gmail.com";
+    const message = "Hii Friends!!";
+    this.apiService.sendEmail(name, email, message).subscribe(success => {
+      // this.flashMessages.show('You are data we succesfully submitted', { cssClass: 'alert-success', timeout: 3000 });
+      console.log(success);
+    }, error => {
+      console.log(error);
+      // this.flashMessages.show('Something went wrong', { cssClass: 'alert-danger', timeout: 3000 });
+    });
   }
 
 }
