@@ -169,12 +169,8 @@ export class ReportComponent implements AfterViewInit {
     const name = "Pooja";
     const email = "poojadas04kv@gmail.com";
     const message = "Hii Friends!!";
-    this.apiService.sendEmail(name, email, message).subscribe(success => {
-      // this.flashMessages.show('You are data we succesfully submitted', { cssClass: 'alert-success', timeout: 3000 });
-      console.log(success);
-    }, error => {
-      console.log(error);
-      // this.flashMessages.show('Something went wrong', { cssClass: 'alert-danger', timeout: 3000 });
+    this.apiService.sendEmail(email).subscribe((res) => {
+      console.log(res)
     });
   }
 

@@ -27,14 +27,14 @@ export class ApiService {
     return Promise.reject(errMsg);
   }
 
-  sendEmail(name, email, message) {
+  sendEmail(data) {
     let urlString = environment.serverBaseUrl +'sendMail';
-    const obj = {
-      name: name,
-      email: email,
-      message: message,
-    };
-    return this.http.post(urlString, obj);
+
+    return this.http.post(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
   }
 
   fetchUserById(userId: String): Observable<any>{
@@ -45,6 +45,26 @@ export class ApiService {
         map(data => data),
         catchError(this.handleError)
       );
+  }
+
+  loginUser(data): Observable<any>{
+    let urlString = environment.serverBaseUrl + 'login';
+
+    return this.http.post(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );    
+  }
+
+  signupUser(data): Observable<any>{
+    let urlString = environment.serverBaseUrl + 'register';
+
+    return this.http.post(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );    
   }
 
   updateProfile(userId: String , data): Observable<any> {
