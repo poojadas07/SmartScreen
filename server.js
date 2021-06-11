@@ -48,6 +48,8 @@ app.get('/download', (req, res) => {
     res.download('Report.pdf');
 });
 
+require('./app/routes/user.route.js')(app);
+
 // Require the country routes
 require('./app/routes/country.route.js')(app);
 

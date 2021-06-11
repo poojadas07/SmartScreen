@@ -6,6 +6,7 @@ import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 import { ApiService } from 'src/app/service/api.service';
 import { FileUploadService } from 'src/app/service/file-upload.service';
+import { ModalService } from 'src/app/service/modal.service';
 import { ProfileAddComponent } from './profile-add/profile-add.component';
 
 @Component({
@@ -32,7 +33,8 @@ export class ProfileComponent implements OnInit {
   constructor(public formBuilder: FormBuilder,
               private fileUploadService: FileUploadService,
               private apiService: ApiService,
-              public dialog: MatDialog,){
+              public dialog: MatDialog,
+              private modalService: ModalService,){
       this.bookForm = this.formBuilder.group({
         old: [''],
         password: [''],
@@ -129,11 +131,11 @@ export class ProfileComponent implements OnInit {
       this.apiService.forgotPassword('60c21a0d0a7f573538b27002', this.bookForm.value).subscribe((res) => {
         this.profile = res;
         this.collapsed = !this.collapsed;
-        alert("Password set successfully !!")
+        this.modalService.openInfoModal("Password set successfully !!");
       });
     }
     else{
-      alert("Password not same !!")
+      this.modalService.openInfoModal("Password not same !!");
     }
   }
 

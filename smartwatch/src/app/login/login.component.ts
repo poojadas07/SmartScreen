@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
+import { ModalService } from '../service/modal.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private router: Router,
     public formBuilder: FormBuilder,
-    private apiService: ApiService,) 
+    private apiService: ApiService,
+    private modalService: ModalService,) 
     {
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.required],
@@ -42,7 +44,7 @@ export class LoginComponent implements OnInit {
         this.router.navigate(["dashboard"]);
       }
       else {
-        alert("Credentials not found !!")
+        this.modalService.openInfoModal("Credentials not found !!");
       }
     });
   }

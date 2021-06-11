@@ -77,7 +77,7 @@ exports.pop_country = (req , res) => {
       })
       .then( countries => {
         res.send(countries);
-        console.log(countries)
+        // console.log(countries)
       })
       .catch(err => {
         res.status(500).send({
