@@ -1,6 +1,9 @@
 module.exports = (app) => {
     const panel = require('../controllers/panel.controller.js');
 
+    // Add value to the panel
+    // app.post('/panel' , panel.create);
+
     // Reterive all panels
     app.get('/panel' , panel.findAll);
 
@@ -9,5 +12,7 @@ module.exports = (app) => {
 
      // Reterive the single panelByDepartment
      app.get('/panel/screen/:screenId' , panel.findOneByScreen);
+
+     app.post('/panel/sensor/:panelId', panel.pairSensorWithPanel);
 
 }

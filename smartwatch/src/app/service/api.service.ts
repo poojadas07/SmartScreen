@@ -554,10 +554,10 @@ export class ApiService {
       );
   }
 
-  pairPanelWithSensor(panelId: String , sensorId: String): Observable<any> {
-    let urlString = environment.serverBaseUrl + 'panel/' + panelId + '&sensorId=' + sensorId;
+  pairPanelWithSensor(panelId: String , data): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'panel/sensor/' + panelId ;
 
-    return this.http.post(urlString, {})
+    return this.http.post(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -566,6 +566,16 @@ export class ApiService {
 
   generatePDF(msg: String) {
     let urlString = environment.serverBaseUrl + 'generateReport';
+
+    return this.http.get(urlString , {})
+      .pipe(
+          map(data => data),
+          catchError(this.handleError)
+      );
+  }
+
+  produceMessages(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'producer';
 
     return this.http.get(urlString , {})
       .pipe(

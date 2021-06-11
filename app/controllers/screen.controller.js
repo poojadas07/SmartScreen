@@ -40,6 +40,8 @@ exports.create = (req, res) => {
                     row_no: i,
                     column_no: j,
                     current_value: 0,
+                    current_time_value: new Date(),
+                    current_updated_time: new Date(),
                     createdAt: new Date(),
                     updatedAt: new Date(),
                     screen_id: data._id,

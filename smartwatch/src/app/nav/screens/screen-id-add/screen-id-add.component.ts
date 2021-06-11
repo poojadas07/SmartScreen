@@ -27,7 +27,7 @@ export class ScreenIdAddComponent implements OnInit {
         name: ['', Validators.required],
         rows: ['', Validators.required],
         columns: ['', Validators.required],
-        screenId: ['', Validators.required],
+        sensorId: ['', Validators.required],
       })
      }
 
@@ -47,9 +47,9 @@ export class ScreenIdAddComponent implements OnInit {
 
   addScreenId() : any  {
 
-    this.apiService.updateCountry(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
+    this.apiService.pairPanelWithSensor(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
         this.dialogRef.close();
-        this.modalService.openInfoModal('Screen ID '+res.screenId+' Added Successfully !!');
+        this.modalService.openInfoModal('Sensor ID '+res.sensor_id+' Added Successfully !!');
     });
   }
 

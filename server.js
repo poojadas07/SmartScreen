@@ -75,6 +75,10 @@ require('./app/routes/pdfGeneration.route.js')(app);
 
 require('./app/routes/contact.route.js')(app);
 
+require('./app/routes/consumer.route')(app);
+
+require('./app/routes/producer.route')(app);
+
 // listen for requests 
 const port = process.env.PORT || 3000;
 

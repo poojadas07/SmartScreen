@@ -122,3 +122,29 @@ exports.findOneByScreen = (req , res) => {
         });
     });
 };
+
+exports.pairSensorWithPanel = (req, res) => {
+
+    // console.log(req.body)
+    Panel.findByIdAndUpdate(req.params.panelId, {
+        sensor_id: req.body.sensorId,
+        updatedAt: new Date(),
+    }, {new : true})
+    .then(panel => {
+        if(!panel){
+            return res.status(404).send({
+                message: "Panel not found with id " + req.params.panelId
+            });
+        }
+        res.send(panel);
+    }).catch(err => {
+        if(err.kind === "ObjectId"){
+            return res.status(404).send({
+                message: "Panel not found with id " + req.params.panelId
+            });
+        }
+        return res.status(500).send({
+            message: "Error updating panel with id " + req.params.panelId
+        });
+    });
+}

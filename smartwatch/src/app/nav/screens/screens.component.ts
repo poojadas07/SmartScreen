@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
+import { interval, Subscription } from 'rxjs';
 import { ApiService } from 'src/app/service/api.service';
 import { ModalService } from 'src/app/service/modal.service';
 import { ScreenIdAddComponent } from './screen-id-add/screen-id-add.component';
@@ -21,6 +22,8 @@ export class ScreensComponent implements AfterViewInit {
   selectedItem: any;
   setItem: any;
 
+  mySubscription: Subscription;
+  
   setfilters = ['All', 'Faulty', 'Active'];
 
   messagelist: any;
@@ -36,6 +39,11 @@ export class ScreensComponent implements AfterViewInit {
       this.bookForm = this.formBuilder.group({
         searchvalue: [''],
       }); 
+
+      // this.mySubscription= interval(50000).subscribe((x =>{
+      //       // this.doStuff();
+      //       this.produce();
+      //   }));
 
      }
 
@@ -157,4 +165,9 @@ export class ScreensComponent implements AfterViewInit {
     this.collapsed = !this.collapsed;
   }
   
+  produce(): void{
+    this.apiService.produceMessages().subscribe((res) => {
+      console.log(res);
+    });
+  }
 }
