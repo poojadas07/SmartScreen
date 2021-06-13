@@ -11,6 +11,9 @@ const Screen = new mongoose.Schema({
     columns: {
         type: Number,      
     },
+    status: {
+        type: String,
+    },
     createdAt: {
       type: Date,
     },

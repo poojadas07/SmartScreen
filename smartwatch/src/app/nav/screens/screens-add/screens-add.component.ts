@@ -33,6 +33,7 @@ export class ScreensAddComponent implements OnInit {
         name: ['', Validators.required],
         rows: ['', Validators.required],
         columns: ['', Validators.required],
+        status: ['', Validators.required],
         department_id: ['', Validators.required],
         client_id: ['', Validators.required],
         location_id: ['', Validators.required],

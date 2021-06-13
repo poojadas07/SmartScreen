@@ -3,8 +3,8 @@
 <div class="content">
     <div class="container-fluid">
 
-        <button (click)="sendMail()" name="submit" type="submit" value="SEND MESSAGE">SEND MESSAGE
-        </button>
+        <!-- <button (click)="sendMail()" name="submit" type="submit" value="SEND MESSAGE">SEND MESSAGE
+        </button> -->
 
         <h3 style="padding-left: 2%; position: relative;">Reports
             <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="position: absolute; right: 110px; top: 5px;"
@@ -124,11 +124,6 @@
                                 <!-- ID Column -->
                                 <ng-container matColumnDef="sort">
                                     <th mat-header-cell *matHeaderCellDef mat-sort-header> SI </th>
-                                    <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
-                                </ng-container>
-                                
-                                <ng-container matColumnDef="id">
-                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
                                     <td mat-cell *matCellDef="let row; let i = index;"> {{i+1}} </td>
                                 </ng-container>
 

@@ -18,6 +18,7 @@ exports.create = (req, res) => {
         name: req.body.name ,
         rows: req.body.rows,
         columns: req.body.columns,
+        status: req.body.status,
         createdAt: new Date(),
         updatedAt: new Date(),
         department_id: req.body.department_id,
@@ -30,8 +31,6 @@ exports.create = (req, res) => {
     screen.save()
     .then(data => {
         res.send(data);
-        // var screen_id = data._id;
-        // console.log(screen_id);
 
         for (let i=0; i<req.body.rows; i++){
             for (let j=0; j<req.body.columns; j++){
@@ -62,20 +61,6 @@ exports.create = (req, res) => {
         });
     });
 };
-
-
-// Retrieve and return all locations from the database.
-// exports.findAll = (req , res) => {
-//     Location.find()
-//     .then( locations => {
-//         res.send(locations);
-//     })
-//     .catch(err => {
-//         res.status(500).send({
-//             message: err.message || "Some error occurred while retrieving locations."
-//         });
-//     });
-// };
 
 exports.screenPanel = (req , res) => {
 
@@ -300,8 +285,7 @@ exports.update = (req , res) => {
     // Find client and update it with the request body
     Screen.findByIdAndUpdate(req.params.screenId , {
         name: req.body.name ,
-        rows: req.body.rows,
-        columns: req.body.columns,
+        status: req.body.status,
         updatedAt: new Date(),
         department_id: req.body.department_id,
         client_id: req.body.client_id,

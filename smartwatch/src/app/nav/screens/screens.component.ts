@@ -40,10 +40,9 @@ export class ScreensComponent implements AfterViewInit {
         searchvalue: [''],
       }); 
 
-      // this.mySubscription= interval(50000).subscribe((x =>{
-      //       // this.doStuff();
-      //       this.produce();
-      //   }));
+      this.mySubscription= interval(50000).subscribe((x =>{
+            this.produce();
+        }));
 
      }
 
@@ -78,9 +77,9 @@ export class ScreensComponent implements AfterViewInit {
     dialogRef.afterClosed().subscribe(res => {
       // console.log('The dialog was closed');
 
-      this.apiService.fetchAllScreens().subscribe((res) => {
-        this.screens = res;
-      });
+      // this.apiService.fetchAllScreens().subscribe((res) => {
+      //   this.screens = res;
+      // });
 
     });
   }
@@ -123,22 +122,28 @@ export class ScreensComponent implements AfterViewInit {
       dialogRef = this.dialog.open(ScreensAddComponent , {
         data: {dialogTitle: "Add Screen"}
       });
+
+      dialogRef.afterClosed().subscribe(res => {
+        // console.log('The dialog was closed');
+  
+        this.apiService.fetchAllScreens().subscribe((res) => {
+          this.screens = res;
+        });
+  
+      });
     }
     else {
       // console.log(isEdit);
       dialogRef = this.dialog.open(ScreensAddComponent ,{
         data: {dialogTitle: "Edit Screen" , dialogText: value}
       });
+
+      dialogRef.afterClosed().subscribe(res => {
+        // console.log('The dialog was closed');
+  
+      });
     }
 
-    dialogRef.afterClosed().subscribe(res => {
-      // console.log('The dialog was closed');
-
-      this.apiService.fetchAllScreens().subscribe((res) => {
-        this.screens = res;
-      });
-
-    });
     
   }
 

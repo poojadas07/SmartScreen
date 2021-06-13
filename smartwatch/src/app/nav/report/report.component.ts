@@ -40,7 +40,7 @@ export class ReportComponent implements AfterViewInit {
   setareas = ['Country', 'Region', 'Location', 'Deptment', 'Screen'];
   rows = [5,10,15,20];
   
-  displayedColumns: string[] = ['sort' , 'id', 'country', 'region', 'location', 'client', 'department', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
+  displayedColumns: string[] = ['sort' , 'country', 'region', 'location', 'client', 'department', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
 
   @Input() messagelist: any[];
   
@@ -134,8 +134,8 @@ export class ReportComponent implements AfterViewInit {
             style: 'tableStyle',
             widths: ['auto', 'auto', 'auto', 'auto','auto', 'auto', 'auto', 'auto', 100],
             body: [
-              ['SI', 'ID', 'Country', 'Region','Location', 'Client', 'Department' ,'Screen', 'Installed'],
-              ...this.screens.map(s => (['1', '1',  s.country.name, s.region.name, s.location.name, s.client.name, s.department.name, s.name, s.createdAt ]))
+              ['SI', 'Country', 'Region','Location', 'Client', 'Department' ,'Screen', 'Installed'],
+              ...this.screens.map(s => (['1',  s.country.name, s.region.name, s.location.name, s.client.name, s.department.name, s.name, s.createdAt ]))
             ]
           }
         },

@@ -59,6 +59,15 @@
             </mat-form-field>
         </div>
         <div class="form-group">
+            <mat-form-field appearance="legacy" style="width:90% !important">
+                <mat-label>Status</mat-label>
+                <mat-select formControlName="status">
+                    <mat-option value="Active">Active</mat-option>
+                    <mat-option value="Faulty">Faulty</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
             <button mat-raised-button color="primary" style="width:90% !important" type="submit">{{dialogTitle}}</button>
         </div>
     </form>    
