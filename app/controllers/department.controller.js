@@ -1,5 +1,9 @@
 const Department = require('../model/department');
 
+const Screens = require('../model/screen');
+
+const Panels = require('../model/panel');
+
 // create and save a new department
 exports.create = (req, res) => {
     // Validate request
@@ -273,5 +277,21 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete department with id " + req.params.departmentId
         });
+    });
+
+    Screens.remove( { "department_id": req.params.departmentId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Panels.remove( { "department_id": req.params.departmentId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
     });
 };

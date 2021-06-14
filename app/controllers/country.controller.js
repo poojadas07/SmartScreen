@@ -10,6 +10,8 @@ const Department = require('../model/department');
 
 const Screens = require('../model/screen');
 
+const Panels = require('../model/panel');
+
 
 // create and save a new country
 exports.create = (req, res) => {
@@ -182,5 +184,53 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete country with id " + req.params.countryId
         });
+    });
+
+    Region.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Location.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Client.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Department.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Screens.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Panels.remove( { "country_id": req.params.countryId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
     });
 };

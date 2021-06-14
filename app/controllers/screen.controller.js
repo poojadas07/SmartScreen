@@ -332,4 +332,12 @@ exports.delete = (req, res) => {
             message: "Could not delete screen with id " + req.params.screenId
         });
     });
+
+    Panel.remove( { "screen_id": req.params.screenId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
 };

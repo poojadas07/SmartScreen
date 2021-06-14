@@ -1,5 +1,13 @@
 const Location = require('../model/location');
 
+const Client = require('../model/client');
+
+const Department = require('../model/department');
+
+const Screens = require('../model/screen');
+
+const Panels = require('../model/panel');
+
 // create and save a new location
 exports.create = (req, res) => {
     // Validate request
@@ -219,5 +227,37 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete location with id " + req.params.locationId
         });
+    });
+
+    Client.remove( { "location_id": req.params.locationId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Department.remove( { "location_id": req.params.locationId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Screens.remove( { "location_id": req.params.locationId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Panels.remove( { "location_id": req.params.locationId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
     });
 };

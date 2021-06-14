@@ -1,6 +1,17 @@
 const Region = require('../model/region');
 
 const Country = require('../model/country');
+
+const Location = require('../model/location');
+
+const Client = require('../model/client');
+
+const Department = require('../model/department');
+
+const Screens = require('../model/screen');
+
+const Panels = require('../model/panel');
+
 const ObjectID = require('mongodb').ObjectID;
 
 // create and save a new region
@@ -198,5 +209,45 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete region with id " + req.params.regionId
         });
+    });
+
+    Location.remove( { "region_id": req.params.regionId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Client.remove( { "region_id": req.params.regionId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Department.remove( { "region_id": req.params.regionId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Screens.remove( { "region_id": req.params.regionId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Panels.remove( { "region_id": req.params.regionId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
     });
 };

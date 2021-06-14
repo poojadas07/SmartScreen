@@ -40,9 +40,9 @@ export class ScreensComponent implements AfterViewInit {
         searchvalue: [''],
       }); 
 
-      this.mySubscription= interval(50000).subscribe((x =>{
-            this.produce();
-        }));
+      // this.mySubscription= interval(50000).subscribe((x =>{
+      //       this.produce();
+      //   }));
 
      }
 
@@ -101,8 +101,11 @@ export class ScreensComponent implements AfterViewInit {
           this.apiService.deleteScreen(screen._id).subscribe((res) => {
             // alert(res.message);
     
-            this.apiService.fetchAllScreens().subscribe((res) => {
+            this.apiService.fetchAllScreensPanel().subscribe((res) => {
               this.screens = res;
+              this.messagelist = res;
+              this.screensSize = res.length;
+              console.log(this.screens)
             });
     
           });
@@ -125,9 +128,12 @@ export class ScreensComponent implements AfterViewInit {
 
       dialogRef.afterClosed().subscribe(res => {
         // console.log('The dialog was closed');
-  
-        this.apiService.fetchAllScreens().subscribe((res) => {
+
+        this.apiService.fetchAllScreensPanel().subscribe((res) => {
           this.screens = res;
+          this.messagelist = res;
+          this.screensSize = res.length;
+          console.log(this.screens)
         });
   
       });
@@ -141,6 +147,12 @@ export class ScreensComponent implements AfterViewInit {
       dialogRef.afterClosed().subscribe(res => {
         // console.log('The dialog was closed');
   
+        this.apiService.fetchAllScreensPanel().subscribe((res) => {
+          this.screens = res;
+          this.messagelist = res;
+          this.screensSize = res.length;
+          console.log(this.screens)
+        });
       });
     }
 
@@ -149,6 +161,21 @@ export class ScreensComponent implements AfterViewInit {
 
   addCard(): void{
     this.addnewCard = !this.addnewCard;
+  }
+
+  getColor(panel) {
+    if (panel.current_value == '-1') {
+      return '#F1C40F'; // Idle situation
+    }
+    else if (panel.current_value == '1') {
+      return '#FA1A03'; // Red Accent color
+    }
+    else if (panel.current_value == '2') {
+      return '#2ECC71' // Green Accent Color
+    }
+    else {
+      return 'lightgrey';
+    }
   }
 
   search() : any {

@@ -1,5 +1,11 @@
 const Client = require('../model/client');
 
+const Department = require('../model/department');
+
+const Screens = require('../model/screen');
+
+const Panels = require('../model/panel');
+
 // create and save a new client
 exports.create = (req, res) => {
     // Validate request
@@ -246,5 +252,29 @@ exports.delete = (req, res) => {
         return res.status(500).send({
             message: "Could not delete client with id " + req.params.clientId
         });
+    });
+
+    Department.remove( { "client_id": req.params.clientId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Screens.remove( { "client_id": req.params.clientId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
+    });
+
+    Panels.remove( { "client_id": req.params.clientId})
+    .then(data => {
+        console.log(data);
+    })
+    .catch(err =>{
+        console.log(err);
     });
 };

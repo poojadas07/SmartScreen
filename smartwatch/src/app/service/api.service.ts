@@ -505,7 +505,7 @@ export class ApiService {
 
   addScreen(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen';
-    console.log(data);
+    // console.log(data);
     return this.http.post(urlString, data, {})
       .pipe(
         map(data => data),

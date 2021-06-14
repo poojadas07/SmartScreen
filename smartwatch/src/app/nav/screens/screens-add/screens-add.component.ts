@@ -73,6 +73,7 @@ export class ScreensAddComponent implements OnInit {
         this.bookForm.get('name').setValue(this.screen.name);
         this.bookForm.get('rows').setValue(this.screen.rows);
         this.bookForm.get('columns').setValue(this.screen.columns);
+        this.bookForm.get('status').setValue(this.screen.status);
         this.bookForm.get('department_id').setValue(this.screen.department_id);
         this.bookForm.get('client_id').setValue(this.screen.client_id);
         this.bookForm.get('location_id').setValue(this.screen.location_id);
