@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
       });
     }
     else {
-      alert("Password is not equal !!");
+      this.modalService.openInfoModal("Password is not equal !!");
     }
   }
   
