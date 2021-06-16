@@ -76,14 +76,12 @@ export class ReportComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
       console.log(this.dataSource);
       this.screens = res;
     });
 
-    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  
   }
  
    setfilter(value): void{

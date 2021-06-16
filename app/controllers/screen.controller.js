@@ -32,10 +32,12 @@ exports.create = (req, res) => {
     .then(data => {
         res.send(data);
 
+        var counter = 0;
         for (let i=0; i<req.body.rows; i++){
             for (let j=0; j<req.body.columns; j++){
+                counter++;
                 const panel = new Panel({
-                    name: "P-" + i + j,
+                    name: "P-" + counter,
                     row_no: i,
                     column_no: j,
                     current_value: 0,

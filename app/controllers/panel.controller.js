@@ -111,7 +111,7 @@ exports.findOne = (req , res) => {
 // Find a single panel with a screenId
 exports.findOneByScreen = (req , res) => {
     Panel.find({
-        "screen_id" :  req.params.departmentId 
+        "screen_id" :  req.params.screenId 
     })
     .then(panel => {
         res.send(panel);

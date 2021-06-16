@@ -38,7 +38,7 @@ const ELEMENT_DATA: ScreenData[] = [
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.css']
 })
-export class TableComponent implements AfterViewInit {
+export class TableComponent implements OnInit {
 
   bookForm: FormGroup;
   selectedItem: any;
@@ -49,13 +49,14 @@ export class TableComponent implements AfterViewInit {
   
   displayedColumns: string[] = ['sort' , 'id', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
 
-  @Input() messagelist: any[];
+  @Input() messagelist: any;
   
   dataSource: MatTableDataSource<ScreenData>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   screens: any;
+  screenName: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService) {
@@ -65,15 +66,16 @@ export class TableComponent implements AfterViewInit {
 
    }
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
 
-    this.apiService.fetchAllScreens().subscribe((res) => {
+    this.screenName = this.messagelist.name;
+
+    this.apiService.fetchPanelByScreen(this.messagelist._id).subscribe((res) => {
+      console.log(res);
       this.dataSource = new MatTableDataSource(res);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
-
-    // this.dataSource = new MatTableDataSource(ELEMENT_DATA);
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
     
   }
 
@@ -91,5 +93,4 @@ export class TableComponent implements AfterViewInit {
       this.screens = res;
     });
   }
-
 }

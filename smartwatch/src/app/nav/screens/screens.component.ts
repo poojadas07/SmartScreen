@@ -52,7 +52,6 @@ export class ScreensComponent implements AfterViewInit {
 
     this.apiService.fetchAllScreensPanel().subscribe((res) => {
       this.screens = res;
-      this.messagelist = res;
       this.screensSize = res.length;
       console.log(this.screens)
     });
@@ -95,8 +94,6 @@ export class ScreensComponent implements AfterViewInit {
   }
 
   delete(screen){
-    // console.log('hhh');
-
     this.openConfirmModal(screen);
   }
 
@@ -105,11 +102,9 @@ export class ScreensComponent implements AfterViewInit {
     this.modalService.openConfirmModal('Are you sure you want to do?', (answer: boolean) => {
         if (answer) {
           this.apiService.deleteScreen(screen._id).subscribe((res) => {
-            // alert(res.message);
     
             this.apiService.fetchAllScreensPanel().subscribe((res) => {
               this.screens = res;
-              this.messagelist = res;
               this.screensSize = res.length;
               console.log(this.screens)
             });
@@ -141,7 +136,6 @@ export class ScreensComponent implements AfterViewInit {
 
         this.apiService.fetchAllScreensPanel().subscribe((res) => {
           this.screens = res;
-          this.messagelist = res;
           this.screensSize = res.length;
           console.log(this.screens)
         });
@@ -163,7 +157,6 @@ export class ScreensComponent implements AfterViewInit {
   
         this.apiService.fetchAllScreensPanel().subscribe((res) => {
           this.screens = res;
-          this.messagelist = res;
           this.screensSize = res.length;
           console.log(this.screens)
         });
@@ -171,15 +164,16 @@ export class ScreensComponent implements AfterViewInit {
         this.apiService.fetchAllActiveScreens().subscribe((res) => {
           this.activescreenSize = res.length;
         });
-        
+
       });
     }
 
     
   }
 
-  addCard(): void{
+  addCard(screen: any): void{
     this.addnewCard = !this.addnewCard;
+    this.messagelist = screen;
   }
 
   getColor(panel) {
