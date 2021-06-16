@@ -68,6 +68,8 @@ export class ClientComponent implements OnInit {
     );
   clientSize: any;
   areas: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -83,6 +85,14 @@ export class ClientComponent implements OnInit {
   ngOnInit() {
     this.apiService.fetchAllClients().subscribe((res) => {
       this.clientSize = res.length;
+    });
+
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

@@ -70,6 +70,8 @@ export class CountriesComponent implements OnInit {
     );
   countrySize: any;
   areas: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -85,6 +87,14 @@ export class CountriesComponent implements OnInit {
   ngOnInit() {
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.countrySize = res.length;
+    });
+
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

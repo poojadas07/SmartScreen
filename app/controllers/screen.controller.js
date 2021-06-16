@@ -171,6 +171,18 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findAllActiveScreens = (req, res) => {
+    Screen.find({ "status": "Active" })
+    .then( screens => {
+        res.send(screens);
+    })
+    .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving screens."
+        });
+    });
+};
+
 // Retrieve and return screen by name from the database.
 exports.findByName = (req , res) => {
 

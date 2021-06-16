@@ -466,6 +466,16 @@ export class ApiService {
       );
   }
 
+  fetchAllActiveScreens(): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'activescreen';
+
+    return this.http.get(urlString, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchAllScreensPanel(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screenPanel';
 

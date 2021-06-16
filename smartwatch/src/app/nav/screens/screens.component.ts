@@ -29,6 +29,8 @@ export class ScreensComponent implements AfterViewInit {
   messagelist: any;
   collapsed: boolean;
   screensSize: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -54,10 +56,14 @@ export class ScreensComponent implements AfterViewInit {
       this.screensSize = res.length;
       console.log(this.screens)
     });
+    
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
 
-    // this.apiService.fetchAllCountries().subscribe((res) => {
-    //   this.messagelist = res;
-    // });
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
+    });
   }
 
   back(): void {
@@ -107,6 +113,10 @@ export class ScreensComponent implements AfterViewInit {
               this.screensSize = res.length;
               console.log(this.screens)
             });
+
+            this.apiService.fetchAllActiveScreens().subscribe((res) => {
+              this.activescreenSize = res.length;
+            });
     
           });
           return;
@@ -135,6 +145,10 @@ export class ScreensComponent implements AfterViewInit {
           this.screensSize = res.length;
           console.log(this.screens)
         });
+
+        this.apiService.fetchAllActiveScreens().subscribe((res) => {
+          this.activescreenSize = res.length;
+        });
   
       });
     }
@@ -153,6 +167,11 @@ export class ScreensComponent implements AfterViewInit {
           this.screensSize = res.length;
           console.log(this.screens)
         });
+
+        this.apiService.fetchAllActiveScreens().subscribe((res) => {
+          this.activescreenSize = res.length;
+        });
+        
       });
     }
 

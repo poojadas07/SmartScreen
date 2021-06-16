@@ -68,6 +68,8 @@ export class DepartmentComponent implements OnInit {
     );
   departmentSize: any;
   areas: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -84,6 +86,14 @@ export class DepartmentComponent implements OnInit {
 
     this.apiService.fetchAllDepartments().subscribe((res) => {
       this.departmentSize = res.length;
+    });
+
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

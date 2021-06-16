@@ -67,6 +67,8 @@ export class LocationsComponent implements OnInit {
     );
   locationSize: any;
   areas: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -82,6 +84,14 @@ export class LocationsComponent implements OnInit {
   ngOnInit() {
     this.apiService.fetchAllLocations().subscribe((res) => {
       this.locationSize = res.length;
+    });
+
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

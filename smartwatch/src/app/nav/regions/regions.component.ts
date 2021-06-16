@@ -68,6 +68,8 @@ export class RegionsComponent implements OnInit {
     );
   regionSize: any;
   areas: any;
+  screenSize: any;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -85,6 +87,14 @@ export class RegionsComponent implements OnInit {
     this.apiService.fetchAllRegions().subscribe((res) => {
       console.log(res)
       this.regionSize = res.length;
+    });
+
+    this.apiService.fetchAllScreens().subscribe((res) => {
+      this.screenSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

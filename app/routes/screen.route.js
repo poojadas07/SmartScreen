@@ -7,6 +7,8 @@ module.exports = (app) => {
     // Reterive all screens
     app.get('/screen' , screen.findAll);
 
+    app.get('/activescreen' , screen.findAllActiveScreens);
+
     app.get("/screenPanel", screen.screenPanel);
 
     app.get("/screenPanel/:screenId", screen.screenPanelByScreenId);

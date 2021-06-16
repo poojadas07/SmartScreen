@@ -21,6 +21,7 @@ export class SettingsComponent implements OnInit {
   collapsed: boolean;
   screensSize: any;
   screenId: string;
+  activescreenSize: any;
 
   constructor(public formBuilder: FormBuilder,
     private activatedRout: ActivatedRoute,
@@ -37,6 +38,10 @@ export class SettingsComponent implements OnInit {
 
     this.apiService.fetchAllScreens().subscribe((res) => {
       this.screensSize = res.length;
+    });
+
+    this.apiService.fetchAllActiveScreens().subscribe((res) => {
+      this.activescreenSize = res.length;
     });
 
     this.apiService.fetchScreensPanelByScreenId(this.screenId).subscribe((res) => {
