@@ -27,9 +27,10 @@ export class ProfileComponent implements OnInit {
   phone: any;
 
   @ViewChild("fileUpload", {static: false}) fileUpload: ElementRef;files  = [];
-  userId: string;
+
   profile: any;
   password: any;
+  id: string;
   constructor(public formBuilder: FormBuilder,
               private fileUploadService: FileUploadService,
               private apiService: ApiService,
@@ -49,16 +50,16 @@ export class ProfileComponent implements OnInit {
   
   ngOnInit(): void {
 
-    this.userId = "";
+    this.id = localStorage.getItem('token');  
+    console.log(this.id);
 
-    this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+    this.apiService.fetchUserById(this.id).subscribe((res) => {
       this.name = res.username;
       this.email = res.email;
       this.phone = res.phone;
 
-      this.bookForm.get('old').setValue(res.password);
-      console.log(res)
     });
+    
     
   }
 
@@ -126,11 +127,11 @@ export class ProfileComponent implements OnInit {
   }
 
   changePass(): void{
-    this.userId = "";
     if (this.bookForm.value.confirm == this.bookForm.value.password){
-      this.apiService.changePassword('60c21a0d0a7f573538b27002', this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile(this.id, this.bookForm.value).subscribe((res) => {
         this.profile = res;
         this.collapsed = !this.collapsed;
+        this.bookForm.reset();
         this.modalService.openInfoModal("Password set successfully !!");
       });
     }
@@ -165,7 +166,7 @@ export class ProfileComponent implements OnInit {
         });
 
         dialogRef.afterClosed().subscribe(res => {
-          this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+          this.apiService.fetchUserById(this.id).subscribe((res) => {
             this.name = res.username;
           });
         });
@@ -178,7 +179,7 @@ export class ProfileComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(res => {
-        this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+        this.apiService.fetchUserById(this.id).subscribe((res) => {
           this.email = res.email;
         });
       });
@@ -191,7 +192,7 @@ export class ProfileComponent implements OnInit {
       });
 
       dialogRef.afterClosed().subscribe(res => {
-        this.apiService.fetchUserById('60c21a0d0a7f573538b27002').subscribe((res) => {
+        this.apiService.fetchUserById(this.id).subscribe((res) => {
           this.phone = res.phone;
         });
       });

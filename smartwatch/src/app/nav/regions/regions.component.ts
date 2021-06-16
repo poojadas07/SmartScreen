@@ -128,6 +128,7 @@ export class RegionsComponent implements OnInit {
 
       this.apiService.fetchAllRegions().subscribe((res) => {
         this.regions = res;
+        this.regionSize = res.length;
       });
 
     });

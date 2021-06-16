@@ -57,6 +57,11 @@ export class ApiService {
       );    
   }
 
+  logout() :void {    
+    localStorage.setItem('isLoggedIn','false');    
+    localStorage.removeItem('token');    
+  }
+
   signupUser(data): Observable<any>{
     let urlString = environment.serverBaseUrl + 'register';
 
@@ -82,16 +87,6 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'forgot';
 
     return this.http.post(urlString, data, {})
-      .pipe(
-        map(data => data),
-        catchError(this.handleError)
-      );
-  }
-
-  changePassword(userId: String , data): Observable<any> {
-    let urlString = environment.serverBaseUrl + 'changePass/' + userId;
-
-    return this.http.put(urlString, data, {})
       .pipe(
         map(data => data),
         catchError(this.handleError)

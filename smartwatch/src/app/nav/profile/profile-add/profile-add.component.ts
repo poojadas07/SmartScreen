@@ -18,6 +18,7 @@ export class ProfileAddComponent implements OnInit {
   text: any;
   profile: any;
   val: string;
+  id: string;
 
   constructor(public formBuilder: FormBuilder,
     private apiService: ApiService,
@@ -34,6 +35,8 @@ export class ProfileAddComponent implements OnInit {
 
   ngOnInit(): void {
     this.dialogTitle = this.data.dialogTitle;
+    this.id = localStorage.getItem('token');  
+    console.log(this.id);
 
     if (this.dialogTitle == "Edit Name"){
       this.text = 'Enter Name'; 
@@ -56,19 +59,19 @@ export class ProfileAddComponent implements OnInit {
 
     if (this.dialogTitle == "Edit Name"){
       // alert(this.bookForm.value);
-      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Name '+res.username+' Edited Successfully !!');
+          this.modalService.openInfoModal('Username '+res.username+' Edited Successfully !!');
       });
     }
     else if (this.dialogTitle == "Edit Email"){
-      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
           this.modalService.openInfoModal('Email '+res.email+' Edited Successfully !!');
       });
     }
     else if (this.dialogTitle == "Edit Phone"){
-      this.apiService.updateProfile('60c21a0d0a7f573538b27002' , this.bookForm.value).subscribe((res) => {
+      this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
           this.modalService.openInfoModal('Phone '+res.phone+' Edited Successfully !!');
       });

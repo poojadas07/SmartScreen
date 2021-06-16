@@ -126,6 +126,7 @@ export class ClientComponent implements OnInit {
 
       this.apiService.fetchAllClients().subscribe((res) => {
         this.clients = res;
+        this.clientSize = res.length;
       });
 
     });

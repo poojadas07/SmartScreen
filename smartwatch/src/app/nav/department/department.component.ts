@@ -127,6 +127,7 @@ export class DepartmentComponent implements OnInit {
 
       this.apiService.fetchAllDepartments().subscribe((res) => {
         this.departments = res;
+        this.departmentSize = res.length;
       });
 
     });

@@ -124,6 +124,7 @@ export class CountriesComponent implements OnInit {
 
       this.apiService.fetchAllCountries().subscribe((res) => {
         this.countries = res;
+        this.countrySize = res.length;
       });
 
     });

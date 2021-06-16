@@ -33,6 +33,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSelectModule} from '@angular/material/select';
 import { FlashMessagesModule } from 'angular2-flash-messages';
 import { ForgotPasswordComponent } from './login/forgot-password/forgot-password.component';
+import { AuthGuard } from './guards/auth.guard';
 
 @NgModule({
   declarations: [
@@ -72,7 +73,7 @@ import { ForgotPasswordComponent } from './login/forgot-password/forgot-password
     MatExpansionModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

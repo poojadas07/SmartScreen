@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   password: string;
   loginForm: FormGroup;
   signupForm: FormGroup;
+  id: string;
 
   constructor(private router: Router,
     public formBuilder: FormBuilder,
@@ -37,19 +38,27 @@ export class LoginComponent implements OnInit {
      }
 
   ngOnInit(): void {
+    this.apiService.logout();
   }
 
   login() : void {
-    this.apiService.loginUser(this.loginForm.value).subscribe((res) => {
-      console.log(res);
+    if (this.loginForm.invalid) {  
+      return;  
+   }
+    else {
+        this.apiService.loginUser(this.loginForm.value).subscribe((res) => {
+          console.log(res);
 
-      if (res.length != 0){
-        this.router.navigate(["dashboard"]);
-      }
-      else {
-        this.modalService.openInfoModal("Credentials not found !!");
-      }
-    });
+          if (res.length != 0){
+            this.router.navigate(["dashboard"]);
+            localStorage.setItem('isLoggedIn', "true");  
+            localStorage.setItem('token', res._id);
+          }
+          else {
+            this.modalService.openInfoModal("Credentials not found !!");
+          }
+        });
+    }
   }
 
   signup() : void {

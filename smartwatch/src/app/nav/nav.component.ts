@@ -90,7 +90,8 @@ export class NavComponent implements OnInit{
   logout(): void {
     this.modalService.openConfirmModal('Are you sure you want to exit?', (answer: boolean) => {
       if (answer) {
-        this.router.navigate(["login"]);
+        this.apiService.logout();
+        this.router.navigate(["login"]);  
       }
     });
   }

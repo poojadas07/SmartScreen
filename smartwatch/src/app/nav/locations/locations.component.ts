@@ -125,6 +125,7 @@ export class LocationsComponent implements OnInit {
 
       this.apiService.fetchAllLocations().subscribe((res) => {
         this.locations = res;
+        this.locationSize = res.length;
       });
 
     });
