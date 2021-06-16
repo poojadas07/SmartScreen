@@ -65,10 +65,12 @@ export class LoginComponent implements OnInit {
     if(this.signupForm.value.password == this.signupForm.value.confirmPass){
       this.apiService.signupUser(this.signupForm.value).subscribe((res) => {
         console.log(res);
+        this.apiService.sendEmail(this.signupForm.value).subscribe((data) => {
+          console.log(data)
+        });
+        this.modalService.openInfoModal("User successfully Registered . Please login to continue !!");
       });
-      this.apiService.sendEmail(this.signupForm.value).subscribe((res) => {
-        console.log(res)
-      });
+      
     }
     else {
       this.modalService.openInfoModal("Password is not equal !!");

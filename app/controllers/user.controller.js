@@ -51,7 +51,7 @@ exports.find = (req, res) => {
         });
     }
 
-    User.find({
+    User.findOne({
         "email" : req.body.email ,
         "password": req.body.password ,
     })

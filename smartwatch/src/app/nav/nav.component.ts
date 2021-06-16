@@ -54,6 +54,8 @@ export class NavComponent implements OnInit{
     );
   menuItems1: any;
   areas: any;
+  id: string;
+  name: any;
 
   constructor(private breakpointObserver: BreakpointObserver,
     public dialog: MatDialog,
@@ -65,6 +67,13 @@ export class NavComponent implements OnInit{
   ngOnInit(): void {
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.menuItems1 = res;
+    });
+
+    this.id = localStorage.getItem('token');  
+    console.log(this.id);
+
+    this.apiService.fetchUserById(this.id).subscribe((res) => {
+      this.name = res.username || 'My Profile';
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {

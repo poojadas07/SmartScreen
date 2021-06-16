@@ -13,11 +13,11 @@
         <mat-expansion-panel-header>
           <mat-panel-title style="color: white;">
             <img mat-card-avatar src="https://www.w3schools.com/w3images/avatar_hat.jpg" alt="User Avatar">
-            <p style="padding: 4% 5% 0;">Lorem Epsom</p>
+            <p style="padding: 4% 5% 0;">{{name}}</p>
           </mat-panel-title>
         </mat-expansion-panel-header>
         <mat-nav-list>
-          <a mat-list-item [routerLink]="'/dashboard/profile'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">person</i> My Profile </a>
+          <a mat-list-item [routerLink]="'/dashboard/profile'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">person</i> Edit Profile </a>
         </mat-nav-list>
         <mat-nav-list>
           <a mat-list-item [routerLink]="'/dashboard/settings'" style="color: white;"> <i class="material-icons"  style="padding: 0 10%;">settings</i> Settings </a>

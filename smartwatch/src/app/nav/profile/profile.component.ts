@@ -54,9 +54,9 @@ export class ProfileComponent implements OnInit {
     console.log(this.id);
 
     this.apiService.fetchUserById(this.id).subscribe((res) => {
-      this.name = res.username;
+      this.name = res.username || "Not Defined";
       this.email = res.email;
-      this.phone = res.phone;
+      this.phone = res.phone || "Not Defined";
 
     });
     

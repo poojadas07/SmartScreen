@@ -38,6 +38,8 @@ mongoose.connect(dbConfig.url , {
     process.exit();
 })
 
+app.use(session({secret: "Shh, its a secret!"}));
+
 // define a simple route
 app.get('/' , (req, res)=> {
     res.json("Welcome to SMARTWATCH Application !");
