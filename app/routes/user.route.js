@@ -7,7 +7,7 @@ module.exports = (app) => {
     // Reterive all users
     app.post('/register' , user.create);
 
-    app.put('/forgot/:userId' , user.forgotPass);
+    app.post('/forgot' , user.forgotPass);
     
     // Reterive the single user
     app.get('/user/:userId' , user.findOne);

@@ -1,4 +1,5 @@
 const User = require('../model/user');
+const nodeMailer = require('nodemailer');
 
 // create and save a new country
 exports.create = (req, res) => {
@@ -190,27 +191,50 @@ exports.update = (req , res) => {
 
 exports.forgotPass = (req , res) => {
 
-        User.findByIdAndUpdate(req.params.userId , {
-            password: req.body.password ,
-            updatedAt: new Date(),
-        }, {new : true})
-        .then(user => {
-            if(!user){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
-                });
+    User.findOne( { "email": req.body.email } )
+    .then( user => {
+        if(!user){
+            res.status(404).send({
+                message: "User not found with email " + req.body.email
+            });
+        }
+        res.send(user.password);
+        var transporter = nodeMailer.createTransport({
+            service: 'gmail',
+            auth: {
+                user: "poojadas04kv@gmail.com",
+                pass: "innocentpooja07@"
             }
-            res.json(user);
-        }).catch(err => {
-            if(err.kind === "ObjectId"){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
-                });
-            }
-            return res.status(500).json({
-                message: "Error updating user with id " + req.params.userId
+        });
+        var mailOptions = {
+            from: 'poojadas04kv@gmail.com',
+            to: req.body.email,
+            subject: 'Forgot Password',
+            html: '<h1>Your Password !!</h1>'+
+                    '<p>Password : '+ user.password +'</p>',
+          };
+      
+        transporter.sendMail(mailOptions)
+        .then(data => {
+            console.log("Message sent successfully: " + data.response);
+        })
+        .catch(err => {
+            console.log({
+                message: err.message || "Failed to send email"
             });
         });
+
+    })
+    .catch(err => {
+        if(err.kind === 'ObjectId'){
+            return res.status(404).send({
+                message: "User not found with email " + req.body.email
+            });
+        }
+        return res.status(500).send({
+            message: "Error retrieving user with email " + req.body.email
+        });
+    });
 };
 
 // Delete a user with the specified userId in the request

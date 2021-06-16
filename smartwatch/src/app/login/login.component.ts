@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { ApiService } from '../service/api.service';
 import { ModalService } from '../service/modal.service';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 
 @Component({
@@ -19,7 +21,8 @@ export class LoginComponent implements OnInit {
   constructor(private router: Router,
     public formBuilder: FormBuilder,
     private apiService: ApiService,
-    private modalService: ModalService,) 
+    private modalService: ModalService,
+    public dialog: MatDialog,) 
     {
       this.loginForm = this.formBuilder.group({
         email: ['', Validators.required],
@@ -65,6 +68,26 @@ export class LoginComponent implements OnInit {
   
   loginWithGoogle(): void {
 
+  }
+
+  forgot(): void {
+    this.openDialog(false);
+  }
+
+  openDialog(isEdit: boolean, value = null): void {
+    let dialogRef;
+    if (isEdit == false){
+      // console.log(isEdit);
+      dialogRef = this.dialog.open(ForgotPasswordComponent , {
+        data: {dialogTitle: "Forgot Password"}
+      });
+    }
+
+    dialogRef.afterClosed().subscribe(res => {
+      // console.log('The dialog was closed');
+
+    });
+    
   }
 
 }

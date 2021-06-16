@@ -77,8 +77,19 @@ export class ApiService {
       );
   }
 
-  forgotPassword(userId: String , data): Observable<any> {
-    let urlString = environment.serverBaseUrl + 'forgot/' + userId;
+  
+  forgotPassword(data): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'forgot';
+
+    return this.http.post(urlString, data, {})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  changePassword(userId: String , data): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'changePass/' + userId;
 
     return this.http.put(urlString, data, {})
       .pipe(

@@ -128,7 +128,7 @@ export class ProfileComponent implements OnInit {
   changePass(): void{
     this.userId = "";
     if (this.bookForm.value.confirm == this.bookForm.value.password){
-      this.apiService.forgotPassword('60c21a0d0a7f573538b27002', this.bookForm.value).subscribe((res) => {
+      this.apiService.changePassword('60c21a0d0a7f573538b27002', this.bookForm.value).subscribe((res) => {
         this.profile = res;
         this.collapsed = !this.collapsed;
         this.modalService.openInfoModal("Password set successfully !!");

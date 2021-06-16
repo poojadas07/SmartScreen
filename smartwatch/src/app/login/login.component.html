@@ -21,10 +21,6 @@
                         <mat-icon matSuffix>lock</mat-icon>
                     </mat-form-field>
                 </div>
-                
-                <div class="form-group">
-                    <mat-checkbox>Remember me!</mat-checkbox>
-                </div>
 
                 <div class="form-group">
                     <button mat-raised-button color="primary" style="width:100% !important">Login</button>
@@ -35,6 +31,8 @@
                 </div>
                 
             </form>
+
+            <h6 style="padding-left: 8%; cursor: pointer; color: blue;" (click)="forgot()">Forgot Password ?</h6>
         </mat-tab>
         <mat-tab label="Sign Up">
             <form class="example-form" style="margin: 5%;" [formGroup]="signupForm" (ngSubmit)="signup()">
