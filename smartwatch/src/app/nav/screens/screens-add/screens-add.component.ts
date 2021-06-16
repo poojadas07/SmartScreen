@@ -21,6 +21,15 @@ export class ScreensAddComponent implements OnInit {
   locations: any;
   clients: any;
   condition: string;
+  condition2: boolean;
+  region: any;
+  condition1: boolean;
+  country: any;
+  condition3: any;
+  location: any;
+  condition4: any;
+  client: any;
+  department: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -111,6 +120,42 @@ export class ScreensAddComponent implements OnInit {
       });
     }
     
+  }
+
+  changeCountry(event: any) {
+    // console.log(this.client);
+    this.condition1 = !this.condition1;
+    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+      this.regions = res;
+    });
+    // return this.country;
+  }
+
+  changeRegion(event: any){
+
+    this.condition2 = !this.condition2;
+    
+    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+      this.locations = res;
+    });
+  }
+
+  changeLocation(event: any){
+
+    this.condition3 = !this.condition3;
+    
+    this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
+      this.clients = res;
+    });
+  }
+
+  changeClient(event: any){
+
+    this.condition4 = !this.condition4;
+    
+    this.apiService.fetchDepartmentByClientId(this.client).subscribe((res) => {
+      this.departments = res;
+    });
   }
 
 

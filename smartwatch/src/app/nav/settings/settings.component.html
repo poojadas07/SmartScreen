@@ -1,1 +1,102 @@
-<p>settings works!</p>
+<br><br>
+<div class="content">
+  <div class="container-fluid">
+
+      <h3 style="padding-left: 2%;">Screens
+        <button type="submit" class="btn btn-sm btn-info btn-round btn-just-icon" style="margin: 0 1%;" (click)="info()">
+            <i class="material-icons">priority_high</i>
+        </button>
+      </h3>
+
+    <div class="row">
+      <div class="container-fluid" *ngIf="screen != null">
+        <div class="col-lg-12 col-md-12 col-sm-12">
+          <div class="card card-stats">
+            <div class="card-header card-header-success card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons"></i>
+              </div>
+              <h4 class="card-title" style="text-align: left;"><b>{{screen.name}}</b></h4>
+            </div>
+            <br>
+            <div class="card-body ">
+              <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="edit(screen)">
+                <i class="material-icons">edit</i>
+              </button>
+              <div class="row">
+                <div class="col-lg-3 col-md-3 col-sm-3" style="border: black;">
+                  <mat-grid-list cols="{{screen.columns}}" rowHeight="40px">
+                    <mat-grid-tile *ngFor="let panel of  screen.children; let i = index;" 
+                    style="cursor: pointer;" (click)="addScreenToPanel(panel)" [ngStyle]="{'background-color': getColor(panel)}">{{i}}</mat-grid-tile>
+                  </mat-grid-list>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-9" style="border: black;">
+                  <br><br>
+                  <div class="row" style="text-align: center;">
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Total Screens</h4>
+                      <h2>{{screensSize}}</h2>
+                    </div>
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Total SmartScreens</h4>
+                      <h2>1</h2><!--{{locationSize}}-->
+                    </div>
+                    <div class="col-4">
+                      <h4 class="card-category" style="color: black;">Active SmartScreens</h4>
+                      <h2>0</h2><!--{{screensSize}}-->
+                    </div>
+                  </div>
+                  <div class="row" style="text-align: center;">
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-danger" style="margin: 4%" (click)="delete(screen)">Remove</button>
+                      <button class="btn btn-info" (click)="addCard()">Report</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div style="width: 100%;"  *ngIf="addnewCard==true;" >
+        <div class="col-lg-12 col-md-12 col-sm-12" *ngIf="screen != null">
+        <div class="card card-stats">
+            <div class="card-header card-header-icon card-header-rose">
+                <div class="card-icon">
+                  <i class="material-icons">assignment</i>
+                </div>
+                <h4 class="card-title" style="text-align: left;"><b>{{screen.name}} Report</b></h4>
+            </div>
+            <br>
+            <div class="card-body">
+                <div class="table-responsive">
+                  <table class="table" style="text-align: center;">
+                    <thead class="text-primary">
+                      <th>Sort</th>
+                      <th>ID</th>
+                      <th>Screen</th>
+                      <th>Installed</th>
+                      <th>Breakdown</th>
+                      <th>Life Span</th>
+                      <th>Status</th>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>1</td>
+                        <td>{{screen._id}}</td>
+                        <td>{{screen.name}}</td>
+                        <td>{{screen.createdAt}}</td>
+                        <td></td>
+                        <td></td>
+                        <td>{{screen.status}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+        </div>
+    </div>
+  </div>
+</div>

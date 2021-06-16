@@ -9,6 +9,8 @@ module.exports = (app) => {
 
     app.get("/screenPanel", screen.screenPanel);
 
+    app.get("/screenPanel/:screenId", screen.screenPanelByScreenId);
+
     // Reterive the single screen by id
     app.get('/screen/:screenId' , screen.findOne);
 

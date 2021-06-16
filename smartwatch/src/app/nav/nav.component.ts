@@ -11,6 +11,7 @@ import {FlatTreeControl} from '@angular/cdk/tree';
 import {MatTreeFlatDataSource, MatTreeFlattener} from '@angular/material/tree';
 
 interface FoodNode {
+  _id: any;
   name: string;
   children?: FoodNode[];
 }
@@ -19,6 +20,7 @@ interface FoodNode {
 interface ExampleFlatNode {
   expandable: boolean;
   name: string;
+  _id: string;
   level: number;
 }
 
@@ -34,6 +36,7 @@ export class NavComponent implements OnInit{
       expandable: !!node.children && node.children.length > 0,
       name: node.name,
       level: level,
+      _id: node._id,
     };
   }
 
@@ -81,7 +84,8 @@ export class NavComponent implements OnInit{
       const TREE_DATA = [
         {
           name: 'Countries',
-          children: this.areas
+          children: this.areas,
+          _id: ""
       },
       ];
       this.dataSource.data = TREE_DATA;
@@ -103,6 +107,12 @@ export class NavComponent implements OnInit{
         this.router.navigate(["login"]);  
       }
     });
+  }
+
+  gotoScreen(node): void{
+    if (node.level == 6){
+      this.router.navigate(['dashboard/screen/' + node._id]);
+    }
   }
 
 }

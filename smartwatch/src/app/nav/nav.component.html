@@ -51,7 +51,7 @@
       <mat-tree-node *matTreeNodeDef="let node" matTreeNodePadding matTreeNodePaddingIndent="15">
         <button class="btn btn-lg btn-link btn-primary" style="color: white">
             <i class="material-icons" style="font-size: 25px;">image</i>
-             <span routerLink="/dashboard/nav">{{node.name}}</span>
+             <span (click)="gotoScreen(node)">{{node.name}}</span>
         </button>
       </mat-tree-node>
       <mat-tree-node *matTreeNodeDef="let node; when: hasChild" matTreeNodePadding matTreeNodePaddingIndent="15">
@@ -94,7 +94,7 @@
 
   </mat-sidenav>
   <mat-sidenav-content> 
-    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top " style="z-index: 0;">
+    <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
       <div class="container-fluid">
         <div class="navbar-wrapper">
           <button

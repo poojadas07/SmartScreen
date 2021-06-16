@@ -23,7 +23,7 @@ const routes: Routes = [ {path: '', component: NavComponent, children: [
                             { path: 'departments', component: DepartmentComponent},
                             { path: 'screens', component: ScreensComponent},
                             { path: 'profile', component: ProfileComponent},
-                            { path: 'settings', component: SettingsComponent},
+                            { path: 'screen/:id', component: SettingsComponent},
                             { path: 'info', component: InfoComponent},
                             { path: 'reports', component: ReportComponent}]}];
 @NgModule({

@@ -19,6 +19,11 @@ export class ClientAddComponent implements OnInit {
   regions: any;
   countries: any;
   condition: string;
+  country: any;
+  condition1: boolean = false;
+  condition2: boolean = false;
+  region: String;
+  location: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -40,14 +45,6 @@ export class ClientAddComponent implements OnInit {
 
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.countries = res;
-    });
-    
-    this.apiService.fetchAllRegions().subscribe((res) => {
-      this.regions = res;
-    });
-
-    this.apiService.fetchAllLocations().subscribe((res) => {
-      this.locations = res;
     });
 
     if (this.dialogTitle == "Edit Client"){
@@ -91,6 +88,24 @@ export class ClientAddComponent implements OnInit {
       });
     }
     
+  }
+
+  changeCountry(event: any) {
+    // console.log(this.client);
+    this.condition1 = !this.condition1;
+    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+      this.regions = res;
+    });
+    // return this.country;
+  }
+
+  changeRegion(event: any){
+
+    this.condition2 = !this.condition2;
+    
+    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+      this.locations = res;
+    });
   }
 
 

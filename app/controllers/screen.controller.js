@@ -80,6 +80,24 @@ exports.screenPanel = (req , res) => {
     
 };
 
+exports.screenPanelByScreenId = (req , res) => {
+
+    Screen.findById(req.params.screenId).populate({
+        path: "children",
+        model: Panel,
+      })
+      .then( screens => {
+        res.send(screens);
+        // console.log(countries)
+      })
+      .catch(err => {
+        res.status(500).send({
+            message: err.message || "Some error occurred while retrieving screens."
+        });
+      });
+    
+};
+
 exports.findAll = (req, res) => {
     Screen.aggregate(
         [

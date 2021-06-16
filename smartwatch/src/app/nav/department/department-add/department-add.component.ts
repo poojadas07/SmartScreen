@@ -20,6 +20,13 @@ export class DepartmentAddComponent implements OnInit {
   regions: any;
   locations: any;
   condition: string;
+  country: any;
+  condition1: boolean = false;
+  condition2: boolean = false;
+  condition3: boolean = false;
+  region: String;
+  location: any;
+  client: any;
 
   constructor(public formBuilder: FormBuilder,
     private router: Router,
@@ -99,6 +106,33 @@ export class DepartmentAddComponent implements OnInit {
       });
     }
     
+  }
+
+  changeCountry(event: any) {
+    // console.log(this.client);
+    this.condition1 = !this.condition1;
+    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+      this.regions = res;
+    });
+    // return this.country;
+  }
+
+  changeRegion(event: any){
+
+    this.condition2 = !this.condition2;
+    
+    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+      this.locations = res;
+    });
+  }
+
+  changeLocation(event: any){
+
+    this.condition3 = !this.condition3;
+    
+    this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
+      this.clients = res;
+    });
   }
 
 

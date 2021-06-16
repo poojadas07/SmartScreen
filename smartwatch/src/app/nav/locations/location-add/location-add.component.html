@@ -6,7 +6,7 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Country...</mat-label>
-                <mat-select formControlName="country_id" [disabled]="condition">
+                <mat-select formControlName="country_id" [disabled]="condition" [(ngModel)]="country" (ngModelChange)="changeCountry($event)">
                     <mat-option *ngFor="let country of countries;" value="{{country._id}}">{{country.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
@@ -14,7 +14,7 @@
         <div class="form-group">
             <mat-form-field appearance="legacy" style="width:90% !important">
                 <mat-label>Choose Region...</mat-label>
-                <mat-select formControlName="region_id" [disabled]="condition">
+                <mat-select formControlName="region_id" [disabled]="condition || condition1" [(ngModel)]="region">
                     <mat-option *ngFor="let region of regions;" value="{{region._id}}">{{region.name}}</mat-option>
                   </mat-select>
             </mat-form-field>
