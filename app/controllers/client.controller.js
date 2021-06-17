@@ -10,48 +10,37 @@ const Panels = require('../model/panel');
 exports.create = (req, res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Client can not be empty"
         });
     }
 
-    console.log(req.body);
-
-    // create client
-    const client = new Client({
-        name: req.body.name ,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        location_id: req.body.location_id,
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    });
-
-    client.save()
-    .then(data => {
-        res.send(data);
-        console.log(data);
+    Client.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Client : " + data.name + " Already existed !!");     
     })
     .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the client."
+        // create client
+        const client = new Client({
+            name: req.body.name ,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            location_id: req.body.location_id,
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        });
+
+        client.save()
+        .then(data => {
+            res.status(200).json("Client : " + data.name + " Added Successfully !!");
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err.message || "Some error occurred while creating the client."
+            });
         });
     });
 };
-
-
-// Retrieve and return all locations from the database.
-// exports.findAll = (req , res) => {
-//     Location.find()
-//     .then( locations => {
-//         res.send(locations);
-//     })
-//     .catch(err => {
-//         res.status(500).send({
-//             message: err.message || "Some error occurred while retrieving locations."
-//         });
-//     });
-// };
 
 exports.findAll = (req, res) => {
     Client.aggregate(
@@ -93,10 +82,10 @@ exports.findAll = (req, res) => {
         ]
     )
     .then( clients => {
-        res.send(clients);
+        res.status(200).json(clients);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving clients."
         });
     });
@@ -150,10 +139,10 @@ exports.findByName = (req , res) => {
         ]
     )
     .then(client => {
-        res.send(client);
+        res.status(200).json(client);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving clients."
         });
     })
@@ -164,19 +153,19 @@ exports.findOne = (req , res) => {
     Client.findById(req.params.clientId)
     .then( client => {
         if(!client){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Client not found with id " + req.params.clientId
             });
         }
-        res.send(client);
+        res.status(200).json(client);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Client not found with id " + req.params.clientId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving client with id " + req.params.clientId
         });
     });
@@ -188,10 +177,10 @@ exports.findOneByLocation = (req , res) => {
         "location_id" :  req.params.locationId 
     })
     .then(client => {
-        res.send(client);
+        res.status(200).json(client);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving Clients."
         });
     });
@@ -201,34 +190,40 @@ exports.findOneByLocation = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Client cannot be empty"
         });
     }
 
-    // Find client and update it with the request body
-    Client.findByIdAndUpdate(req.params.clientId , {
-        name: req.body.name ,
-        updatedAt: new Date(),
-        location_id: req.body.location_id,
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    }, {new : true})
-    .then(client => {
-        if(!client){
-            return res.status(404).send({
-                message: "Client not found with id " + req.params.clientId
+    Client.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Client : " + data.name + " Already existed !!");     
+    })
+    .catch(err => {
+        // Find client and update it with the request body
+        Client.findByIdAndUpdate(req.params.clientId , {
+            name: req.body.name ,
+            updatedAt: new Date(),
+            location_id: req.body.location_id,
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        }, {new : true})
+        .then(client => {
+            if(!client){
+                return res.status(404).json({
+                    message: "Client not found with id " + req.params.clientId
+                });
+            }
+            res.status(200).json("Client : " + client.name + " Updated Successfully !!");
+        }).catch(err => {
+            if(err.kind === "ObjectId"){
+                return res.status(404).json({
+                    message: "Client not found with id " + req.params.clientId
+                });
+            }
+            return res.status(500).json({
+                message: "Error updating client with id " + req.params.clientId
             });
-        }
-        res.send(client);
-    }).catch(err => {
-        if(err.kind === "ObjectId"){
-            return res.status(404).send({
-                message: "Client not found with id " + req.params.clientId
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating client with id " + req.params.clientId
         });
     });
 };
@@ -238,18 +233,18 @@ exports.delete = (req, res) => {
     Client.findByIdAndRemove(req.params.clientId)
     .then(client => {
         if(!client){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Client not found with id " + req.params.clientId
             });
         }
-        res.send({message: "Client deleted sucessfully !"});
+        res.status(200).json({message: "Client deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Client not found with id " + req.params.clientId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete client with id " + req.params.clientId
         });
     });

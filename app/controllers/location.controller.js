@@ -12,46 +12,36 @@ const Panels = require('../model/panel');
 exports.create = (req, res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Location can not be empty"
         });
     }
 
-    console.log(req.body);
-    
-    // create location
-    const location = new Location({
-        name: req.body.name ,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    });
-
-    location.save()
-    .then(data => {
-        res.send(data);
+    Location.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Location : " + data.name + " Already existed !!");     
     })
     .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the location."
+        // create location
+        const location = new Location({
+            name: req.body.name ,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        });
+
+        location.save()
+        .then(data => {
+            res.status(200).json("Location : " + data.name + " Added Successfully !!");
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err.message || "Some error occurred while creating the location."
+            });
         });
     });
 };
-
-
-// Retrieve and return all locations from the database.
-// exports.findAll = (req , res) => {
-//     Location.find()
-//     .then( locations => {
-//         res.send(locations);
-//     })
-//     .catch(err => {
-//         res.status(500).send({
-//             message: err.message || "Some error occurred while retrieving locations."
-//         });
-//     });
-// };
 
 exports.findAll = (req, res) => {
     Location.aggregate(
@@ -81,10 +71,10 @@ exports.findAll = (req, res) => {
         ]
     )
     .then( locations => {
-        res.send(locations);
+        res.status(200).json(locations);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving locations."
         });
     });
@@ -126,10 +116,10 @@ exports.findByName = (req , res) => {
         ]
     )
     .then(location => {
-        res.send(location);
+        res.status(200).json(location);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving locations."
         });
     })
@@ -140,19 +130,19 @@ exports.findOne = (req , res) => {
     Location.findById(req.params.locationId)
     .then( location => {
         if(!location){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Location not found with id " + req.params.locationId
             });
         }
-        res.send(location);
+        res.status(200).json(location);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Location not found with id " + req.params.locationId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving location with id " + req.params.locationId
         });
     });
@@ -164,10 +154,10 @@ exports.findOneByRegion = (req , res) => {
         "region_id" :  req.params.regionId 
     })
     .then(location => {
-        res.send(location);
+        res.status(200).json(location);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving Locations."
         });
     });
@@ -177,33 +167,40 @@ exports.findOneByRegion = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Location cannot be empty"
         });
     }
 
     // Find location and update it with the request body
-    Location.findByIdAndUpdate(req.params.locationId , {
-        name: req.body.name ,
-        updatedAt: new Date(),
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    }, {new : true})
-    .then(location => {
-        if(!location){
-            return res.status(404).send({
-                message: "Location not found with id " + req.params.locationId
+
+    Location.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Location : " + data.name + " Already existed !!");     
+    })
+    .catch(err => {
+        Location.findByIdAndUpdate(req.params.locationId , {
+            name: req.body.name ,
+            updatedAt: new Date(),
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        }, {new : true})
+        .then(location => {
+            if(!location){
+                return res.status(404).json({
+                    message: "Location not found with id " + req.params.locationId
+                });
+            }
+            res.status(200).json("Location : " + location.name + " Updated Successfully !!");
+        }).catch(err => {
+            if(err.kind === "ObjectId"){
+                return res.status(404).json({
+                    message: "Location not found with id " + req.params.locationId
+                });
+            }
+            return res.status(500).json({
+                message: "Error updating location with id " + req.params.locationId
             });
-        }
-        res.send(location);
-    }).catch(err => {
-        if(err.kind === "ObjectId"){
-            return res.status(404).send({
-                message: "Location not found with id " + req.params.locationId
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating location with id " + req.params.locationId
         });
     });
 };
@@ -213,18 +210,18 @@ exports.delete = (req, res) => {
     Location.findByIdAndRemove(req.params.locationId)
     .then(location => {
         if(!location){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Location not found with id " + req.params.locationId
             });
         }
-        res.send({message: "Location deleted sucessfully !"});
+        res.status(200).json({message: "Location deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Location not found with id " + req.params.locationId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete location with id " + req.params.locationId
         });
     });

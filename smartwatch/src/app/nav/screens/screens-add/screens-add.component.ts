@@ -55,29 +55,29 @@ export class ScreensAddComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
 
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countries = res;
+      this.countries = res.body;
     });
     
-    this.apiService.fetchAllRegions().subscribe((res) => {
-      this.regions = res;
-    });
+    // this.apiService.fetchAllRegions().subscribe((res) => {
+    //   this.regions = res.body;
+    // });
 
-    this.apiService.fetchAllLocations().subscribe((res) => {
-      this.locations = res;
-    });
+    // this.apiService.fetchAllLocations().subscribe((res) => {
+    //   this.locations = res;
+    // });
     
-    this.apiService.fetchAllClients().subscribe((res) => {
-      this.clients = res;
-    });
+    // this.apiService.fetchAllClients().subscribe((res) => {
+    //   this.clients = res;
+    // });
     
-    this.apiService.fetchAllDepartments().subscribe((res) => {
-      this.departments = res;
-    });
+    // this.apiService.fetchAllDepartments().subscribe((res) => {
+    //   this.departments = res;
+    // });
 
     if (this.dialogTitle == "Edit Screen"){
       this.condition = 'disable';
       this.apiService.fetchScreenById(this.data.dialogText._id).subscribe((res) => {
-        this.screen = res;
+        this.screen = res.body;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.screen.name);
         this.bookForm.get('rows').setValue(this.screen.rows);
@@ -126,7 +126,7 @@ export class ScreensAddComponent implements OnInit {
     // console.log(this.client);
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res;
+      this.regions = res.body;
     });
     // return this.country;
   }
@@ -136,7 +136,7 @@ export class ScreensAddComponent implements OnInit {
     this.condition2 = !this.condition2;
     
     this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res;
+      this.locations = res.body;
     });
   }
 
@@ -145,7 +145,7 @@ export class ScreensAddComponent implements OnInit {
     this.condition3 = !this.condition3;
     
     this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
-      this.clients = res;
+      this.clients = res.body;
     });
   }
 
@@ -154,7 +154,7 @@ export class ScreensAddComponent implements OnInit {
     this.condition4 = !this.condition4;
     
     this.apiService.fetchDepartmentByClientId(this.client).subscribe((res) => {
-      this.departments = res;
+      this.departments = res.body;
     });
   }
 

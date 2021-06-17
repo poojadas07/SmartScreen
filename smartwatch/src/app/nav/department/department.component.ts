@@ -85,19 +85,19 @@ export class DepartmentComponent implements OnInit {
   ngOnInit() {
 
     this.apiService.fetchAllDepartments().subscribe((res) => {
-      this.departmentSize = res.length;
+      this.departmentSize = res.body.length;
     });
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screenSize = res.length;
+      this.screenSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       const TREE_DATA = [
         {
           name: 'More',
@@ -136,8 +136,8 @@ export class DepartmentComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchAllDepartments().subscribe((res) => {
-        this.departments = res;
-        this.departmentSize = res.length;
+        this.departments = res.body;
+        this.departmentSize = res.body.length;
       });
 
     });

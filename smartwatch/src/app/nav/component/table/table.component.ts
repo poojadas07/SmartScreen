@@ -71,8 +71,7 @@ export class TableComponent implements OnInit {
     this.screenName = this.messagelist.name;
 
     this.apiService.fetchPanelByScreen(this.messagelist._id).subscribe((res) => {
-      console.log(res);
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.body);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
@@ -90,7 +89,7 @@ export class TableComponent implements OnInit {
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
-      this.screens = res;
+      this.screens = res.body;
     });
   }
 }

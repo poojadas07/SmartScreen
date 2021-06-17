@@ -6,13 +6,10 @@ const Department = require('../model/department');
 exports.create = (req, res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Screen can not be empty"
         });
     }
-
-    console.log(req.body);
-
     // create screen
     const screen = new Screen({
         name: req.body.name ,
@@ -30,7 +27,7 @@ exports.create = (req, res) => {
 
     screen.save()
     .then(data => {
-        res.send(data);
+        res.status(200).json(data);
 
         var counter = 0;
         for (let i=0; i<req.body.rows; i++){
@@ -58,7 +55,7 @@ exports.create = (req, res) => {
         }
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while creating the screen."
         });
     });
@@ -71,11 +68,11 @@ exports.screenPanel = (req , res) => {
         model: Panel,
       })
       .then( screens => {
-        res.send(screens);
+        res.status(200).json(screens);
         // console.log(countries)
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
       });
@@ -89,11 +86,11 @@ exports.screenPanelByScreenId = (req , res) => {
         model: Panel,
       })
       .then( screens => {
-        res.send(screens);
+        res.status(200).json(screens);
         // console.log(countries)
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
       });
@@ -164,10 +161,10 @@ exports.findAll = (req, res) => {
         ]
     )
     .then( screens => {
-        res.send(screens);
+        res.status(200).json(screens);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
     });
@@ -176,10 +173,10 @@ exports.findAll = (req, res) => {
 exports.findAllActiveScreens = (req, res) => {
     Screen.find({ "status": "Active" })
     .then( screens => {
-        res.send(screens);
+        res.status(200).json(screens);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
     });
@@ -258,10 +255,10 @@ exports.findByName = (req , res) => {
         ]
     )
     .then( screens => {
-        res.send(screens)
+        res.status(200).json(screens)
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
     })
@@ -272,19 +269,19 @@ exports.findOne = (req , res) => {
     Screen.findById(req.params.screenId)
     .then( screen => {
         if(!screen){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        res.send(screen);
+        res.status(200).json(screen);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving screen with id " + req.params.screenId
         });
     });
@@ -296,10 +293,10 @@ exports.findOneByDepartment = (req , res) => {
         "department_id" :  req.params.departmentId 
     })
     .then(screen => {
-        res.send(screen);
+        res.status(200).json(screen);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving screens."
         });
     });
@@ -309,7 +306,7 @@ exports.findOneByDepartment = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Screen cannot be empty"
         });
     }
@@ -327,18 +324,18 @@ exports.update = (req , res) => {
     }, {new : true})
     .then(screen => {
         if(!screen){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        res.send(screen);
+        res.status(200).json(screen);
     }).catch(err => {
         if(err.kind === "ObjectId"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error updating screen with id " + req.params.screenId
         });
     });
@@ -349,18 +346,18 @@ exports.delete = (req, res) => {
     Screen.findByIdAndRemove(req.params.screenId)
     .then(screen => {
         if(!screen){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        res.send({message: "Screen deleted sucessfully !"});
+        res.status(200).json({message: "Screen deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Screen not found with id " + req.params.screenId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete screen with id " + req.params.screenId
         });
     });

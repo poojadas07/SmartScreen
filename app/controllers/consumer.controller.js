@@ -64,7 +64,7 @@ exports.consume = (req, res) => {
 								message: "Panel not found with id " + data._id
 							});
 						}
-						res.json(panel);
+						res.status(200).json(panel);
 					}).catch(err => {
 						if(err.kind === "ObjectId"){
 							return res.status(404).json({
@@ -91,7 +91,7 @@ exports.consume = (req, res) => {
 								message: "Panel not found with id " + data._id
 							});
 						}
-						res.json(panel);
+						res.status(200).json(panel);
 					}).catch(err => {
 						if(err.kind === "ObjectId"){
 							return res.status(404).json({

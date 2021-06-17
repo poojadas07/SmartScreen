@@ -69,18 +69,18 @@ export class NavComponent implements OnInit{
 
   ngOnInit(): void {
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.menuItems1 = res;
+      this.menuItems1 = res.body;
     });
 
     this.id = localStorage.getItem('token');  
     console.log(this.id);
 
     this.apiService.fetchUserById(this.id).subscribe((res) => {
-      this.name = res.username || 'My Profile';
+      this.name = res.body.username || 'My Profile';
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       const TREE_DATA = [
         {
           name: 'Countries',

@@ -54,9 +54,9 @@ export class ProfileComponent implements OnInit {
     console.log(this.id);
 
     this.apiService.fetchUserById(this.id).subscribe((res) => {
-      this.name = res.username || "Not Defined";
-      this.email = res.email;
-      this.phone = res.phone || "Not Defined";
+      this.name = res.body.username || "Not Defined";
+      this.email = res.body.email;
+      this.phone = res.body.phone || "Not Defined";
 
     });
     
@@ -129,7 +129,7 @@ export class ProfileComponent implements OnInit {
   changePass(): void{
     if (this.bookForm.value.confirm == this.bookForm.value.password){
       this.apiService.updateProfile(this.id, this.bookForm.value).subscribe((res) => {
-        this.profile = res;
+        this.profile = res.body;
         this.collapsed = !this.collapsed;
         this.bookForm.reset();
         this.modalService.openInfoModal("Password set successfully !!");
@@ -167,7 +167,7 @@ export class ProfileComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(res => {
           this.apiService.fetchUserById(this.id).subscribe((res) => {
-            this.name = res.username;
+            this.name = res.body.username;
           });
         });
         
@@ -180,7 +180,7 @@ export class ProfileComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(res => {
         this.apiService.fetchUserById(this.id).subscribe((res) => {
-          this.email = res.email;
+          this.email = res.body.email;
         });
       });
       
@@ -193,7 +193,7 @@ export class ProfileComponent implements OnInit {
 
       dialogRef.afterClosed().subscribe(res => {
         this.apiService.fetchUserById(this.id).subscribe((res) => {
-          this.phone = res.phone;
+          this.phone = res.body.phone;
         });
       });
       

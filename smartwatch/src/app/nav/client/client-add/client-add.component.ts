@@ -44,13 +44,13 @@ export class ClientAddComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
 
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countries = res;
+      this.countries = res.body;
     });
 
     if (this.dialogTitle == "Edit Client"){
       this.condition = 'disable';
       this.apiService.fetchClientById(this.data.dialogText._id).subscribe((res) => {
-        this.client = res;
+        this.client = res.body;
         // console.log(this.client);
         this.bookForm.get('name').setValue(this.client.name);
         this.bookForm.get('location_id').setValue(this.client.location_id);
@@ -65,14 +65,14 @@ export class ClientAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Client"){
       this.apiService.updateClient(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Client '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal(res.body);
       });
     }
     else {
       this.apiService.addClient(this.bookForm.value).subscribe(res => {
         // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal('Client '+res.name+' Added Successfully !!');
+          this.modalService.openInfoModal(res.body);
   
           // console.log('200');
           // alert(res.message);
@@ -94,7 +94,7 @@ export class ClientAddComponent implements OnInit {
     // console.log(this.client);
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res;
+      this.regions = res.body;
     });
     // return this.country;
   }
@@ -104,7 +104,7 @@ export class ClientAddComponent implements OnInit {
     this.condition2 = !this.condition2;
     
     this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res;
+      this.locations = res.body;
     });
   }
 

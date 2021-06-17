@@ -17,7 +17,7 @@ exports.produce = (req, res ) => {
             // console.error(error);
         }
         else{
-            res.send(data);
+            res.status(200).json(data);
             // console.log(data);
         }
     });

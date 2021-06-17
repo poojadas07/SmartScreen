@@ -17,22 +17,26 @@ exports.create = (req, res) => {
         });
     }
 
-    console.log(req.body);
-
-    const user = new User({
-        email: req.body.email,
-        password: req.body.password,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    });
-
-    user.save()
-    .then(data => {
-        res.status(200).json(data);
+    User.findOne({ "email": req.body.email })
+    .then( data => {
+        res.status(401).json("User Email : " + data.email + " Already existed !!");     
     })
     .catch(err => {
-        res.status(500).json({
-            message: err.message || "Some error occurred while creating the User."
+        const user = new User({
+            email: req.body.email,
+            password: req.body.password,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+
+        user.save()
+        .then(data => {
+            res.status(200).json("User : " + data.email + " Added succesfully !!");
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err.message || "Some error occurred while creating the User."
+            });
         });
     });
 };
@@ -116,49 +120,61 @@ exports.update = (req , res) => {
     }
     
     if (req.body.email){
-        User.findByIdAndUpdate(req.params.userId , {
-            email: req.body.email ,
-            updatedAt: new Date(),
-        }, {new : true})
-        .then(user => {
-            if(!user){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
+        User.findOne({ "email": req.body.email })
+        .then( data => {
+            res.status(401).json("User Email : " + data.email + " Already existed !!");     
+        })
+        .catch(err => {
+            User.findByIdAndUpdate(req.params.userId , {
+                email: req.body.email ,
+                updatedAt: new Date(),
+            }, {new : true})
+            .then(user => {
+                if(!user){
+                    return res.status(404).json({
+                        message: "User not found with id " + req.params.userId
+                    });
+                }
+            res.json("User Email : "+ user.email+ " Updated Successfully !!");
+            }).catch(err => {
+                if(err.kind === "ObjectId"){
+                    return res.status(404).json({
+                        message: "User not found with id " + req.params.userId
+                    });
+                }
+                return res.status(500).json({
+                    message: "Error updating user with id " + req.params.userId
                 });
-            }
-            res.json(user);
-        }).catch(err => {
-            if(err.kind === "ObjectId"){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
-                });
-            }
-            return res.status(500).json({
-                message: "Error updating user with id " + req.params.userId
             });
         });
     }
     
     if (req.body.phone){
-        User.findByIdAndUpdate(req.params.userId , {
-            phone: req.body.phone ,
-            updatedAt: new Date(),
-        }, {new : true})
-        .then(user => {
-            if(!user){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
+        User.findOne({ "phone": req.body.phone })
+        .then( data => {
+            res.status(401).json("User Phone : " + data.phone + " Already existed !!");     
+        })
+        .catch(err => {
+            User.findByIdAndUpdate(req.params.userId , {
+                phone: req.body.phone ,
+                updatedAt: new Date(),
+            }, {new : true})
+            .then(user => {
+                if(!user){
+                    return res.status(404).json({
+                        message: "User not found with id " + req.params.userId
+                    });
+                }
+                res.json("User Phone : "+ user.phone+ " Updated Successfully !!");
+            }).catch(err => {
+                if(err.kind === "ObjectId"){
+                    return res.status(404).json({
+                        message: "User not found with id " + req.params.userId
+                    });
+                }
+                return res.status(500).json({
+                    message: "Error updating user with id " + req.params.userId
                 });
-            }
-            res.json(user);
-        }).catch(err => {
-            if(err.kind === "ObjectId"){
-                return res.status(404).json({
-                    message: "User not found with id " + req.params.userId
-                });
-            }
-            return res.status(500).json({
-                message: "Error updating user with id " + req.params.userId
             });
         });
     }
@@ -246,7 +262,7 @@ exports.delete = (req, res) => {
                 message: "User not found with id " + req.params.userId
             });
         }
-        res.send({message: "User deleted sucessfully !"});
+        res.status(200).json({message: "User deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
             return res.status(404).send({

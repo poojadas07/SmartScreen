@@ -86,19 +86,19 @@ export class CountriesComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countrySize = res.length;
+      this.countrySize = res.body.length;
     });
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screenSize = res.length;
+      this.screenSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       const TREE_DATA = [
         {
           name: 'More',
@@ -133,8 +133,8 @@ export class CountriesComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchAllCountries().subscribe((res) => {
-        this.countries = res;
-        this.countrySize = res.length;
+        this.countries = res.body;
+        this.countrySize = res.body.length;
       });
 
     });

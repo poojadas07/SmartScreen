@@ -46,7 +46,7 @@ export class InfoComponent implements OnInit {
     switch(this.value){
       case 0: this.title = 'Countries';
               this.apiService.fetchAllCountries().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 1: this.title = 'Regions';
@@ -54,7 +54,7 @@ export class InfoComponent implements OnInit {
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllRegions().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 2: this.title = 'Locations';
@@ -62,7 +62,7 @@ export class InfoComponent implements OnInit {
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllLocations().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 3: this.title = 'Clients';
@@ -70,7 +70,7 @@ export class InfoComponent implements OnInit {
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllClients().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 4: this.title = 'Departments';
@@ -78,8 +78,7 @@ export class InfoComponent implements OnInit {
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllDepartments().subscribe((res) => {
-                this.areas = res;
-                console.log(this.areas)
+                this.areas = res.body;
               });
               break;
       case 5: this.title = 'Screens';
@@ -87,8 +86,7 @@ export class InfoComponent implements OnInit {
                 this.headervalues.push(this.headers[this.headers.length-i]);
               }
               this.apiService.fetchAllScreens().subscribe((res) => {
-                this.areas = res;
-                console.log(res)
+                this.areas = res.body;
               });
               break;
     }
@@ -105,7 +103,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllCountries().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -119,7 +117,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllRegions().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -133,7 +131,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllLocations().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -147,7 +145,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllClients().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -161,7 +159,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllDepartments().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -175,7 +173,7 @@ export class InfoComponent implements OnInit {
                     // alert(res.message);
             
                     this.apiService.fetchAllScreens().subscribe((res) => {
-                      this.areas = res;
+                      this.areas = res.body;
                     });
             
                   });
@@ -191,27 +189,27 @@ export class InfoComponent implements OnInit {
     
     switch(this.value){
       case 0: this.apiService.fetchCountryByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 1: this.apiService.fetchRegionByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 2: this.apiService.fetchLocationByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 3: this.apiService.fetchClientByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 4: this.apiService.fetchDepartmentByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 5: this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
     }
@@ -222,27 +220,27 @@ export class InfoComponent implements OnInit {
 
     switch(this.value){
       case 0: this.apiService.fetchAllCountries().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 1: this.apiService.fetchAllRegions().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 2: this.apiService.fetchAllLocations().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 3: this.apiService.fetchAllClients().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 4: this.apiService.fetchAllDepartments().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
       case 5: this.apiService.fetchAllScreens().subscribe((res) => {
-                this.areas = res;
+                this.areas = res.body;
               });
               break;
     }
@@ -351,27 +349,27 @@ export class InfoComponent implements OnInit {
 
       switch(this.value){
         case 0: this.apiService.fetchAllCountries().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
         case 1: this.apiService.fetchAllRegions().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
         case 2: this.apiService.fetchAllLocations().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
         case 3: this.apiService.fetchAllClients().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
         case 4: this.apiService.fetchAllDepartments().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
         case 5: this.apiService.fetchAllScreens().subscribe((res) => {
-                  this.areas = res;
+                  this.areas = res.body;
                 });
                 break;
       }

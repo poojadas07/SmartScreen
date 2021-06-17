@@ -23,21 +23,25 @@ exports.create = (req, res) => {
         });
     }
 
-    console.log(req.body);
-
-    const country = new Country({
-        name: req.body.name,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-    });
-
-    country.save()
-    .then(data => {
-        res.status(200).json(data);
+    Country.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Country : "+ data.name + " Already existed !!");     
     })
     .catch(err => {
-        res.status(500).json({
-            message: err.message || "Some error occurred while creating the Country."
+        const country = new Country({
+            name: req.body.name,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+        });
+    
+        country.save()
+        .then(data => {
+            res.status(200).json("Country : "+ data.name + " Added Successfully !!");
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err.message || "Some error occurred while creating the Country."
+            });
         });
     });
 };
@@ -46,10 +50,10 @@ exports.create = (req, res) => {
 exports.findAll = (req , res) => {
     Country.find()
     .then( countries => {
-        res.send(countries);
+        res.status(200).json(countries);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving Countries."
         });
     });
@@ -78,11 +82,11 @@ exports.pop_country = (req , res) => {
         }
       })
       .then( countries => {
-        res.send(countries);
+        res.status(200).json(countries);
         // console.log(countries)
       })
       .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving Countries."
         });
       });
@@ -100,10 +104,10 @@ exports.findByName = (req , res) => {
         }
     })
     .then(country => {
-        res.send(country);
+        res.status(200).json(country);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving Countries."
         });
     })
@@ -114,19 +118,19 @@ exports.findOne = (req , res) => {
     Country.findById(req.params.countryId)
     .then( country => {
         if(!country){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        res.send(country);
+        res.status(200).json(country);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving country with id " + req.params.countryId
         });
     });
@@ -142,27 +146,35 @@ exports.update = (req , res) => {
     }
 
     // Find country and update it with the request body
-    Country.findByIdAndUpdate(req.params.countryId , {
-        name: req.body.name,
-        updatedAt: new Date(),
-    }, {new : true})
-    .then(country => {
-        if(!country){
-            return res.status(404).json({
-                message: "Country not found with id " + req.params.countryId
+
+    Country.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Country : " + data.name + " Already existed !!");     
+    })
+    .catch(err => {
+        Country.findByIdAndUpdate(req.params.countryId , {
+            name: req.body.name,
+            updatedAt: new Date(),
+        }, {new : true})
+        .then(country => {
+            if(!country){
+                return res.status(404).json({
+                    message: "Country not found with id " + req.params.countryId
+                });
+            }
+            res.json("Country : "+ country.name + " Updated Successfully !!");
+        }).catch(err => {
+            if(err.kind === "ObjectId"){
+                return res.status(404).json({
+                    message: "Country not found with id " + req.params.countryId
+                });
+            }
+            return res.status(500).json({
+                message: "Error updating country with id " + req.params.countryId
             });
-        }
-        res.json(country);
-    }).catch(err => {
-        if(err.kind === "ObjectId"){
-            return res.status(404).json({
-                message: "Country not found with id " + req.params.countryId
-            });
-        }
-        return res.status(500).json({
-            message: "Error updating country with id " + req.params.countryId
         });
     });
+    
 };
 
 // Delete a country with the specified countryId in the request
@@ -170,18 +182,18 @@ exports.delete = (req, res) => {
     Country.findByIdAndRemove(req.params.countryId)
     .then(country => {
         if(!country){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        res.send({message: "Country deleted sucessfully !"});
+        res.status(200).json({message: "Country deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Country not found with id " + req.params.countryId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete country with id " + req.params.countryId
         });
     });

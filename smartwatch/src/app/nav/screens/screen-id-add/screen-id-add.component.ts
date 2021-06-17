@@ -36,7 +36,7 @@ export class ScreenIdAddComponent implements OnInit {
 
     if (this.dialogTitle == "Add Screen Id"){
       this.apiService.fetchPanelById(this.data.dialogText._id).subscribe((res) => {
-        this.panels = res;
+        this.panels = res.body;
         console.log(this.panels);
         this.bookForm.get('name').setValue(this.panels.name);
         this.bookForm.get('rows').setValue(this.panels.row_no);

@@ -61,19 +61,19 @@ export class ProfileAddComponent implements OnInit {
       // alert(this.bookForm.value);
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Username '+res.username+' Edited Successfully !!');
+          this.modalService.openInfoModal('Username '+res.username+' Updated Successfully !!');
       });
     }
     else if (this.dialogTitle == "Edit Email"){
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Email '+res.email+' Edited Successfully !!');
+          this.modalService.openInfoModal(res.body);
       });
     }
     else if (this.dialogTitle == "Edit Phone"){
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Phone '+res.phone+' Edited Successfully !!');
+          this.modalService.openInfoModal(res.body);
       });
     }
   }

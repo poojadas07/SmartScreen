@@ -76,10 +76,10 @@ exports.findAll = (req, res) => {
         ]
     )
     .then( panels => {
-        res.send(panels);
+        res.status(200).json(panels);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving panels."
         });
     });
@@ -90,19 +90,19 @@ exports.findOne = (req , res) => {
     Panel.findById(req.params.panelId)
     .then( panel => {
         if(!panel){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Panel not found with id " + req.params.panelId
             });
         }
-        res.send(panel);
+        res.status(200).json(panel);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Panel not found with id " + req.params.panelId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving panel with id " + req.params.panelId
         });
     });
@@ -114,10 +114,10 @@ exports.findOneByScreen = (req , res) => {
         "screen_id" :  req.params.screenId 
     })
     .then(panel => {
-        res.send(panel);
+        res.status(200).json(panel);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving panels."
         });
     });
@@ -132,18 +132,18 @@ exports.pairSensorWithPanel = (req, res) => {
     }, {new : true})
     .then(panel => {
         if(!panel){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Panel not found with id " + req.params.panelId
             });
         }
-        res.send(panel);
+        res.status(200).json(panel);
     }).catch(err => {
         if(err.kind === "ObjectId"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Panel not found with id " + req.params.panelId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error updating panel with id " + req.params.panelId
         });
     });

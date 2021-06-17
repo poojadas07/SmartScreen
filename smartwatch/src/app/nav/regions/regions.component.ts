@@ -85,20 +85,19 @@ export class RegionsComponent implements OnInit {
   ngOnInit() {
 
     this.apiService.fetchAllRegions().subscribe((res) => {
-      console.log(res)
-      this.regionSize = res.length;
+      this.regionSize = res.body.length;
     });
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screenSize = res.length;
+      this.screenSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       const TREE_DATA = [
         {
           name: 'More',
@@ -137,8 +136,8 @@ export class RegionsComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchAllRegions().subscribe((res) => {
-        this.regions = res;
-        this.regionSize = res.length;
+        this.regions = res.body;
+        this.regionSize = res.body.length;
       });
 
     });

@@ -30,7 +30,7 @@ export class ApiService {
   sendEmail(data) {
     let urlString = environment.serverBaseUrl +'sendMail';
 
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -40,7 +40,7 @@ export class ApiService {
   fetchUserById(userId: String): Observable<any>{
     let urlString = environment.serverBaseUrl + 'user/' + userId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -50,7 +50,7 @@ export class ApiService {
   loginUser(data): Observable<any>{
     let urlString = environment.serverBaseUrl + 'login';
 
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -65,7 +65,7 @@ export class ApiService {
   signupUser(data): Observable<any>{
     let urlString = environment.serverBaseUrl + 'register';
 
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -75,7 +75,7 @@ export class ApiService {
   updateProfile(userId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'user/' + userId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -86,7 +86,7 @@ export class ApiService {
   forgotPassword(data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'forgot';
 
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -97,7 +97,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'country';
     // console.log('hello')
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -107,7 +107,7 @@ export class ApiService {
   fetchCountryById(countryId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country/' + countryId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -117,7 +117,7 @@ export class ApiService {
   fetchPoPCountry(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'pop-country';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -128,7 +128,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'country/search';
 
     // console.log(searchValue);
-    return this.http.post(urlString, searchValue , {})
+    return this.http.post(urlString, searchValue , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -139,7 +139,7 @@ export class ApiService {
 
     let urlString = environment.serverBaseUrl + 'country';
     console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -149,7 +149,7 @@ export class ApiService {
   updateCountry(countryId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'country/' + countryId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -160,7 +160,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'country/' + countryId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -171,7 +171,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'region';
     // console.log('hello')
     
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -181,7 +181,7 @@ export class ApiService {
   fetchRegionById(regionId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/' + regionId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -191,7 +191,7 @@ export class ApiService {
   fetchRegionByCountryId(countryId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/country/' + countryId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -202,7 +202,7 @@ export class ApiService {
   fetchRegionByName(regionName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/search';
 
-    return this.http.post(urlString, regionName , {})
+    return this.http.post(urlString, regionName , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -212,7 +212,7 @@ export class ApiService {
   addRegion(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region';
     console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -222,7 +222,7 @@ export class ApiService {
   updateRegion(regionId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'region/' + regionId;
     console.log(data)
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -233,7 +233,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'region/' + regionId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -244,7 +244,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'location';
     // console.log('hello');
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -254,7 +254,7 @@ export class ApiService {
   fetchLocationById(locationId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/' + locationId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -264,7 +264,7 @@ export class ApiService {
   fetchLocationByRegionId(regionId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/region/' + regionId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -275,7 +275,7 @@ export class ApiService {
   fetchLocationByName(locationName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/search';
 
-    return this.http.post(urlString, locationName , {})
+    return this.http.post(urlString, locationName , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -285,7 +285,7 @@ export class ApiService {
   addLocation(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location';
     console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -295,7 +295,7 @@ export class ApiService {
   updateLocation(locationId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'location/' + locationId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -306,7 +306,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'location/' + locationId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -316,7 +316,7 @@ export class ApiService {
   fetchAllClients(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -326,7 +326,7 @@ export class ApiService {
   fetchClientById(clientId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/' + clientId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -336,7 +336,7 @@ export class ApiService {
   fetchClientByLocationId(locationId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/location/' + locationId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -346,7 +346,7 @@ export class ApiService {
   fetchClientByName(clientName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/search';
 
-    return this.http.post(urlString, clientName , {})
+    return this.http.post(urlString, clientName , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -356,7 +356,7 @@ export class ApiService {
   addClient(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client';
     console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -366,7 +366,7 @@ export class ApiService {
   updateClient(clientId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'client/' + clientId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -377,7 +377,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'client/' + clientId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -387,7 +387,7 @@ export class ApiService {
   fetchAllDepartments(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -397,7 +397,7 @@ export class ApiService {
   fetchDepartmentById(departmentId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/' + departmentId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -407,7 +407,7 @@ export class ApiService {
   fetchDepartmentByClientId(clientId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/client/' + clientId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -418,7 +418,7 @@ export class ApiService {
   fetchDepartmentByName(departmentName: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/search';
 
-    return this.http.post(urlString, departmentName , {})
+    return this.http.post(urlString, departmentName , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -428,7 +428,7 @@ export class ApiService {
   addDepartment(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department';
     console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -438,7 +438,7 @@ export class ApiService {
   updateDepartment(departmentId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'department/' + departmentId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -449,7 +449,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'department/' + departmentId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -459,7 +459,7 @@ export class ApiService {
   fetchAllScreens(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -469,7 +469,7 @@ export class ApiService {
   fetchAllActiveScreens(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'activescreen';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -479,7 +479,7 @@ export class ApiService {
   fetchAllScreensPanel(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screenPanel';
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -489,7 +489,7 @@ export class ApiService {
   fetchScreensPanelByScreenId(screenId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screenPanel/' + screenId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -499,7 +499,7 @@ export class ApiService {
   fetchScreenById(screenId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -509,7 +509,7 @@ export class ApiService {
   fetchScreenByDepartmentId(departmentId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/department/' + departmentId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -522,7 +522,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'screen/search';
 
     console.log(data)
-    return this.http.post(urlString, data , {})
+    return this.http.post(urlString, data , {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -532,7 +532,7 @@ export class ApiService {
   addScreen(data: Object): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen';
     // console.log(data);
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -542,7 +542,7 @@ export class ApiService {
   updateScreen(screenId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
 
-    return this.http.put(urlString, data, {})
+    return this.http.put(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -553,7 +553,7 @@ export class ApiService {
     let urlString = environment.serverBaseUrl + 'screen/' + screenId;
     console.log(urlString);
 
-    return this.http.delete(urlString, {})
+    return this.http.delete(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -563,7 +563,7 @@ export class ApiService {
   fetchPanelByScreen(screenId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'panel/screen/' + screenId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -573,7 +573,7 @@ export class ApiService {
   fetchPanelById(panelId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'panel/' + panelId;
 
-    return this.http.get(urlString, {})
+    return this.http.get(urlString, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -583,7 +583,7 @@ export class ApiService {
   pairPanelWithSensor(panelId: String , data): Observable<any> {
     let urlString = environment.serverBaseUrl + 'panel/sensor/' + panelId ;
 
-    return this.http.post(urlString, data, {})
+    return this.http.post(urlString, data, {observe: 'response'})
       .pipe(
         map(data => data),
         catchError(this.handleError)
@@ -593,7 +593,7 @@ export class ApiService {
   generatePDF(msg: String) {
     let urlString = environment.serverBaseUrl + 'generateReport';
 
-    return this.http.get(urlString , {})
+    return this.http.get(urlString , {observe: 'response'})
       .pipe(
           map(data => data),
           catchError(this.handleError)
@@ -603,7 +603,7 @@ export class ApiService {
   produceMessages(): Observable<any> {
     let urlString = environment.serverBaseUrl + 'producer';
 
-    return this.http.get(urlString , {})
+    return this.http.get(urlString , {observe: 'response'})
       .pipe(
           map(data => data),
           catchError(this.handleError)

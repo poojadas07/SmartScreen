@@ -51,17 +51,17 @@ export class ScreensComponent implements AfterViewInit {
   ngAfterViewInit() {
 
     this.apiService.fetchAllScreensPanel().subscribe((res) => {
-      this.screens = res;
-      this.screensSize = res.length;
+      this.screens = res.body;
+      this.screensSize = res.body.length;
       console.log(this.screens)
     });
     
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screenSize = res.length;
+      this.screenSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
   }
 
@@ -104,13 +104,13 @@ export class ScreensComponent implements AfterViewInit {
           this.apiService.deleteScreen(screen._id).subscribe((res) => {
     
             this.apiService.fetchAllScreensPanel().subscribe((res) => {
-              this.screens = res;
-              this.screensSize = res.length;
+              this.screens = res.body;
+              this.screensSize = res.body.length;
               console.log(this.screens)
             });
 
             this.apiService.fetchAllActiveScreens().subscribe((res) => {
-              this.activescreenSize = res.length;
+              this.activescreenSize = res.body.length;
             });
     
           });
@@ -135,13 +135,13 @@ export class ScreensComponent implements AfterViewInit {
         // console.log('The dialog was closed');
 
         this.apiService.fetchAllScreensPanel().subscribe((res) => {
-          this.screens = res;
-          this.screensSize = res.length;
+          this.screens = res.body;
+          this.screensSize = res.body.length;
           console.log(this.screens)
         });
 
         this.apiService.fetchAllActiveScreens().subscribe((res) => {
-          this.activescreenSize = res.length;
+          this.activescreenSize = res.body.length;
         });
   
       });
@@ -156,13 +156,13 @@ export class ScreensComponent implements AfterViewInit {
         // console.log('The dialog was closed');
   
         this.apiService.fetchAllScreensPanel().subscribe((res) => {
-          this.screens = res;
-          this.screensSize = res.length;
+          this.screens = res.body;
+          this.screensSize = res.body.length;
           console.log(this.screens)
         });
 
         this.apiService.fetchAllActiveScreens().subscribe((res) => {
-          this.activescreenSize = res.length;
+          this.activescreenSize = res.body.length;
         });
 
       });
@@ -194,7 +194,7 @@ export class ScreensComponent implements AfterViewInit {
   search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
-      this.screens = res;
+      this.screens = res.body;
     });
   }
 
@@ -202,7 +202,7 @@ export class ScreensComponent implements AfterViewInit {
     this.bookForm.reset();
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screens = res;
+      this.screens = res.body;
     });
   }
 
@@ -212,7 +212,7 @@ export class ScreensComponent implements AfterViewInit {
   
   produce(): void{
     this.apiService.produceMessages().subscribe((res) => {
-      console.log(res);
+      console.log(res.body);
     });
   }
 }

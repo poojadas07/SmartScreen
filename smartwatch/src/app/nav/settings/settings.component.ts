@@ -37,15 +37,15 @@ export class SettingsComponent implements OnInit {
     console.log(this.screenId);
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screensSize = res.length;
+      this.screensSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
 
     this.apiService.fetchScreensPanelByScreenId(this.screenId).subscribe((res) => {
-      this.screen = res;
+      this.screen = res.body;
       console.log(this.screen);
     });
   }
@@ -76,7 +76,7 @@ export class SettingsComponent implements OnInit {
           this.apiService.deleteScreen(screen._id).subscribe((res) => {
     
             this.apiService.fetchScreensPanelByScreenId(this.screenId).subscribe((res) => {
-              this.screen = res;
+              this.screen = res.body;
               console.log(this.screen)
             });
     
@@ -100,7 +100,7 @@ export class SettingsComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchScreensPanelByScreenId(this.screenId).subscribe((res) => {
-        this.screen = res;
+        this.screen = res.body;
         console.log(this.screen)
       });
     });

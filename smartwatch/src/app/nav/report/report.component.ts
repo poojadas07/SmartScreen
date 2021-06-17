@@ -70,16 +70,15 @@ export class ReportComponent implements AfterViewInit {
   ngAfterViewInit(): void {
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       console.log(this.areas);
     });
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
+      this.dataSource = new MatTableDataSource(res.body);
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      console.log(this.dataSource);
-      this.screens = res;
+      this.screens = res.body;
     });
 
   }
@@ -95,18 +94,16 @@ export class ReportComponent implements AfterViewInit {
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
-      console.log(res)
-      this.dataSource = new MatTableDataSource(res);
-      this.screens = res;
+      this.dataSource = new MatTableDataSource(res.body);
+      this.screens = res.body;
     });
   }
 
   reset() : void {
     this.bookForm.reset();
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.dataSource = new MatTableDataSource(res);
-      console.log(this.dataSource);
-      this.screens = res;
+      this.dataSource = new MatTableDataSource(res.body);
+      this.screens = res.body;
     });
   }
   
@@ -114,9 +111,8 @@ export class ReportComponent implements AfterViewInit {
 
     const value = { searchvalue: val}
     this.apiService.fetchScreenByName(value).subscribe((res) => {
-      console.log(res)
-      this.dataSource = new MatTableDataSource(res);
-      this.screens = res;
+      this.dataSource = new MatTableDataSource(res.body);
+      this.screens = res.body;
     });
   }
   generatePDF(action = 'open') {
@@ -168,7 +164,7 @@ export class ReportComponent implements AfterViewInit {
     const email = "poojadas04kv@gmail.com";
     const message = "Hii Friends!!";
     this.apiService.sendEmail(email).subscribe((res) => {
-      console.log(res)
+      console.log(res.body)
     });
   }
 

@@ -41,13 +41,13 @@ export class LocationAddComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
 
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countries = res;
+      this.countries = res.body;
     });
 
     if (this.dialogTitle == "Edit Location"){
       this.condition = 'disable';
       this.apiService.fetchLocationById(this.data.dialogText._id).subscribe((res) => {
-        this.location = res;
+        this.location = res.body;
         // console.log(this.location);
         this.bookForm.get('name').setValue(this.location.name);
         this.bookForm.get('region_id').setValue(this.location.region_id);
@@ -62,14 +62,14 @@ export class LocationAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Location"){
       this.apiService.updateLocation(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Location '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal(res.body);
       });
     }
     else {
       this.apiService.addLocation(this.bookForm.value).subscribe(res => {
         // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal('Location '+res.name+' Added Successfully !!');
+          this.modalService.openInfoModal(res.body);
   
           // console.log('200');
           // alert(res.message);
@@ -90,7 +90,7 @@ export class LocationAddComponent implements OnInit {
   changeCountry(event: any) {
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-        this.regions = res;
+        this.regions = res.body;
       });
   }
 

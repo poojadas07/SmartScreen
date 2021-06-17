@@ -48,25 +48,25 @@ export class DepartmentAddComponent implements OnInit {
     this.dialogTitle = this.data.dialogTitle;
 
     this.apiService.fetchAllCountries().subscribe((res) => {
-      this.countries = res;
+      this.countries = res.body;
     });
     
-    this.apiService.fetchAllRegions().subscribe((res) => {
-      this.regions = res;
-    });
+    // this.apiService.fetchAllRegions().subscribe((res) => {
+    //   this.regions = res.body;
+    // });
 
-    this.apiService.fetchAllLocations().subscribe((res) => {
-      this.locations = res;
-    });
+    // this.apiService.fetchAllLocations().subscribe((res) => {
+    //   this.locations = res.body;
+    // });
     
-    this.apiService.fetchAllClients().subscribe((res) => {
-      this.clients = res;
-    });
+    // this.apiService.fetchAllClients().subscribe((res) => {
+    //   this.clients = res.body;
+    // });
 
     if (this.dialogTitle == "Edit Department"){
       this.condition = 'disable';
       this.apiService.fetchDepartmentById(this.data.dialogText._id).subscribe((res) => {
-        this.department = res;
+        this.department = res.body;
         // console.log(this.department);
         this.bookForm.get('name').setValue(this.department.name);
         this.bookForm.get('client_id').setValue(this.department.client_id);
@@ -82,15 +82,14 @@ export class DepartmentAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Department"){
       this.apiService.updateDepartment(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Department '+res.name+' Edited Successfully !!');
-          console.log(res)
+          this.modalService.openInfoModal(res.body);
       });
     }
     else {
       this.apiService.addDepartment(this.bookForm.value).subscribe(res => {
         // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal('Department '+res.name+' Added Successfully !!');
+          this.modalService.openInfoModal(res.body);
   
           // console.log('200');
           // alert(res.message);
@@ -112,7 +111,7 @@ export class DepartmentAddComponent implements OnInit {
     // console.log(this.client);
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res;
+      this.regions = res.body;
     });
     // return this.country;
   }
@@ -122,7 +121,7 @@ export class DepartmentAddComponent implements OnInit {
     this.condition2 = !this.condition2;
     
     this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res;
+      this.locations = res.body;
     });
   }
 
@@ -131,7 +130,7 @@ export class DepartmentAddComponent implements OnInit {
     this.condition3 = !this.condition3;
     
     this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
-      this.clients = res;
+      this.clients = res.body;
     });
   }
 

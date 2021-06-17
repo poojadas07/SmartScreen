@@ -47,12 +47,12 @@ export class LoginComponent implements OnInit {
    }
     else {
         this.apiService.loginUser(this.loginForm.value).subscribe((res) => {
-          console.log(res);
+          console.log(res.body);
 
           if (res.length != 0){
             this.router.navigate(["dashboard"]);
             localStorage.setItem('isLoggedIn', "true");  
-            localStorage.setItem('token', res._id);
+            localStorage.setItem('token', res.body._id);
           }
           else {
             this.modalService.openInfoModal("Credentials not found !!");
@@ -64,9 +64,9 @@ export class LoginComponent implements OnInit {
   signup() : void {
     if(this.signupForm.value.password == this.signupForm.value.confirmPass){
       this.apiService.signupUser(this.signupForm.value).subscribe((res) => {
-        console.log(res);
+        console.log(res.body);
         this.apiService.sendEmail(this.signupForm.value).subscribe((data) => {
-          console.log(data)
+          console.log(res.body)
         });
         this.modalService.openInfoModal("User successfully Registered . Please login to continue !!");
       });

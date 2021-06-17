@@ -8,32 +8,35 @@ const Panels = require('../model/panel');
 exports.create = (req, res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Department can not be empty"
         });
     }
 
-    console.log(req.body);
-
-    // create department
-    const department = new Department({
-        name: req.body.name ,
-        createdAt: new Date(),
-        updatedAt: new Date(),
-        client_id: req.body.client_id,
-        location_id: req.body.location_id,
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    });
-
-    department.save()
-    .then(data => {
-        res.send(data);
-        console.log(data);
+    Department.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Department : " + data.name + " Already existed !!");     
     })
     .catch(err => {
-        res.status(500).send({
-            message: err.message || "Some error occurred while creating the department."
+        // create department
+        const department = new Department({
+            name: req.body.name ,
+            createdAt: new Date(),
+            updatedAt: new Date(),
+            client_id: req.body.client_id,
+            location_id: req.body.location_id,
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        });
+
+        department.save()
+        .then(data => {
+            res.status(200).json("Department : " + data.name + " Added Successfully !!");
+        })
+        .catch(err => {
+            res.status(500).json({
+                message: err.message || "Some error occurred while creating the department."
+            });
         });
     });
 };
@@ -43,10 +46,10 @@ exports.create = (req, res) => {
 // exports.findAll = (req , res) => {
 //     Location.find()
 //     .then( locations => {
-//         res.send(locations);
+//         res.json(locations);
 //     })
 //     .catch(err => {
-//         res.status(500).send({
+//         res.status(500).json({
 //             message: err.message || "Some error occurred while retrieving locations."
 //         });
 //     });
@@ -104,10 +107,10 @@ exports.findAll = (req, res) => {
         ]
     )
     .then( departments => {
-        res.send(departments);
+        res.status(200).json(departments);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving departments."
         });
     });
@@ -174,10 +177,10 @@ exports.findByName = (req , res) => {
         ]
     )
     .then(department => {
-        res.send(department);
+        res.status(200).json(department);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving departments."
         });
     })
@@ -188,19 +191,19 @@ exports.findOne = (req , res) => {
     Department.findById(req.params.departmentId)
     .then( department => {
         if(!department){
-            res.status(404).send({
+            res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        res.send(department);
+        res.status(200).json(department);
     })
     .catch(err => {
         if(err.kind === 'ObjectId'){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Deparment not found with id " + req.params.departmentId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Error retrieving department with id " + req.params.departmentId
         });
     });
@@ -212,10 +215,10 @@ exports.findOneByClient = (req , res) => {
         "client_id" :  req.params.clientId 
     })
     .then(department => {
-        res.send(department);
+        res.status(200).json(department);
     })
     .catch(err => {
-        res.status(500).send({
+        res.status(500).json({
             message: err.message || "Some error occurred while retrieving departments."
         });
     });
@@ -225,35 +228,41 @@ exports.findOneByClient = (req , res) => {
 exports.update = (req , res) => {
     // Validate request
     if(!req.body){
-        return res.status(400).send({
+        return res.status(400).json({
             message: "Department cannot be empty"
         });
     }
 
-    // Find client and update it with the request body
-    Department.findByIdAndUpdate(req.params.departmentId , {
-        name: req.body.name ,
-        updatedAt: new Date(),
-        client_id: req.body.client_id,
-        location_id: req.body.location_id,
-        region_id: req.body.region_id,
-        country_id: req.body.country_id,
-    }, {new : true})
-    .then(department => {
-        if(!department){
-            return res.status(404).send({
-                message: "Department not found with id " + req.params.departmentId
+    Department.findOne({ "name": req.body.name })
+    .then( data => {
+        res.status(401).json("Department : " + data.name + " Already existed !!");     
+    })
+    .catch(err => {
+        // Find department and update it with the request body
+        Department.findByIdAndUpdate(req.params.departmentId , {
+            name: req.body.name ,
+            updatedAt: new Date(),
+            client_id: req.body.client_id,
+            location_id: req.body.location_id,
+            region_id: req.body.region_id,
+            country_id: req.body.country_id,
+        }, {new : true})
+        .then(department => {
+            if(!department){
+                return res.status(404).json({
+                    message: "Department not found with id " + req.params.departmentId
+                });
+            }
+            res.status(200).json("Department : " + department.name + " Updated Successfully !!");
+        }).catch(err => {
+            if(err.kind === "ObjectId"){
+                return res.status(404).json({
+                    message: "Department not found with id " + req.params.departmentId
+                });
+            }
+            return res.status(500).json({
+                message: "Error updating department with id " + req.params.departmentId
             });
-        }
-        res.send(department);
-    }).catch(err => {
-        if(err.kind === "ObjectId"){
-            return res.status(404).send({
-                message: "Department not found with id " + req.params.departmentId
-            });
-        }
-        return res.status(500).send({
-            message: "Error updating department with id " + req.params.departmentId
         });
     });
 };
@@ -263,18 +272,18 @@ exports.delete = (req, res) => {
     Department.findByIdAndRemove(req.params.departmentId)
     .then(department => {
         if(!department){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        res.send({message: "Department deleted sucessfully !"});
+        res.status(200).json({message: "Department deleted sucessfully !"});
     }).catch(err => {
         if(err.kind === 'ObjectId' || err.name === "Not Found"){
-            return res.status(404).send({
+            return res.status(404).json({
                 message: "Department not found with id " + req.params.departmentId
             });
         }
-        return res.status(500).send({
+        return res.status(500).json({
             message: "Could not delete department with id " + req.params.departmentId
         });
     });

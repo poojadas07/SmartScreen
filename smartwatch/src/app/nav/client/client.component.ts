@@ -84,19 +84,19 @@ export class ClientComponent implements OnInit {
 
   ngOnInit() {
     this.apiService.fetchAllClients().subscribe((res) => {
-      this.clientSize = res.length;
+      this.clientSize = res.body.length;
     });
 
     this.apiService.fetchAllScreens().subscribe((res) => {
-      this.screenSize = res.length;
+      this.screenSize = res.body.length;
     });
 
     this.apiService.fetchAllActiveScreens().subscribe((res) => {
-      this.activescreenSize = res.length;
+      this.activescreenSize = res.body.length;
     });
 
     this.apiService.fetchPoPCountry().subscribe((res) => {
-      this.areas = res;
+      this.areas = res.body;
       const TREE_DATA = [
         {
           name: 'More',
@@ -135,8 +135,8 @@ export class ClientComponent implements OnInit {
       // console.log('The dialog was closed');
 
       this.apiService.fetchAllClients().subscribe((res) => {
-        this.clients = res;
-        this.clientSize = res.length;
+        this.clients = res.body;
+        this.clientSize = res.body.length;
       });
 
     });
