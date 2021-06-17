@@ -25,7 +25,7 @@ exports.create = (req, res) => {
 
     Country.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Country : "+ data.name + " Already existed !!");     
+        res.status(207).json("Country : "+ data.name + " Already existed !!");     
     })
     .catch(err => {
         const country = new Country({
@@ -149,7 +149,7 @@ exports.update = (req , res) => {
 
     Country.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Country : " + data.name + " Already existed !!");     
+        res.status(207).json("Country : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         Country.findByIdAndUpdate(req.params.countryId , {
@@ -162,7 +162,7 @@ exports.update = (req , res) => {
                     message: "Country not found with id " + req.params.countryId
                 });
             }
-            res.json("Country : "+ country.name + " Updated Successfully !!");
+            res.status(200).json("Country : "+ country.name + " Updated Successfully !!");
         }).catch(err => {
             if(err.kind === "ObjectId"){
                 return res.status(404).json({

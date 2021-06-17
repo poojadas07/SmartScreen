@@ -42,9 +42,10 @@ export class RegionAddComponent implements OnInit {
       this.condition = 'disable';
       this.apiService.fetchRegionById(this.data.dialogText._id).subscribe((res) => {
         this.region = res.body;
-        // console.log(this.region);
+        
         this.bookForm.get('name').setValue(this.region.name);
         this.bookForm.get('country_id').setValue(this.region.country_id);
+        
       });
     }
   }
@@ -54,26 +55,24 @@ export class RegionAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Region"){
       this.apiService.updateRegion(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     else {
       this.apiService.addRegion(this.bookForm.value).subscribe(res => {
         // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
-  
-          // console.log('200');
-          // alert(res.message);
-        // }
-        // else{
-        //   this.dialogRef.close();
-  
-        //   this.modalService.openInfoModal(res.message);
-  
-        //   console.log('error');
-        //   // alert(res.message);
-        // }
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     

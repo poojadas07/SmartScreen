@@ -58,7 +58,6 @@ export class ProfileAddComponent implements OnInit {
   update() : any  {
 
     if (this.dialogTitle == "Edit Name"){
-      // alert(this.bookForm.value);
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
           this.modalService.openInfoModal('Username '+res.username+' Updated Successfully !!');
@@ -67,13 +66,23 @@ export class ProfileAddComponent implements OnInit {
     else if (this.dialogTitle == "Edit Email"){
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     else if (this.dialogTitle == "Edit Phone"){
       this.apiService.updateProfile(this.id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
   }

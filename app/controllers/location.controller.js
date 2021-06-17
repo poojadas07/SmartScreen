@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
     Location.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Location : " + data.name + " Already existed !!");     
+        res.status(207).json("Location : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // create location
@@ -176,7 +176,7 @@ exports.update = (req , res) => {
 
     Location.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Location : " + data.name + " Already existed !!");     
+        res.status(207).json("Location : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         Location.findByIdAndUpdate(req.params.locationId , {

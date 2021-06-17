@@ -18,6 +18,9 @@ export class LoginComponent implements OnInit {
   loginForm: FormGroup;
   signupForm: FormGroup;
   id: string;
+  hide = true;
+  hide1 = true;
+  hide2 = true;
 
   constructor(private router: Router,
     public formBuilder: FormBuilder,
@@ -65,10 +68,16 @@ export class LoginComponent implements OnInit {
     if(this.signupForm.value.password == this.signupForm.value.confirmPass){
       this.apiService.signupUser(this.signupForm.value).subscribe((res) => {
         console.log(res.body);
-        this.apiService.sendEmail(this.signupForm.value).subscribe((data) => {
-          console.log(res.body)
-        });
-        this.modalService.openInfoModal("User successfully Registered . Please login to continue !!");
+
+        if (res.status == 207){
+          this.modalService.openWarningModal(res.body);
+        }
+        else if (res.status == 200){
+          this.apiService.sendEmail(this.signupForm.value).subscribe((res) => {
+            console.log(res.body)
+          });
+          this.modalService.openInfoModal(res.body);
+        }
       });
       
     }

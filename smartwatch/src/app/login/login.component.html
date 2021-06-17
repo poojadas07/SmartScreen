@@ -17,8 +17,8 @@
                 <div class="form-group">
                     <mat-form-field appearance="legacy" style="width:100% !important">
                         <mat-label>Password</mat-label>
-                        <input matInput placeholder="Password" formControlName="password" type="password" required>
-                        <mat-icon matSuffix>lock</mat-icon>
+                        <input matInput placeholder="Password" formControlName="password" [type]="hide ? 'password' : 'text'" required>
+                        <mat-icon matSuffix style="cursor: pointer;" (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </mat-form-field>
                 </div>
 
@@ -48,16 +48,16 @@
                 <div class="form-group">
                     <mat-form-field appearance="legacy" style="width:100% !important">
                         <mat-label>Password</mat-label>
-                        <input matInput placeholder="Password" formControlName="password" type="password" required>
-                        <mat-icon matSuffix>lock</mat-icon>
+                        <input matInput placeholder="Password" formControlName="password" [type]="hide1 ? 'password' : 'text'" required>
+                        <mat-icon matSuffix style="cursor: pointer;" (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </mat-form-field>
                 </div>
 
                 <div class="form-group">
                     <mat-form-field appearance="legacy" style="width:100% !important">
                         <mat-label>Confirm Password</mat-label>
-                        <input matInput placeholder="Password" formControlName="confirmPass" type="password" name="password" required>
-                        <mat-icon matSuffix>lock</mat-icon>
+                        <input matInput placeholder="Password" formControlName="confirmPass" [type]="hide2 ? 'password' : 'text'"  name="password" required>
+                        <mat-icon matSuffix style="cursor: pointer;" (click)="hide2 = !hide2">{{hide2 ? 'visibility_off' : 'visibility'}}</mat-icon>
                     </mat-form-field>
                 </div>
                 <div class="form-group">

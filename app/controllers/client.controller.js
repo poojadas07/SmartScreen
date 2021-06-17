@@ -17,7 +17,7 @@ exports.create = (req, res) => {
 
     Client.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Client : " + data.name + " Already existed !!");     
+        res.status(207).json("Client : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // create client
@@ -197,7 +197,7 @@ exports.update = (req , res) => {
 
     Client.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Client : " + data.name + " Already existed !!");     
+        res.status(207).json("Client : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // Find client and update it with the request body

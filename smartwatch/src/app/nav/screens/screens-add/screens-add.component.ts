@@ -57,22 +57,6 @@ export class ScreensAddComponent implements OnInit {
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.countries = res.body;
     });
-    
-    // this.apiService.fetchAllRegions().subscribe((res) => {
-    //   this.regions = res.body;
-    // });
-
-    // this.apiService.fetchAllLocations().subscribe((res) => {
-    //   this.locations = res;
-    // });
-    
-    // this.apiService.fetchAllClients().subscribe((res) => {
-    //   this.clients = res;
-    // });
-    
-    // this.apiService.fetchAllDepartments().subscribe((res) => {
-    //   this.departments = res;
-    // });
 
     if (this.dialogTitle == "Edit Screen"){
       this.condition = 'disable';
@@ -97,38 +81,23 @@ export class ScreensAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Screen"){
       this.apiService.updateScreen(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal('Screen '+res.name+' Edited Successfully !!');
+          this.modalService.openInfoModal('Screen '+res.body.name+' Edited Successfully !!');
       });
     }
     else {
       this.apiService.addScreen(this.bookForm.value).subscribe(res => {
-        // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal('Screen '+res.name+' Added Successfully !!');
-  
-          // console.log('200');
-          // alert(res.message);
-        // }
-        // else{
-        //   this.dialogRef.close();
-  
-        //   this.modalService.openInfoModal(res.message);
-  
-        //   console.log('error');
-        //   // alert(res.message);
-        // }
+          this.modalService.openInfoModal('Screen '+res.body.name+' Added Successfully !!');
       });
     }
     
   }
 
   changeCountry(event: any) {
-    // console.log(this.client);
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
       this.regions = res.body;
     });
-    // return this.country;
   }
 
   changeRegion(event: any){

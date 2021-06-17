@@ -15,7 +15,7 @@ exports.create = (req, res) => {
 
     Department.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Department : " + data.name + " Already existed !!");     
+        res.status(207).json("Department : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // create department
@@ -235,7 +235,7 @@ exports.update = (req , res) => {
 
     Department.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Department : " + data.name + " Already existed !!");     
+        res.status(207).json("Department : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // Find department and update it with the request body

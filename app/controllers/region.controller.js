@@ -23,7 +23,7 @@ exports.create = (req, res) => {
     
     Region.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Region : " + data.name + " Already existed !!");     
+        res.status(207).json("Region : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         // create region
@@ -157,7 +157,7 @@ exports.update = (req , res) => {
 
     Region.findOne({ "name": req.body.name })
     .then( data => {
-        res.status(401).json("Region : " + data.name + " Already existed !!");     
+        res.status(207).json("Region : " + data.name + " Already existed !!");     
     })
     .catch(err => {
         Region.findByIdAndUpdate(req.params.regionId , {

@@ -37,10 +37,11 @@ export class ScreenIdAddComponent implements OnInit {
     if (this.dialogTitle == "Add Screen Id"){
       this.apiService.fetchPanelById(this.data.dialogText._id).subscribe((res) => {
         this.panels = res.body;
-        console.log(this.panels);
+        
         this.bookForm.get('name').setValue(this.panels.name);
         this.bookForm.get('rows').setValue(this.panels.row_no);
         this.bookForm.get('columns').setValue(this.panels.column_no);
+        
       });
     }
   }
@@ -49,7 +50,7 @@ export class ScreenIdAddComponent implements OnInit {
 
     this.apiService.pairPanelWithSensor(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
         this.dialogRef.close();
-        this.modalService.openInfoModal('Sensor ID '+res.sensor_id+' Added Successfully !!');
+        this.modalService.openInfoModal('Sensor ID '+res.body.sensor_id+' Added Successfully !!');
     });
   }
 

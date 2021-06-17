@@ -45,26 +45,23 @@ export class CountryAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Country"){
       this.apiService.updateCountry(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     else {
       this.apiService.addCountry(this.bookForm.value).subscribe(res => {
-        // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
-  
-          // console.log('200');
-          // alert(res.message);
-        // }
-        // else{
-        //   this.dialogRef.close();
-  
-        //   this.modalService.openInfoModal(res.message);
-  
-        //   console.log('error');
-        //   // alert(res.message);
-        // }
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     

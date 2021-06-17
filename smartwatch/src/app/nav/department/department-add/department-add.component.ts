@@ -50,29 +50,18 @@ export class DepartmentAddComponent implements OnInit {
     this.apiService.fetchAllCountries().subscribe((res) => {
       this.countries = res.body;
     });
-    
-    // this.apiService.fetchAllRegions().subscribe((res) => {
-    //   this.regions = res.body;
-    // });
-
-    // this.apiService.fetchAllLocations().subscribe((res) => {
-    //   this.locations = res.body;
-    // });
-    
-    // this.apiService.fetchAllClients().subscribe((res) => {
-    //   this.clients = res.body;
-    // });
 
     if (this.dialogTitle == "Edit Department"){
       this.condition = 'disable';
       this.apiService.fetchDepartmentById(this.data.dialogText._id).subscribe((res) => {
         this.department = res.body;
-        // console.log(this.department);
+
         this.bookForm.get('name').setValue(this.department.name);
         this.bookForm.get('client_id').setValue(this.department.client_id);
         this.bookForm.get('location_id').setValue(this.department.location_id);
         this.bookForm.get('region_id').setValue(this.department.region_id);
         this.bookForm.get('country_id').setValue(this.department.country_id);
+
       });
     }
   }
@@ -82,38 +71,33 @@ export class DepartmentAddComponent implements OnInit {
     if (this.dialogTitle == "Edit Department"){
       this.apiService.updateDepartment(this.data.dialogText._id , this.bookForm.value).subscribe((res) => {
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     else {
       this.apiService.addDepartment(this.bookForm.value).subscribe(res => {
-        // if(res.status == 200){
           this.dialogRef.close();
-          this.modalService.openInfoModal(res.body);
-  
-          // console.log('200');
-          // alert(res.message);
-        // }
-        // else{
-        //   this.dialogRef.close();
-  
-        //   this.modalService.openInfoModal(res.message);
-  
-        //   console.log('error');
-        //   // alert(res.message);
-        // }
+          if (res.status == 207){
+            this.modalService.openWarningModal(res.body);
+          }
+          else if (res.status == 200){
+            this.modalService.openInfoModal(res.body);
+          }
       });
     }
     
   }
 
   changeCountry(event: any) {
-    // console.log(this.client);
     this.condition1 = !this.condition1;
     this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
       this.regions = res.body;
     });
-    // return this.country;
   }
 
   changeRegion(event: any){

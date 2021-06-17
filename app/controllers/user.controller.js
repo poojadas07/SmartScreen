@@ -19,7 +19,7 @@ exports.create = (req, res) => {
 
     User.findOne({ "email": req.body.email })
     .then( data => {
-        res.status(401).json("User Email : " + data.email + " Already existed !!");     
+        res.status(207).json("User Email : " + data.email + " Already existed !!");     
     })
     .catch(err => {
         const user = new User({
@@ -31,7 +31,7 @@ exports.create = (req, res) => {
 
         user.save()
         .then(data => {
-            res.status(200).json("User : " + data.email + " Added succesfully !!");
+            res.status(200).json("User : " + data.email + " Added succesfully. Please login to continue !!");
         })
         .catch(err => {
             res.status(500).json({
@@ -122,7 +122,7 @@ exports.update = (req , res) => {
     if (req.body.email){
         User.findOne({ "email": req.body.email })
         .then( data => {
-            res.status(401).json("User Email : " + data.email + " Already existed !!");     
+            res.status(207).json("User Email : " + data.email + " Already existed !!");     
         })
         .catch(err => {
             User.findByIdAndUpdate(req.params.userId , {
@@ -152,7 +152,7 @@ exports.update = (req , res) => {
     if (req.body.phone){
         User.findOne({ "phone": req.body.phone })
         .then( data => {
-            res.status(401).json("User Phone : " + data.phone + " Already existed !!");     
+            res.status(207).json("User Phone : " + data.phone + " Already existed !!");     
         })
         .catch(err => {
             User.findByIdAndUpdate(req.params.userId , {

@@ -33,7 +33,6 @@ export class ForgotPasswordComponent implements OnInit {
   forgotPass() : any  {
 
     this.apiService.forgotPassword(this.bookForm.value).subscribe((res) => {
-      console.log(res.body)
       this.dialogRef.close();
       this.modalService.openInfoModal("Your password is sent to your registered email !!");        
     });
