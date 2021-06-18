@@ -87,9 +87,12 @@ export class LocationAddComponent implements OnInit {
 
   changeCountry(event: any) {
     this.condition1 = !this.condition1;
-    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+    
+    if(this.country){
+      this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
         this.regions = res.body;
       });
+    }
   }
 
 }

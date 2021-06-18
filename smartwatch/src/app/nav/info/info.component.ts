@@ -24,7 +24,7 @@ export class InfoComponent implements OnInit {
 
   title: String;
 
-  headers = ['Rows', 'Columns', 'Department' , 'Client' , 'Location' , 'Region' , 'Country'];
+  headers = ['Rows', 'Cols', 'Department' , 'Client' , 'Location' , 'Region' , 'Country'];
   headervalues = [];
   value: number;
 

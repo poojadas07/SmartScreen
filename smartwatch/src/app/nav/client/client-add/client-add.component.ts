@@ -90,19 +90,23 @@ export class ClientAddComponent implements OnInit {
   changeCountry(event: any) {
     // console.log(this.client);
     this.condition1 = !this.condition1;
-    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res.body;
-    });
-    // return this.country;
+    
+    if(this.country){
+      this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+        this.regions = res.body;
+      });
+    }
   }
 
   changeRegion(event: any){
 
     this.condition2 = !this.condition2;
     
-    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res.body;
-    });
+    if(this.region){
+      this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+        this.locations = res.body;
+      });
+    }
   }
 
 

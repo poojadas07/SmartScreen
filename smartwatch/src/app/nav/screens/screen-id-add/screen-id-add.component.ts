@@ -25,6 +25,7 @@ export class ScreenIdAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
+        panel: ['', Validators.required],
         rows: ['', Validators.required],
         columns: ['', Validators.required],
         sensorId: ['', Validators.required],
@@ -37,11 +38,19 @@ export class ScreenIdAddComponent implements OnInit {
     if (this.dialogTitle == "Add Screen Id"){
       this.apiService.fetchPanelById(this.data.dialogText._id).subscribe((res) => {
         this.panels = res.body;
-        
-        this.bookForm.get('name').setValue(this.panels.name);
+
+        this.bookForm.get('panel').setValue(this.panels.name);
         this.bookForm.get('rows').setValue(this.panels.row_no);
         this.bookForm.get('columns').setValue(this.panels.column_no);
-        
+
+        this.apiService.fetchScreenById(this.data.dialogText.screen_id).subscribe((res) => {
+          this.bookForm.get('name').setValue(res.body.name);
+        });
+
+        this.bookForm.controls['rows'].disable();
+        this.bookForm.controls['columns'].disable();
+        this.bookForm.controls['name'].disable();
+        this.bookForm.controls['panel'].disable();
       });
     }
   }

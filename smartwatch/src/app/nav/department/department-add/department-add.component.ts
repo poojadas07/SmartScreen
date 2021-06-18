@@ -95,27 +95,34 @@ export class DepartmentAddComponent implements OnInit {
 
   changeCountry(event: any) {
     this.condition1 = !this.condition1;
-    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res.body;
-    });
+    
+    if(this.country){
+      this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+        this.regions = res.body;
+      });
+    }
   }
 
   changeRegion(event: any){
 
     this.condition2 = !this.condition2;
     
-    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res.body;
-    });
+    if(this.region){
+      this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+        this.locations = res.body;
+      });
+    }
   }
 
   changeLocation(event: any){
 
     this.condition3 = !this.condition3;
     
-    this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
-      this.clients = res.body;
-    });
+    if(this.location){
+      this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
+        this.clients = res.body;
+      });
+    }
   }
 
 

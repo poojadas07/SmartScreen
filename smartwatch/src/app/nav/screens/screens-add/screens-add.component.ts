@@ -40,8 +40,8 @@ export class ScreensAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        rows: ['', Validators.required],
-        columns: ['', Validators.required],
+        rowNo: ['', Validators.required],
+        columnNo: ['', Validators.required],
         status: ['', Validators.required],
         department_id: ['', Validators.required],
         client_id: ['', Validators.required],
@@ -64,14 +64,16 @@ export class ScreensAddComponent implements OnInit {
         this.screen = res.body;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.screen.name);
-        this.bookForm.get('rows').setValue(this.screen.rows);
-        this.bookForm.get('columns').setValue(this.screen.columns);
+        this.bookForm.get('rowNo').setValue(this.screen.rows);
+        this.bookForm.get('columnNo').setValue(this.screen.columns);
         this.bookForm.get('status').setValue(this.screen.status);
         this.bookForm.get('department_id').setValue(this.screen.department_id);
         this.bookForm.get('client_id').setValue(this.screen.client_id);
         this.bookForm.get('location_id').setValue(this.screen.location_id);
         this.bookForm.get('region_id').setValue(this.screen.region_id);
         this.bookForm.get('country_id').setValue(this.screen.country_id);
+        this.bookForm.controls['rowNo'].disable();
+        this.bookForm.controls['columnNo'].disable();
       });
     }
   }
@@ -95,36 +97,45 @@ export class ScreensAddComponent implements OnInit {
 
   changeCountry(event: any) {
     this.condition1 = !this.condition1;
-    this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
-      this.regions = res.body;
-    });
+    
+    if(this.country){
+      this.apiService.fetchRegionByCountryId(this.country).subscribe((res) => {
+        this.regions = res.body;
+      });
+    }
   }
 
   changeRegion(event: any){
 
     this.condition2 = !this.condition2;
     
-    this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
-      this.locations = res.body;
-    });
+    if(this.region){
+      this.apiService.fetchLocationByRegionId(this.region).subscribe((res) => {
+        this.locations = res.body;
+      });
+    }
   }
 
   changeLocation(event: any){
 
     this.condition3 = !this.condition3;
     
-    this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
-      this.clients = res.body;
-    });
+    if(this.location){
+      this.apiService.fetchClientByLocationId(this.location).subscribe((res) => {
+        this.clients = res.body;
+      });
+    }
   }
 
   changeClient(event: any){
 
     this.condition4 = !this.condition4;
     
-    this.apiService.fetchDepartmentByClientId(this.client).subscribe((res) => {
-      this.departments = res.body;
-    });
+    if(this.client){
+      this.apiService.fetchDepartmentByClientId(this.client).subscribe((res) => {
+        this.departments = res.body;
+      });
+    }
   }
 
 

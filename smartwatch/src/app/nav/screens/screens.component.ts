@@ -53,7 +53,6 @@ export class ScreensComponent implements AfterViewInit {
     this.apiService.fetchAllScreensPanel().subscribe((res) => {
       this.screens = res.body;
       this.screensSize = res.body.length;
-      console.log(this.screens)
     });
     
     this.apiService.fetchAllScreens().subscribe((res) => {
@@ -73,18 +72,14 @@ export class ScreensComponent implements AfterViewInit {
     this.openDialog(false);
   }
 
-  addScreenToPanel(screen: any): void {
+  addScreenToPanel(panel: any): void {
     let dialogRef = this.dialog.open(ScreenIdAddComponent , {
-        data: {dialogTitle: "Add Screen Id" , dialogText: screen}
+        data: {dialogTitle: "Add Screen Id" , dialogText: panel}
       });
     
 
     dialogRef.afterClosed().subscribe(res => {
       // console.log('The dialog was closed');
-
-      // this.apiService.fetchAllScreens().subscribe((res) => {
-      //   this.screens = res;
-      // });
 
     });
   }
@@ -106,7 +101,6 @@ export class ScreensComponent implements AfterViewInit {
             this.apiService.fetchAllScreensPanel().subscribe((res) => {
               this.screens = res.body;
               this.screensSize = res.body.length;
-              console.log(this.screens)
             });
 
             this.apiService.fetchAllActiveScreens().subscribe((res) => {
