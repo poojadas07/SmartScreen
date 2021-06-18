@@ -1,30 +1,17 @@
-<br><br>
+<br>
 <mat-card-content>
     <br>
     <button type="submit" class="btn btn-white btn-round btn-just-icon" style="float: left; margin: 0 2%;" (click)="back()">
         <i class="material-icons">chevron_left</i>
     </button>
 
-    <h2 style="padding: 0 3%;">{{ title }}</h2>
-    <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right; margin-right: 2%;" (click)="add()">
+    <h3 style="padding: 0 3%;">{{ title }}
+      <button type="submit" class="btn btn-primary btn-round btn-just-icon" style="float: right;" (click)="add()">
         <i class="material-icons">add</i>
-    </button>
+      </button>
+    </h3>
+
     <br>
-    <form class="example-form" style="margin: 0 2%;" [formGroup]="bookForm" (ngSubmit)="search()">
-
-      <div class="form-group">
-        <div class="input-group no-border" style="width: 30%;">
-          <input type="text" value="" class="form-control" placeholder="Search..." formControlName="searchvalue">
-          <button type="submit" class="btn btn-white btn-round btn-just-icon">
-            <i class="material-icons">search</i>
-          </button>
-          <button type="submit" class="btn btn-primary" (click)="reset()" style="margin-left: 4%;">
-            Reset
-          </button>
-        </div>
-      </div>
-
-    </form>
 </mat-card-content>
 
 <div class="content">
@@ -37,11 +24,27 @@
                 <div class="card-icon">
                   <i class="material-icons">assignment</i>
                 </div>
-                <h4 class="card-title ">{{ title }}</h4>
+                <h4 class="card-title ">{{ title }}
+                  <form class="example-form" [formGroup]="bookForm" (ngSubmit)="search()" style="float: right;">
+
+                    <div class="form-group">
+                      <div class="input-group no-border">
+                        <input type="text" value="" class="form-control" placeholder="Search..." formControlName="searchvalue">
+                        <button type="submit" class="btn btn-link btn-warning btn-just-icon">
+                          <i class="material-icons">search</i>
+                        </button>
+                        <button type="button" class="btn btn-link btn-danger btn-just-icon" (click)="reset()">
+                          <i class="material-icons" style="font-size: xx-large;">restore</i>
+                        </button>
+                      </div>
+                    </div>
+              
+                  </form>
+                </h4>
               </div>
               <div class="card-body">
                 <div class="table-responsive">
-                  <table class="table">
+                  <table class="table" style="padding: 0px;">
                     <thead class=" text-primary">
                         <th>Sort</th>
                         <th>Name</th>

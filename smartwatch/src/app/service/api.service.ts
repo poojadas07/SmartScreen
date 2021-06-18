@@ -570,6 +570,26 @@ export class ApiService {
       );
   }
 
+  fetchFalutyPanelByScreen(screenId: String, current_value): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'panel/screen/' + screenId;
+
+    return this.http.post(urlString, current_value, {observe: 'response'})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
+  fetchActivePanelByScreen(screenId: String, current_value): Observable<any> {
+    let urlString = environment.serverBaseUrl + 'panel/screen/' + screenId;
+
+    return this.http.post(urlString, current_value, {observe: 'response'})
+      .pipe(
+        map(data => data),
+        catchError(this.handleError)
+      );
+  }
+
   fetchPanelById(panelId: String): Observable<any> {
     let urlString = environment.serverBaseUrl + 'panel/' + panelId;
 

@@ -109,7 +109,7 @@ export class ReportComponent implements AfterViewInit {
   
   screenByName(val): void{
 
-    const value = { searchvalue: val}
+    const value = { searchvalue: val};
     this.apiService.fetchScreenByName(value).subscribe((res) => {
       this.dataSource = new MatTableDataSource(res.body);
       this.screens = res.body;

@@ -1,5 +1,21 @@
 const Panel = require('../model/panel');
 
+exports.findByCurrrentValue = (req, res) => {
+
+    Panel.find({
+        "screen_id" :  req.params.screenId,
+        "current_value": req.body.current_value
+    })
+    .then( data => {
+        res.status(200).json(data);
+    })
+    .catch( err => {
+        res.status(500).json({
+            message: err.message || "Some error occurred while retrieving panels."
+        });
+    });
+}
+
 exports.findAll = (req, res) => {
     Panel.aggregate(
         [

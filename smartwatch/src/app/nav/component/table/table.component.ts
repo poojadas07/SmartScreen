@@ -44,7 +44,7 @@ export class TableComponent implements OnInit {
   selectedItem: any;
   setItem: any;
 
-  setfilters = ['All', 'Faulty', 'Active'];
+  setfilters = ['All', 'Active', 'Faulty'];
   rows = [5,10,15,20];
   
   displayedColumns: string[] = ['sort' , 'id', 'screen', 'installed', 'breakdown', 'lifespan', 'status'];
@@ -77,19 +77,64 @@ export class TableComponent implements OnInit {
     });
     
   }
-
-  searchentity(value): void{
-    alert(value)
-   }
  
    setfilter(value): void{
-     alert(value);
+     if (value == "All"){
+        this.apiService.fetchPanelByScreen(this.messagelist._id).subscribe((res) => {
+          this.dataSource = new MatTableDataSource(res.body);
+          this.dataSource.paginator = this.paginator;
+          this.dataSource.sort = this.sort;
+        });
+     }
+    if (value == "Faulty"){
+      const val1 = { current_value: 1};
+      this.apiService.fetchFalutyPanelByScreen(this.messagelist._id, val1).subscribe((res) => {
+        this.dataSource = new MatTableDataSource(res.body);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
+    if (value == "Active"){
+      const val2 = { current_value: 2};
+      this.apiService.fetchActivePanelByScreen(this.messagelist._id, val2).subscribe((res) => {
+        this.dataSource = new MatTableDataSource(res.body);
+        this.dataSource.paginator = this.paginator;
+        this.dataSource.sort = this.sort;
+      });
+    }
+    
    }
 
    search() : any {
     
     this.apiService.fetchScreenByName(this.bookForm.value).subscribe((res) => {
       this.screens = res.body;
+    });
+  }
+
+  all(): void{
+    this.apiService.fetchPanelByScreen(this.messagelist._id).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.body);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  faulty(): void{
+    const val = { current_value: 1};
+    this.apiService.fetchFalutyPanelByScreen(this.messagelist._id, val).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.body);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  active(): void{
+    const val = { current_value: 2};
+    this.apiService.fetchActivePanelByScreen(this.messagelist._id, val).subscribe((res) => {
+      this.dataSource = new MatTableDataSource(res.body);
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     });
   }
 }

@@ -2,7 +2,7 @@ module.exports = (app) => {
     const panel = require('../controllers/panel.controller.js');
 
     // Add value to the panel
-    // app.post('/panel' , panel.create);
+    app.post('/panel/screen/:screenId' , panel.findByCurrrentValue);
 
     // Reterive all panels
     app.get('/panel' , panel.findAll);
