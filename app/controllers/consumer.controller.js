@@ -32,7 +32,7 @@ exports.consume = (req, res) => {
 			// create RawData
 			const rawdata = new RawData({
 				val: message.value ,
-				sensorId: "AB1236",
+				sensorId: "AB1233",
 				createdAt: new Date(),
 				updatedAt: new Date(),
 			});
