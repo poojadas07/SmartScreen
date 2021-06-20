@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Screen = new mongoose.Schema({
     name: {
         type: String,
-        unique: true
+        unique: false
     },
     rows: {
         type: Number,      
