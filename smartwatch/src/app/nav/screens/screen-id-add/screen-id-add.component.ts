@@ -42,6 +42,10 @@ export class ScreenIdAddComponent implements OnInit {
         this.bookForm.get('panel').setValue(this.panels.name);
         this.bookForm.get('rows').setValue(this.panels.row_no);
         this.bookForm.get('columns').setValue(this.panels.column_no);
+        
+        if(this.panels.sensor_id != null){
+          this.bookForm.get('sensorId').setValue(this.panels.sensor_id);
+        }
 
         this.apiService.fetchScreenById(this.data.dialogText.screen_id).subscribe((res) => {
           this.bookForm.get('name').setValue(res.body.name);
