@@ -40,8 +40,8 @@ export class ScreensAddComponent implements OnInit {
     {
       this.bookForm = this.formBuilder.group({
         name: ['', Validators.required],
-        rowNo: ['', Validators.required],
-        columnNo: ['', Validators.required],
+        rows: ['', Validators.required],
+        columns: ['', Validators.required],
         status: ['', Validators.required],
         department_id: ['', Validators.required],
         client_id: ['', Validators.required],
@@ -64,16 +64,16 @@ export class ScreensAddComponent implements OnInit {
         this.screen = res.body;
         // console.log(this.region);
         this.bookForm.get('name').setValue(this.screen.name);
-        this.bookForm.get('rowNo').setValue(this.screen.rows);
-        this.bookForm.get('columnNo').setValue(this.screen.columns);
+        this.bookForm.get('rows').setValue(this.screen.rows);
+        this.bookForm.get('columns').setValue(this.screen.columns);
         this.bookForm.get('status').setValue(this.screen.status);
         this.bookForm.get('department_id').setValue(this.screen.department_id);
         this.bookForm.get('client_id').setValue(this.screen.client_id);
         this.bookForm.get('location_id').setValue(this.screen.location_id);
         this.bookForm.get('region_id').setValue(this.screen.region_id);
         this.bookForm.get('country_id').setValue(this.screen.country_id);
-        this.bookForm.controls['rowNo'].disable();
-        this.bookForm.controls['columnNo'].disable();
+        this.bookForm.controls['rows'].disable();
+        this.bookForm.controls['columns'].disable();
       });
     }
   }
