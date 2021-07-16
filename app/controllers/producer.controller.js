@@ -8,7 +8,7 @@ const producer = new Producer(client);
 
 exports.produce = (req, res ) => {
     const payloads = [
-        { topic: 'example', messages: ['-1'], partition: 0 } ,
+        { topic: 'example', messages: ['1'], partition: 0 } ,
     ];
 
     producer.send(payloads , function(error, data) {
